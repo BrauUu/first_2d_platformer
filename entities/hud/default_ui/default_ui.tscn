@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://dq482mnd4c4y3"]
+
+[ext_resource type="Script" uid="uid://c6tgwfhbmv20w" path="res://entities/hud/default_ui/default_ui.gd" id="1_fdptq"]
+[ext_resource type="Texture2D" uid="uid://c4ia10tef4rvx" path="res://assets/sprites/hud/hearts_hud.png" id="2_iv06q"]
+[ext_resource type="Texture2D" uid="uid://cqifxiup4kbal" path="res://assets/sprites/hud/no_hearts_hud.png" id="2_sonvl"]
+[ext_resource type="Texture2D" uid="uid://68kbqn615svh" path="res://assets/sprites/hud/lost_hearts_5.png" id="3_sonvl"]
+[ext_resource type="Texture2D" uid="uid://bqs2y7vwgw244" path="res://assets/sprites/hud/lifes_icon.png" id="5_0ensa"]
+[ext_resource type="FontFile" uid="uid://dgek4pi0ok5om" path="res://assets/fonts/ThaleahFat.ttf" id="6_nx52i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plgrs"]
+atlas = ExtResource("2_sonvl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv06q"]
+atlas = ExtResource("2_iv06q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwio5"]
+atlas = ExtResource("3_sonvl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ensa"]
+atlas = ExtResource("3_sonvl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx52i"]
+atlas = ExtResource("3_sonvl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkwg0"]
+atlas = ExtResource("3_sonvl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plgrs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plgrs")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iv06q")
+}],
+"loop": false,
+"name": &"full",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwio5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ensa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx52i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkwg0")
+}],
+"loop": false,
+"name": &"lost",
+"speed": 8.0
+}]
+
+[node name="DefaultUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdptq")
+
+[node name="HeartsContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 204.0
+offset_bottom = 52.0
+
+[node name="FullHeart" type="AnimatedSprite2D" parent="HeartsContainer"]
+visible = false
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_plgrs")
+animation = &"full"
+centered = false
+
+[node name="LifesContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -122.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = 64.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="LifesIcon" type="TextureRect" parent="LifesContainer"]
+layout_mode = 2
+texture = ExtResource("5_0ensa")
+expand_mode = 2
+
+[node name="LifesCount" type="Label" parent="LifesContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_nx52i")
+theme_override_font_sizes/font_size = 48
+text = "00"
+
+[connection signal="animation_finished" from="HeartsContainer/FullHeart" to="." method="_on_full_heart_animation_finished"]

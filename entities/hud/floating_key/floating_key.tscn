@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cohe1v5ox0bt0"]
+
+[ext_resource type="Script" uid="uid://b0so8soexcv4t" path="res://entities/hud/floating_key/floating_key.gd" id="1_qnj8j"]
+
+[node name="FloatingKey" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_qnj8j")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c20vsqtamtjya"]
+
+[ext_resource type="Texture2D" uid="uid://bl8gmctt44v3b" path="res://assets/sprites/scenarios/waterfall/waterfall_bottom_4.png" id="1_4dmd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy6ot"]
+atlas = ExtResource("1_4dmd4")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c67w"]
+atlas = ExtResource("1_4dmd4")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umxe2"]
+atlas = ExtResource("1_4dmd4")
+region = Rect2(32, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78xqk"]
+atlas = ExtResource("1_4dmd4")
+region = Rect2(48, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_742kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy6ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c67w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umxe2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78xqk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="WaterfallBottom" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_742kd")
+autoplay = "default"
+frame_progress = 0.68025

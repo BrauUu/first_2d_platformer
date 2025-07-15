@@ -1,0 +1,42 @@
+extends Area2D
+
+@export var vision_detector_shape : Node2D
+@export var vision_detector_line : RayCast2D
+var parent : Node2D
+
+var detected_body: Node2D = null
+
+var vision_detected_body : CharacterBody2D = null
+var vision_detected_body_seen: bool
+
+signal body_seen
+
+func _ready() -> void:
+	parent = get_parent()
+
+func _process(_delta: float) -> void:
+	if vision_detected_body_seen or not vision_detected_body : return
+	
+	var target_position = vision_detected_body.global_position - global_position
+	target_position.x *= parent.scale.x
+	vision_detector_line.target_position = Vector2(target_position.x, target_position.y)
+	vision_detector_line.force_raycast_update()
+	
+	if vision_detector_line.get_collider() != detected_body:
+		return
+		
+	emit_signal('body_seen')
+	vision_detected_body_seen = true
+
+func body_in_reach(body) -> void:
+	detected_body = body
+	
+func body_out_of_reach() -> void:
+	vision_detected_body = null
+	vision_detected_body_seen = false
+	
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		if body == detected_body:
+			vision_detected_body = body
+			vision_detected_body_seen = false

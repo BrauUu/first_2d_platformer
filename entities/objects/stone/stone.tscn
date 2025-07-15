@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cixxtajaia4x3"]
+
+[ext_resource type="Texture2D" uid="uid://ca1kq7vancn4v" path="res://assets/sprites/objects/stone.png" id="1_kxjt8"]
+[ext_resource type="Script" uid="uid://dj4pofibd61l" path="res://entities/objects/stone/stone.gd" id="2_mohl7"]
+[ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/floating_key.tscn" id="4_djgj8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tabol"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgox2"]
+size = Vector2(5, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjtlu"]
+
+[node name="Stone" type="CharacterBody2D" groups=["PushableObject"]]
+collision_layer = 16
+collision_mask = 33
+script = ExtResource("2_mohl7")
+weight = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxjt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tabol")
+one_way_collision_margin = 0.0
+
+[node name="InteractiveZoneLeft" type="Area2D" parent="."]
+position = Vector2(-9, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneLeft"]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_wgox2")
+
+[node name="InteractiveZoneRight" type="Area2D" parent="."]
+position = Vector2(9, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneRight"]
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_wgox2")
+
+[node name="FloatingKey" parent="." node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_djgj8")]
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = -6.0
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
+texture = SubResource("AtlasTexture_qjtlu")
+
+[connection signal="body_entered" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_left_body_entered"]
+[connection signal="body_exited" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_body_exited"]
+[connection signal="body_entered" from="InteractiveZoneRight" to="." method="_on_interactive_zone_right_body_entered"]
+[connection signal="body_exited" from="InteractiveZoneRight" to="." method="_on_interactive_zone_body_exited"]

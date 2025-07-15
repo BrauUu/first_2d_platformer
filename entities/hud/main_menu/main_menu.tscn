@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=4 uid="uid://b6d48qiaivpxr"]
+
+[ext_resource type="Script" uid="uid://oo6slnyhfsbo" path="res://entities/hud/main_menu/main_menu.gd" id="1_wprdj"]
+[ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="2_wprdj"]
+[ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="3_dqd6p"]
+[ext_resource type="Texture2D" uid="uid://dlp25yu8gyl5k" path="res://assets/sprites/hud/select_icon_5.png" id="3_fkojh"]
+[ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="4_mjim0"]
+[ext_resource type="PackedScene" uid="uid://buwr2lro001aj" path="res://entities/scenario/tile_maps/terrain/terrain.tscn" id="5_gnm5j"]
+[ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="6_j4gct"]
+[ext_resource type="PackedScene" uid="uid://7nh7rfflrncj" path="res://entities/others/camera/camera.tscn" id="7_nisxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61qlu"]
+atlas = ExtResource("3_fkojh")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_840rd"]
+atlas = ExtResource("3_fkojh")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cvkc"]
+atlas = ExtResource("3_fkojh")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72k0i"]
+atlas = ExtResource("3_fkojh")
+region = Rect2(36, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdi4e"]
+atlas = ExtResource("3_fkojh")
+region = Rect2(48, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mr57l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61qlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_840rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cvkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72k0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdi4e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wprdj")
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Terrain" parent="Terrain" instance=ExtResource("5_gnm5j")]
+tile_map_data = PackedByteArray("AAANAAoAAQABAAAAAAANAAsAAQABAAEAAAANAAwAAQABAAEAAAAOAAoAAQABAAAAAAAOAAsAAQABAAEAAAAOAAwAAQABAAEAAAAPAAoAAQABAAAAAAAPAAsAAQABAAEAAAAPAAwAAQABAAEAAAAQAAoAAQAFAAIAAAAQAAsAAQAHAAEAAAAQAAwAAQABAAEAAAARAAoAAQABAAEAAAARAAsAAQABAAEAAAARAAwAAQABAAEAAAASAAkAAQABAAAAAAASAAoAAQABAAEAAAASAAsAAQABAAEAAAASAAwAAQABAAEAAAATAAkAAQABAAAAAAATAAoAAQABAAEAAAATAAsAAQABAAEAAAATAAwAAQABAAEAAAAUAAkAAQACAAAAAAAUAAoAAQADAAIAAAAUAAsAAQABAAEAAAAUAAwAAQABAAEAAAAVAAoAAQABAAAAAAAVAAsAAQABAAEAAAAVAAwAAQABAAEAAAAWAAoAAQABAAAAAAAWAAsAAQABAAEAAAAWAAwAAQABAAEAAAAXAP7/AQAHAAEAAAAXAP//AQAHAAEAAAAXAAAAAQAHAAEAAAAXAAEAAQAHAAEAAAAXAAIAAQAHAAEAAAAXAAoAAQABAAAAAAAXAAsAAQABAAEAAAAXAAwAAQABAAEAAAALAAoAAQAAAAAAAAALAAsAAQAAAAEAAAALAAwAAQAAAAEAAAAMAAoAAQABAAAAAAAMAAsAAQABAAEAAAAMAAwAAQABAAEAAAAQAAkAAQAAAAAAAAARAAkAAQABAAAAAAAVAP7/AQAGAAEAAAAVAP//AQAGAAEAAAAVAAAAAQAGAAEAAAAVAAEAAQAGAAEAAAAVAAIAAQAGAAIAAAAWAP7/AQAHAAEAAAAWAP//AQAHAAEAAAAWAAAAAQAHAAEAAAAWAAEAAQAHAAEAAAAWAAIAAQALAAAAAAAWAAMAAQAGAAEAAAAWAAQAAQAGAAEAAAAWAAUAAQAGAAEAAAAWAAYAAQAGAAIAAAAXAAMAAQAHAAEAAAAXAAQAAQAHAAEAAAAXAAUAAQAHAAEAAAAXAAYAAQAIAAIAAAA=")
+
+[node name="Background" parent="Terrain" instance=ExtResource("3_dqd6p")]
+tile_map_data = PackedByteArray("AAAWAAkAAgABAAQAAAAWAAcAAgABAAQAAAAVAAkAAgABAAQAAAAUAAgAAgAAAAMAAAAVAAYAAgAAAAMAAAAVAAcAAgAAAAQAAAAVAAgAAgAFAAUAAAAWAAgAAgABAAQAAAAXAAcAAgABAAQAAAAXAAgAAgABAAQAAAAXAAkAAgABAAQAAAAWAAYAAgABAAQAAAAXAAYAAgABAAQAAAA=")
+
+[node name="SelectIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(56, 104)
+sprite_frames = SubResource("SpriteFrames_mr57l")
+autoplay = "default"
+frame_progress = 0.0337854
+
+[node name="TitleContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -84.0
+offset_right = 116.0
+offset_bottom = -17.0
+grow_vertical = 2
+theme = ExtResource("2_wprdj")
+vertical = true
+
+[node name="MainTitle" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Blue coat"
+language = "en_US"
+
+[node name="SubTitle" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "guy"
+language = "en_US"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 96.0
+offset_right = 150.0
+offset_bottom = 144.0
+theme = ExtResource("2_wprdj")
+
+[node name="StartButton" type="Button" parent="Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 16
+action_mode = 0
+text = "Start game"
+language = "en_US"
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 16
+text = "Quit
+"
+language = "en_US"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_mjim0")]
+
+[node name="Camera" parent="." instance=ExtResource("7_nisxd")]
+position = Vector2(192, 92)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("6_j4gct")]
+position = Vector2(192, 152)
+is_controllable = false
+
+[connection signal="focus_entered" from="Buttons/StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="mouse_entered" from="Buttons/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="Buttons/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="mouse_entered" from="Buttons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

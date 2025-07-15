@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cx4ebwibnxeqt"]
+
+[ext_resource type="FontFile" uid="uid://dgek4pi0ok5om" path="res://assets/fonts/ThaleahFat.ttf" id="1_av2uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkojh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wprdj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61qlu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_840rd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cvkc"]
+
+[resource]
+default_font = ExtResource("1_av2uu")
+Button/colors/font_color = Color(0.813258, 0.813258, 0.813257, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxEmpty_fkojh")
+Button/styles/focus = SubResource("StyleBoxEmpty_wprdj")
+Button/styles/hover = SubResource("StyleBoxEmpty_61qlu")
+Button/styles/normal = SubResource("StyleBoxEmpty_840rd")
+Button/styles/pressed = SubResource("StyleBoxEmpty_6cvkc")
+Label/colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 24

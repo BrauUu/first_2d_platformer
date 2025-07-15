@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpxx7xj4o5ym"]
+
+[ext_resource type="Script" uid="uid://d4apx0042vqrn" path="res://entities/utils/vision_detector/vision_detector.gd" id="1_wjb4q"]
+
+[node name="VisionDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 49
+script = ExtResource("1_wjb4q")

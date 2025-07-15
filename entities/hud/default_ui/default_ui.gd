@@ -1,0 +1,65 @@
+extends Control
+
+var player: Player
+var player_health_component : HealthComponent
+
+func _ready() -> void:
+	await get_tree().process_frame
+	GameManager.connect("gm_player_dead", _on_player_dead)
+	GameManager.connect("gm_player_spawned", _on_player_respawned)
+	GameManager.connect("gm_player_hurted", _on_player_hurted)
+	get_player()
+	create_hud()
+	
+func get_player() -> void:
+		player = $"../../Player"
+		player_health_component = player.get_node("HealthComponent")
+	
+func create_hud() -> void:
+	create_health_hud()
+	update_lifes_count()
+		
+func create_health_hud() -> void:
+	var node_size = 48
+	var node_gap = 4
+	for i in player_health_component.health:
+		var full_heart = $HeartsContainer/FullHeart.duplicate()
+		full_heart.visible = true
+		full_heart.position.x = (node_size + node_gap) * i
+		$HeartsContainer.add_child(full_heart)
+
+func lose_health_hud(lost_health: int) -> void:
+	var hearts = $HeartsContainer.get_children()
+	for i in range(lost_health + player_health_component.current_health, player_health_component.current_health, - 1):
+		var heart = hearts[i]
+		if heart.animation == "full":
+			heart.play("lost")
+			await heart.animation_finished
+			heart.animation = "empty"
+	
+func recovery_health_hud() -> void:
+	var hearts = $HeartsContainer.get_children()
+	var heart = hearts[player_health_component.current_health]
+	heart.animation = "full"
+	
+func reset_health_hud() -> void:
+	var hearts = $HeartsContainer.get_children().slice(1, len($HeartsContainer.get_children()))
+	for heart in hearts:
+		$HeartsContainer.remove_child(heart)
+	create_health_hud()
+	
+func update_lifes_count() -> void:
+	var player_lifes_count = GameManager.get_player_lifes_count()
+	$LifesContainer/LifesCount.text = str(player_lifes_count)
+	
+func _on_player_hurted(damage_info: Dictionary) -> void:
+	var damage = damage_info.damage
+	lose_health_hud(damage)
+	
+func _on_player_dead(damage_info: Dictionary) -> void:
+	lose_health_hud(player_health_component.health)
+	
+func _on_player_respawned() -> void:
+	get_player()
+	reset_health_hud()
+	update_lifes_count()

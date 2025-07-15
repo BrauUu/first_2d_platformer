@@ -1,0 +1,381 @@
+[gd_scene load_steps=56 format=3 uid="uid://chqd42os0ggp2"]
+
+[ext_resource type="Script" uid="uid://cpa1fba00wl3u" path="res://entities/characters/enemies/goblin/goblin.gd" id="1_ot5hk"]
+[ext_resource type="Shader" uid="uid://dfm6nh8rjqufc" path="res://resources/hurt.gdshader" id="2_ddk16"]
+[ext_resource type="Texture2D" uid="uid://bly72car0o7y6" path="res://assets/sprites/enemies/goblin/goblin_attack_anim_strip_4.png" id="2_v34iq"]
+[ext_resource type="Texture2D" uid="uid://dn7xsjy015hhb" path="res://assets/sprites/enemies/goblin/goblin_death_anim_strip_6.png" id="3_5vur1"]
+[ext_resource type="Texture2D" uid="uid://camvxt21c8kdd" path="res://assets/sprites/enemies/goblin/goblin_hit_anim_strip_3.png" id="4_d7muy"]
+[ext_resource type="Texture2D" uid="uid://c8j4fjhcxjiln" path="res://assets/sprites/enemies/goblin/goblin_idle_anim_strip_4.png" id="5_atq82"]
+[ext_resource type="Texture2D" uid="uid://x3uh4n61msp1" path="res://assets/sprites/enemies/goblin/goblin_run_anim_strip_6.png" id="6_xge4i"]
+[ext_resource type="Script" uid="uid://bleqm1ldov8dn" path="res://entities/characters/enemies/goblin/attack_area.gd" id="7_iym33"]
+[ext_resource type="PackedScene" uid="uid://cv0axvo26akq4" path="res://entities/utils/body_detector/body_detector.tscn" id="7_s4e4p"]
+[ext_resource type="PackedScene" uid="uid://dha5r08rldxrj" path="res://entities/utils/follow_movement/follow_movement.tscn" id="8_b8hbt"]
+[ext_resource type="PackedScene" uid="uid://dtw2oe6rya3fc" path="res://entities/utils/health_component/health_component.tscn" id="9_5d7sl"]
+[ext_resource type="PackedScene" uid="uid://dpxx7xj4o5ym" path="res://entities/utils/vision_detector/vision_detector.tscn" id="9_aac4u"]
+[ext_resource type="PackedScene" uid="uid://bu7aogtp17wj4" path="res://entities/hud/exclamation/exclamation.tscn" id="9_acua4"]
+[ext_resource type="PackedScene" uid="uid://dd4ds2iiul82s" path="res://entities/utils/hitbox_component/hitbox_component.tscn" id="10_muknj"]
+[ext_resource type="PackedScene" uid="uid://b44wnnu8lkq6p" path="res://entities/utils/wall_detector/wall_detector.tscn" id="10_ybj5d"]
+[ext_resource type="PackedScene" uid="uid://d3wdau0mkkvja" path="res://entities/utils/knockback_component/knockback_component.tscn" id="13_tagwr"]
+[ext_resource type="PackedScene" uid="uid://w7y42hwt41uu" path="res://entities/controllers/movement_controller/movement_controller.tscn" id="15_ffrj2"]
+[ext_resource type="PackedScene" uid="uid://dnu6j2arj3gy1" path="res://entities/hud/health_ui/health_ui.tscn" id="15_w6ov6"]
+[ext_resource type="Script" uid="uid://dw3d2w1xljy02" path="res://resources/movement_module_data.gd" id="16_yhjil"]
+[ext_resource type="PackedScene" uid="uid://cr0mcltrohvl4" path="res://entities/states/state_machine/state_machine.tscn" id="19_agc1t"]
+[ext_resource type="PackedScene" uid="uid://bkmjc0nx0fdee" path="res://entities/characters/enemies/states/idle/idle.tscn" id="20_s28nd"]
+[ext_resource type="PackedScene" uid="uid://bjbjgx8xbqx3c" path="res://entities/characters/enemies/states/death/death.tscn" id="21_agc1t"]
+[ext_resource type="PackedScene" uid="uid://4vbbkuihpjhv" path="res://entities/characters/enemies/states/attack/attack.tscn" id="22_s28nd"]
+[ext_resource type="PackedScene" uid="uid://bldnp4cshln61" path="res://entities/characters/enemies/states/chase/chase.tscn" id="24_ddk16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxqy6"]
+size = Vector2(12, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6f4w"]
+shader = ExtResource("2_ddk16")
+shader_parameter/flash_amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a75t"]
+atlas = ExtResource("2_v34iq")
+region = Rect2(1, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb7e6"]
+atlas = ExtResource("2_v34iq")
+region = Rect2(25, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frauy"]
+atlas = ExtResource("2_v34iq")
+region = Rect2(49, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6e44"]
+atlas = ExtResource("2_v34iq")
+region = Rect2(73, 0, 22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8dtq"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw75e"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aegjf"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af0fn"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exkj4"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_655sa"]
+atlas = ExtResource("3_5vur1")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4doct"]
+atlas = ExtResource("4_d7muy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y28i0"]
+atlas = ExtResource("4_d7muy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt4ul"]
+atlas = ExtResource("4_d7muy")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6brt"]
+atlas = ExtResource("5_atq82")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tavpy"]
+atlas = ExtResource("5_atq82")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlcna"]
+atlas = ExtResource("5_atq82")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31e4f"]
+atlas = ExtResource("5_atq82")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eddg0"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onbit"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy034"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfitp"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q2du"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi0ar"]
+atlas = ExtResource("6_xge4i")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_im8x1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a75t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb7e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frauy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6e44")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8dtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw75e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aegjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af0fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exkj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_655sa")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4doct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y28i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt4ul")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6brt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tavpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlcna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31e4f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eddg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onbit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy034")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfitp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q2du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi0ar")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjp8u"]
+size = Vector2(10, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cyclm"]
+radius = 80.0
+
+[sub_resource type="Resource" id="Resource_ffrj2"]
+script = ExtResource("16_yhjil")
+module = NodePath("../FollowMovement")
+priority = 0
+metadata/_custom_type_script = "uid://dw3d2w1xljy02"
+
+[sub_resource type="Resource" id="Resource_yhjil"]
+script = ExtResource("16_yhjil")
+module = NodePath("../KnockbackComponent")
+priority = 1
+metadata/_custom_type_script = "uid://dw3d2w1xljy02"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a75t"]
+size = Vector2(12, 16)
+
+[node name="Goblin" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 48
+script = ExtResource("1_ot5hk")
+health = 2
+speed = 75
+damage = 1
+initial_direction = 1
+jump_power = 200
+cooldown = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_mxqy6")
+
+[node name="FlippedNode" type="Node2D" parent="."]
+
+[node name="Animator" type="AnimatedSprite2D" parent="FlippedNode"]
+material = SubResource("ShaderMaterial_h6f4w")
+sprite_frames = SubResource("SpriteFrames_im8x1")
+animation = &"idle"
+
+[node name="Attack" type="Area2D" parent="FlippedNode" node_paths=PackedStringArray("parent")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("7_iym33")
+parent = NodePath("../..")
+
+[node name="AttackShape" type="CollisionShape2D" parent="FlippedNode/Attack"]
+position = Vector2(8, 2.5)
+shape = SubResource("RectangleShape2D_yjp8u")
+disabled = true
+
+[node name="GroundDetector" type="RayCast2D" parent="FlippedNode"]
+position = Vector2(6, 0)
+collision_mask = 32
+
+[node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
+visible = false
+vision_detector_shape = NodePath("VisionDetectorShape")
+vision_detector_line = NodePath("VisionDetectorLine")
+
+[node name="VisionDetectorShape" type="CollisionPolygon2D" parent="FlippedNode/VisionDetector"]
+polygon = PackedVector2Array(0, -10, 75, -40, 75, 40, 0, 10, -10, 10, -10, -10)
+
+[node name="VisionDetectorLine" type="RayCast2D" parent="FlippedNode/VisionDetector"]
+target_position = Vector2(0, 0)
+collision_mask = 49
+
+[node name="Exclamation" parent="FlippedNode" instance=ExtResource("9_acua4")]
+z_index = 2
+position = Vector2(6, -13)
+scale = Vector2(0.75, 0.75)
+frame = 1
+
+[node name="WallDetector" parent="FlippedNode" node_paths=PackedStringArray("top_detector", "bottom_detector", "parent", "player_detector") instance=ExtResource("10_ybj5d")]
+top_detector = NodePath("TopDetector")
+bottom_detector = NodePath("BottomDetector")
+parent = NodePath("../..")
+player_detector = NodePath("../../PlayerDetector")
+
+[node name="TopDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+target_position = Vector2(0, 0)
+collision_mask = 48
+
+[node name="BottomDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+target_position = Vector2(0, 0)
+collision_mask = 48
+
+[node name="PlayerDetector" parent="." node_paths=PackedStringArray("detector_shape", "vision_detector", "detection_warning") instance=ExtResource("7_s4e4p")]
+visible = false
+collision_layer = 0
+detector_shape = NodePath("DetectorShape")
+vision_detector = NodePath("../FlippedNode/VisionDetector")
+detect_groups = Array[String](["Player"])
+detector_distance = 100
+detection_warning = NodePath("../FlippedNode/Exclamation")
+
+[node name="DetectorShape" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_cyclm")
+
+[node name="FollowMovement" parent="." node_paths=PackedStringArray("ground_detector", "wall_detector", "player_detector", "give_up_countdown", "parent") instance=ExtResource("8_b8hbt")]
+attack_distance = Vector2(15, 30)
+ground_detector = NodePath("../FlippedNode/GroundDetector")
+wall_detector = NodePath("../FlippedNode/WallDetector")
+player_detector = NodePath("../PlayerDetector")
+give_up_countdown = NodePath("GiveUpCountdown")
+parent = NodePath("..")
+
+[node name="GiveUpCountdown" type="Timer" parent="FollowMovement"]
+one_shot = true
+
+[node name="KnockbackComponent" parent="." instance=ExtResource("13_tagwr")]
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("9_5d7sl")]
+parent = NodePath("..")
+
+[node name="MovementController" parent="." instance=ExtResource("15_ffrj2")]
+movement_modules_data = Array[ExtResource("16_yhjil")]([SubResource("Resource_ffrj2"), SubResource("Resource_yhjil")])
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("10_muknj")]
+visible = false
+collision_layer = 4
+collision_mask = 66
+health_component = NodePath("../HealthComponent")
+knockback_component = NodePath("../KnockbackComponent")
+
+[node name="HitboxComponentShape" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_7a75t")
+
+[node name="HealthUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("15_w6ov6")]
+visible = false
+offset_left = -8.0
+offset_top = -13.0
+offset_right = -8.0
+offset_bottom = -13.0
+scale = Vector2(0.3, 0.3)
+health_component = NodePath("../HealthComponent")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("19_agc1t")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("20_s28nd")]
+enemy = NodePath("../..")
+
+[node name="Death" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("21_agc1t")]
+enemy = NodePath("../..")
+
+[node name="Attack" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("22_s28nd")]
+enemy = NodePath("../..")
+
+[node name="Chase" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("24_ddk16")]
+enemy = NodePath("../..")
+
+[connection signal="animation_finished" from="FlippedNode/Animator" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="FlippedNode/Attack" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="FlippedNode/VisionDetector" to="FlippedNode/VisionDetector" method="_on_body_entered"]
