@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://3n7bqws3xyoo"]
+
+[ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="1_1t47d"]
+[ext_resource type="Script" uid="uid://v3ghnt572nri" path="res://entities/hud/floating_instruction/interact_instruction/interact_instruction.gd" id="2_t2oed"]
+[ext_resource type="Texture2D" uid="uid://cd3r7w6s2q16l" path="res://assets/sprites/hud/keys/ps4.png" id="3_fumyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn6uu"]
+atlas = ExtResource("3_fumyq")
+region = Rect2(0, 80, 16, 16)
+
+[node name="InteractInstruction" type="HBoxContainer"]
+offset_right = 51.0
+offset_bottom = 15.0
+theme = ExtResource("1_1t47d")
+alignment = 1
+script = ExtResource("2_t2oed")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wn6uu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1

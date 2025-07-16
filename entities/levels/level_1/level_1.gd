@@ -3,6 +3,7 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var door: AnimatableBody2D = $Environment/Objects/Door
 @onready var hud: CanvasLayer = $HUD
+@onready var tutorial: Control = $Tutorial
 
 signal cinematic_started
 signal cinematic_ended
@@ -33,6 +34,8 @@ func run_initial_cinematic() -> void:
 	
 func _on_cinematic_started() -> void:
 	hud.visible = false
+	tutorial.visible = false
 	
 func _on_cinematic_ended() -> void:
 	hud.visible = true
+	tutorial.visible = true
