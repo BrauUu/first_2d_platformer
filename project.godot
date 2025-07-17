@@ -14,6 +14,10 @@ config/name="2d_platform"
 run/main_scene="uid://dpor72rsgrqlg"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
 GameManager="*res://entities/managers/game_manager/game_manager.gd"

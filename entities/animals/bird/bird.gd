@@ -7,6 +7,7 @@ extends CharacterBody2D
 const WALK_SPEED := 30
 const FLY_SPEED := Vector2(50, -150)
 const OUT_OF_BOUNDS_POSITION := Vector2(-100, -180)
+const COLORS : Array = ["#deeed6","#efebb5", "#c5fbf6", "#b2ff9b"]
 
 var STATES = {"walk" : move, "peak" : peak}
 
@@ -25,6 +26,13 @@ func _ready() -> void:
 	limit_walk_positions["min"] = initial_position.x - movement_distance
 	limit_walk_positions["max"] = initial_position.x + movement_distance
 	walk_or_peak()
+	
+	var original_material = animated_sprite_2d.material
+	animated_sprite_2d.material =  original_material.duplicate()
+	change_bird_color(Color(COLORS.pick_random()))
+	
+func change_bird_color(color: Color):
+	animated_sprite_2d.material.set_shader_parameter("replace_color", color)
 	
 func _process(delta: float) -> void:
 	if direction:

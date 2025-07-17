@@ -5,6 +5,10 @@ extends Node2D
 @onready var hud: CanvasLayer = $HUD
 @onready var tutorial: Control = $Tutorial
 
+@export var show_cutscenes : bool
+
+const player_start_position = Vector2(125, 168)
+
 signal cinematic_started
 signal cinematic_ended
 
@@ -13,7 +17,11 @@ func _ready() -> void:
 	cinematic_ended.connect(_on_cinematic_ended)
 	await get_tree().process_frame
 	door.open(false)
-	run_initial_cinematic()
+	if show_cutscenes:
+		run_initial_cinematic()
+	else:
+		door.close(false)
+		player.position = player_start_position
 
 func run_initial_cinematic() -> void:
 	cinematic_started.emit()
@@ -24,18 +32,19 @@ func run_initial_cinematic() -> void:
 	while player.position.x < 93:
 		await get_tree().process_frame
 	door.close()
-	while player.position.x < 125:
+	while player.position.x < player_start_position.x:
 		await get_tree().process_frame
 	player.stop(-1)
 	await door.door_closed
 	player.direction = 1
-	player.is_controllable = true
 	cinematic_ended.emit()
 	
 func _on_cinematic_started() -> void:
 	hud.visible = false
 	tutorial.visible = false
+	player.is_controllable = false
 	
 func _on_cinematic_ended() -> void:
 	hud.visible = true
 	tutorial.visible = true
+	player.is_controllable = true

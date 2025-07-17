@@ -1,10 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://qe737yjsx6yi"]
 
-[ext_resource type="Texture2D" uid="uid://cornrad8uceyp" path="res://assets/sprites/scenarios/tiles/tileset.png" id="1_iasse"]
+[ext_resource type="Texture2D" uid="uid://ycy4r0hmmu1d" path="res://resources/tile_maps/complete_tile_map.png" id="2_fkyhx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47enk"]
-resource_name = "Foreground"
-texture = ExtResource("1_iasse")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axc4c"]
+texture = ExtResource("2_fkyhx")
+0:0/0 = 0
+0:0/0/z_index = 10
 1:0/0 = 0
 1:0/0/z_index = 10
 2:0/0 = 0
@@ -117,13 +118,26 @@ texture = ExtResource("1_iasse")
 4:5/0/z_index = 10
 5:5/0 = 0
 5:5/0/z_index = 10
-0:0/0 = 0
-0:0/0/z_index = 10
+0:6/0 = 0
+0:6/0/texture_origin = Vector2i(0, -4)
+0:6/0/z_index = 10
+1:6/0 = 0
+1:6/0/texture_origin = Vector2i(0, -4)
+1:6/0/z_index = 10
+2:6/0 = 0
+2:6/0/texture_origin = Vector2i(0, -4)
+2:6/0/z_index = 10
+3:6/0 = 0
+3:6/0/texture_origin = Vector2i(0, -4)
+3:6/0/z_index = 10
+4:6/0 = 0
+4:6/0/texture_origin = Vector2i(0, 4)
+4:6/0/z_index = 10
 
 [sub_resource type="TileSet" id="TileSet_f6fy2"]
 physics_layer_0/collision_layer = 32
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_47enk")
+sources/1 = SubResource("TileSetAtlasSource_axc4c")
 
 [node name="Foreground" type="TileMapLayer"]
 tile_set = SubResource("TileSet_f6fy2")

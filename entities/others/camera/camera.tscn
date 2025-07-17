@@ -6,7 +6,7 @@
 ignore_rotation = false
 zoom = Vector2(3, 3)
 process_callback = 0
-limit_left = 0
+limit_left = -75
 limit_bottom = 200
 limit_smoothed = true
 position_smoothing_enabled = true

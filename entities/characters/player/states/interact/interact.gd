@@ -17,8 +17,10 @@ func update(_delta: float) -> void:
 		elif force_applied < 0:
 			player.set_animation('push')
 	else:
+		if player.animator.animation == 'pull' :
+			await get_tree().process_frame
+			player.direction = -player.interaction_direction
 		player.set_animation('idle')
-		player.direction = -player.interaction_direction 
 	
 func physics_update(_delta: float) -> void:
 	pass

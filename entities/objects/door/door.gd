@@ -20,9 +20,12 @@ func open(show_animation: bool = true) -> void:
 		animated_sprite_2d.play("opened")
 	
 	
-func close() -> void:
+func close(show_animation: bool = true) -> void:
 	collision_shape_2d.disabled = false
-	animated_sprite_2d.play("close")
+	if show_animation:
+		animated_sprite_2d.play("close")
+	else:
+		animated_sprite_2d.play("closed")
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "open":
