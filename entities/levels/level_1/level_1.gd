@@ -8,6 +8,7 @@ extends Node2D
 @export var show_cutscenes : bool
 
 const player_start_position = Vector2(125, 168)
+#const player_start_position = Vector2(904, 88)
 
 signal cinematic_started
 signal cinematic_ended

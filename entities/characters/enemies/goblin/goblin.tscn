@@ -246,7 +246,7 @@ size = Vector2(12, 16)
 collision_layer = 4
 collision_mask = 48
 script = ExtResource("1_ot5hk")
-health = 2
+health = 5
 speed = 75
 damage = 1
 initial_direction = 1
@@ -265,6 +265,7 @@ sprite_frames = SubResource("SpriteFrames_im8x1")
 animation = &"idle"
 
 [node name="Attack" type="Area2D" parent="FlippedNode" node_paths=PackedStringArray("parent")]
+visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("7_iym33")
@@ -276,11 +277,13 @@ shape = SubResource("RectangleShape2D_yjp8u")
 disabled = true
 
 [node name="GroundDetector" type="RayCast2D" parent="FlippedNode"]
+visible = false
 position = Vector2(6, 0)
 collision_mask = 32
 
 [node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
 visible = false
+collision_mask = 17
 vision_detector_shape = NodePath("VisionDetectorShape")
 vision_detector_line = NodePath("VisionDetectorLine")
 
@@ -297,8 +300,10 @@ z_index = 2
 position = Vector2(6, -13)
 scale = Vector2(0.75, 0.75)
 frame = 1
+frame_progress = 0.0
 
 [node name="WallDetector" parent="FlippedNode" node_paths=PackedStringArray("top_detector", "bottom_detector", "parent", "player_detector") instance=ExtResource("10_ybj5d")]
+visible = false
 top_detector = NodePath("TopDetector")
 bottom_detector = NodePath("BottomDetector")
 parent = NodePath("../..")

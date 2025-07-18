@@ -18,12 +18,14 @@ func _ready() -> void:
 	
 func _on_game_over() -> void:
 	visible = true
+	get_tree().paused = true
 	RESTART_BUTTON.grab_focus()
 
 func _on_restart_button_pressed() -> void:
 	FadeIn.transition()
 	await FadeIn.transition_finished
 	visible = false
+	get_tree().paused = false
 	GameManager.restart()
 	
 func _on_restart_button_focus_entered() -> void:

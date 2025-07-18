@@ -24,6 +24,7 @@ func _exit_tree():
 	get_tree().paused = false
 
 func handle_pause_menu() -> void:
+	if not GameManager.can_pause: return
 	on_pause = not on_pause
 	visible = on_pause
 	get_tree().paused = on_pause

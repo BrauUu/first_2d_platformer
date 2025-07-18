@@ -47,4 +47,6 @@ animations = [{
 [node name="Exclamation" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ewhc0")
 animation = &"fade"
+frame = 2
+frame_progress = 1.0
 script = ExtResource("2_85p41")

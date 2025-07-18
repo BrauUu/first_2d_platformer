@@ -26,6 +26,10 @@ GamepadTypeManager="*res://entities/managers/gamepad_type_manager/gamepad_type_m
 IconsManager="*res://entities/managers/icons_manager/icons_manager.gd"
 GamepadsIcons="*res://resources/gamepads_icons.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

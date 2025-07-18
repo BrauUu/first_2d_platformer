@@ -11,7 +11,7 @@ var is_stopped := false
 func _ready() -> void:
 	if parent.jump_power and parent.speed:
 		var jump_max_height = -parent.jump_power/20
-		var jump_max_width = parent.speed/5
+		var jump_max_width = parent.speed/4
 		
 		top_detector.target_position = Vector2(jump_max_width, 0)
 		top_detector.position = Vector2(0, jump_max_height)
@@ -21,9 +21,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not active: return
 	
-	if bottom_detector.is_colliding():
-		if top_detector.is_colliding():
-			is_stopped = true
-		else:
-			is_stopped = false
-			parent.jump()
+	if bottom_detector.is_colliding() and top_detector.is_colliding():
+		is_stopped = true
+	elif bottom_detector.is_colliding():
+		is_stopped = false
+		parent.jump()
+	else:
+		is_stopped = false

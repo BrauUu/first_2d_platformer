@@ -1,11 +1,13 @@
 extends Node
 
-@export var player_lifes_count := 0
+@export var player_lifes_count := 1
 
 signal gm_player_dead (damage_info: Dictionary)
 signal gm_player_spawned
 signal gm_player_hurted (damage_info: Dictionary)
 signal gm_game_over
+
+var can_pause : bool = true
 
 func _ready() -> void:
 	pass
@@ -19,15 +21,12 @@ func spawn(node: Node2D, pos: Vector2) -> Node2D:
 	return node
 	
 func notify_spawn_player() -> void:
-	
 	if player_lifes_count > 0:
 		spawn_player()
 		emit_signal("gm_player_spawned")
-		return
-	
-	#TODO: Game over
 	
 func spawn_player(is_game_over: bool = false) -> CharacterBody2D:
+		can_pause = true
 		var player := preload("res://entities/characters/player/player.tscn").instantiate()
 		var spawn_point : SpawnPoint
 		
@@ -36,17 +35,20 @@ func spawn_player(is_game_over: bool = false) -> CharacterBody2D:
 			player_lifes_count -= 1
 		else:
 			spawn_point = get_first_spawn_point()
+			
 		var pos = spawn_point.position
 		return spawn(player, pos)
 
 func restart() -> void:
 	spawn_player(true)
+	emit_signal("gm_player_spawned")
 	
 func notify_player_dead(damage_info: Dictionary) -> void:
+	can_pause = false
 	if player_lifes_count <= 0:
 		gm_game_over.emit()
-		return
-	emit_signal("gm_player_dead", damage_info)
+	else:
+		gm_player_dead.emit(damage_info)
 	
 func notify_player_hurted(damage_info: Dictionary) -> void:
 	emit_signal("gm_player_hurted", damage_info)
