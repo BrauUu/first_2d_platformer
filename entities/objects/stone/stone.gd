@@ -37,7 +37,7 @@ func _on_interactive_zone_body_exited(body: Node2D) -> void:
 	player = null
 
 func _input(event):
-	if not can_be_interacted: return
+	if not can_be_interacted or player.on_animation: return
 	if event.is_action_pressed("interact"):
 		if not is_being_interacted:
 			player.start_interaction()

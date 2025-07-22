@@ -8,11 +8,11 @@ func enter(params: Dictionary = {}) -> void:
 		popped.emit()
 	else:
 		player.velocity.x = 0
-		player.can_move = false
+		player.on_animation = true
 		player.set_animation('attack')
 	
 func exit() -> void:
-	player.can_move = true
+	player.on_animation = false
 	
 func update(_delta: float) -> void:
 	pass

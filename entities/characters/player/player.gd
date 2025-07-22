@@ -23,8 +23,9 @@ var jump_count := 0
 var direction : float = 0.0
 var interaction_direction : int = 0
 var is_interacting : bool = false
+var was_on_floor := true
 
-var can_move : bool = true
+var on_animation : bool = false
 
 func set_animation(animation: String) -> void:
 	if animation in animator.sprite_frames.get_animation_names():
@@ -46,7 +47,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if can_move and is_controllable:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	if is_controllable:
 		direction = Input.get_axis("move_left", "move_right")
 		if abs(direction) < DEADZONE:
 			direction = 0.0
@@ -55,24 +59,23 @@ func _physics_process(delta: float) -> void:
 			
 		if not is_interacting:
 			velocity.x = direction * speed
-	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		if jump_count != 2:
-			if velocity.y > 0:
-				set_animation("jump_down")
-			else:
-				set_animation("jump_up")
-		else:
-			set_animation("double_jump")
-		move_and_slide()
 		
-		if is_on_floor():
+	if not on_animation:
+		if not is_on_floor():
+			if jump_count != 2:
+				if velocity.y > 0:
+					set_animation("jump_down")
+				else:
+					set_animation("jump_up")
+			else:
+				set_animation("double_jump")
+			
+		if not was_on_floor and is_on_floor():
 			spawn_dust_effect("after_jump_dust")
 			jump_count = 0
 
-	else:
-		move_and_slide()
+	was_on_floor = is_on_floor()
+	move_and_slide()
 
 func spawn_dust_effect(animation: String) -> void:
 	var dust = DUST_EFFECT_ON_JUMP.instantiate()

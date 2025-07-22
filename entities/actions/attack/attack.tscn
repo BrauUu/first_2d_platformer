@@ -3,36 +3,36 @@
 [ext_resource type="Script" uid="uid://dcqjblit77ouu" path="res://entities/actions/attack/attack.gd" id="1_urk2l"]
 [ext_resource type="Texture2D" uid="uid://kmlsgul43gbf" path="res://assets/sprites/effects/sword_effect_4.png" id="2_vkibv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxi1g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiy80"]
 atlas = ExtResource("2_vkibv")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 15, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_koh0y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_431xb"]
 atlas = ExtResource("2_vkibv")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(16, 0, 15, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_02thu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruqax"]
 atlas = ExtResource("2_vkibv")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(32, 0, 15, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_356pf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nm4r"]
 atlas = ExtResource("2_vkibv")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(48, 0, 15, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tqjlf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oxi1g")
+"texture": SubResource("AtlasTexture_qiy80")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_koh0y")
+"texture": SubResource("AtlasTexture_431xb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_02thu")
+"texture": SubResource("AtlasTexture_ruqax")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_356pf")
+"texture": SubResource("AtlasTexture_4nm4r")
 }],
 "loop": false,
 "name": &"attack",
