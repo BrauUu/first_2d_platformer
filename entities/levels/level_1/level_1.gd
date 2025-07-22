@@ -41,11 +41,13 @@ func run_initial_cinematic() -> void:
 	cinematic_ended.emit()
 	
 func _on_cinematic_started() -> void:
+	GameManager.can_pause = false
 	hud.visible = false
 	tutorial.visible = false
 	player.is_controllable = false
 	
 func _on_cinematic_ended() -> void:
+	GameManager.can_pause = true
 	hud.visible = true
 	tutorial.visible = true
 	player.is_controllable = true
