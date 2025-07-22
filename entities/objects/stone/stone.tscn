@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cixxtajaia4x3"]
+[gd_scene load_steps=9 format=3 uid="uid://cixxtajaia4x3"]
 
 [ext_resource type="Texture2D" uid="uid://ca1kq7vancn4v" path="res://assets/sprites/objects/stone.png" id="1_kxjt8"]
 [ext_resource type="Script" uid="uid://dj4pofibd61l" path="res://entities/objects/stone/stone.gd" id="2_mohl7"]
 [ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/floating_key.tscn" id="4_djgj8"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_qjtlu"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="5_tabol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tabol"]
 size = Vector2(14, 16)
@@ -49,6 +51,13 @@ sprite_2d = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
 texture = SubResource("AtlasTexture_qjtlu")
+
+[node name="AudioController" parent="." instance=ExtResource("4_qjtlu")]
+
+[node name="Push" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_tabol")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_left_body_entered"]
 [connection signal="body_exited" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_body_exited"]

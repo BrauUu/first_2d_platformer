@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var floating_key: Control = $FloatingKey
+@onready var audio_controller: AudioController = $AudioController
 
 @export var weight : int
 
@@ -18,6 +19,10 @@ func _physics_process(delta: float) -> void:
 		var new_velocity = player.direction * (player.force / weight) * 30
 		velocity.x = new_velocity
 		player.velocity.x = new_velocity
+		if new_velocity:
+			audio_controller.play_sound("Push")
+		else:
+			audio_controller.stop_sound("Push")
 	else:
 		velocity.x = 0
 		

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ycy4r0hmmu1d" path="res://resources/tile_maps/complete_tile_map.png" id="2_fkyhx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axc4c"]
+resource_name = "Foreground"
 texture = ExtResource("2_fkyhx")
 0:0/0 = 0
 0:0/0/z_index = 10
@@ -135,9 +136,9 @@ texture = ExtResource("2_fkyhx")
 4:6/0/z_index = 10
 
 [sub_resource type="TileSet" id="TileSet_f6fy2"]
-physics_layer_0/collision_layer = 32
+physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
-sources/1 = SubResource("TileSetAtlasSource_axc4c")
+sources/3 = SubResource("TileSetAtlasSource_axc4c")
 
 [node name="Foreground" type="TileMapLayer"]
 tile_set = SubResource("TileSet_f6fy2")

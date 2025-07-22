@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://dnjsn6s5mkus2"]
+[gd_scene load_steps=75 format=3 uid="uid://dnjsn6s5mkus2"]
 
 [ext_resource type="Texture2D" uid="uid://37f4miypnvp7" path="res://assets/sprites/player/idle_4.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bldqe55lqut34" path="res://entities/characters/player/player.gd" id="1_qhqgy"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://cuneet0wyysmc" path="res://assets/sounds/sfx/player/player_footstep.wav" id="22_nopo2"]
 [ext_resource type="AudioStream" uid="uid://dcoccw3kmrryt" path="res://assets/sounds/sfx/player/player_jump.wav" id="23_lymma"]
 [ext_resource type="AudioStream" uid="uid://c73l0e8tf0hyl" path="res://assets/sounds/sfx/effects/slash.wav" id="24_lymma"]
+[ext_resource type="PackedScene" uid="uid://cwbp5pxb3ia0u" path="res://entities/utils/tile_map_detector/tile_map_detector.tscn" id="25_qquha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
 atlas = ExtResource("2_eojnx")
@@ -433,7 +434,7 @@ visible = false
 collision_mask = 72
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jk2m4")
 
@@ -465,17 +466,21 @@ audio_controller = NodePath("../../AudioController")
 
 [node name="Move" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("22_nopo2")
-volume_db = 15.0
+volume_db = 3.0
 bus = &"SFX"
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("23_lymma")
-volume_db = 5.0
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("24_lymma")
-volume_db = 5.0
 bus = &"SFX"
+
+[node name="TileMapDetector" parent="." instance=ExtResource("25_qquha")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapDetector"]
+shape = SubResource("RectangleShape2D_jk2m4")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -112,6 +112,7 @@ interact={
 2d_physics/layer_7="Dead Zone"
 2d_physics/layer_8="Interactive Zone"
 2d_physics/layer_9="Animals"
+2d_physics/layer_10="FakeTerrain"
 
 [rendering]
 

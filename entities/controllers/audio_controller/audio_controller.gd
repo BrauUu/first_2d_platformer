@@ -14,4 +14,8 @@ func play_sound(sound_name: String, params: Dictionary = {}) -> void:
 		
 		if not sound.playing or params.get("must_stop"):
 			sound.play()
-		
+			
+func stop_sound(sound_name: String) -> void:
+	if sfx_nodes.get(sound_name.to_lower()):
+		var sound = sfx_nodes.get(sound_name.to_lower())
+		sound.stop()

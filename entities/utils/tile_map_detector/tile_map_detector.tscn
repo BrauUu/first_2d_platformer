@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwbp5pxb3ia0u"]
+
+[ext_resource type="Script" uid="uid://b1f3mjo4e0vkn" path="res://entities/utils/tile_map_detector/tile_map_detector.gd" id="1_wuxld"]
+
+[node name="TileMapDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 544
+script = ExtResource("1_wuxld")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

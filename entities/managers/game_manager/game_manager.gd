@@ -3,6 +3,8 @@ extends Node
 signal gm_player_dead (damage_info: Dictionary)
 signal gm_player_spawned
 signal gm_player_hurted (damage_info: Dictionary)
+signal gm_player_entered_fake_terrain (left_cell: Vector2i )
+signal gm_player_left_fake_terrain (entered_cell: Vector2i)
 
 var can_pause : bool = true
 
@@ -40,3 +42,9 @@ func notify_player_hurted(damage_info: Dictionary) -> void:
 func get_current_spawn_point() -> SpawnPoint:
 	#TODO: Checkpoint logic
 	return $"../Game/SpawnPoint"
+
+func notify_player_entered_fake_terrain(entered_cell: Vector2i) -> void:
+	gm_player_entered_fake_terrain.emit(entered_cell)
+	
+func notify_player_left_fake_terrain(left_cell: Vector2i) -> void:
+	gm_player_left_fake_terrain.emit(left_cell)
