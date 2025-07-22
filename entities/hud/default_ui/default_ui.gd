@@ -9,16 +9,12 @@ func _ready() -> void:
 	GameManager.connect("gm_player_spawned", _on_player_respawned)
 	GameManager.connect("gm_player_hurted", _on_player_hurted)
 	get_player()
-	create_hud()
+	create_health_hud()
 	
 func get_player() -> void:
 		player = $"../../Player"
 		player_health_component = player.get_node("HealthComponent")
 	
-func create_hud() -> void:
-	create_health_hud()
-	update_lifes_count()
-		
 func create_health_hud() -> void:
 	var node_size = 48
 	var node_gap = 4
@@ -48,10 +44,6 @@ func reset_health_hud() -> void:
 		$HeartsContainer.remove_child(heart)
 	create_health_hud()
 	
-func update_lifes_count() -> void:
-	var player_lifes_count = GameManager.get_player_lifes_count()
-	$LifesContainer/LifesCount.text = str(player_lifes_count)
-	
 func _on_player_hurted(damage_info: Dictionary) -> void:
 	var damage = damage_info.damage
 	lose_health_hud(damage)
@@ -62,4 +54,3 @@ func _on_player_dead(damage_info: Dictionary) -> void:
 func _on_player_respawned() -> void:
 	get_player()
 	reset_health_hud()
-	update_lifes_count()
