@@ -14,10 +14,11 @@
 
 [resource]
 default_font = ExtResource("1_av2uu")
-Button/colors/font_color = Color(0.813258, 0.813258, 0.813257, 1)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_pressed_color = Color(1, 0.97232, 0.330604, 1)
+Button/colors/font_color = Color(0.779292, 0.779291, 0.77929, 1)
+Button/colors/font_focus_color = Color(0.903597, 0.903598, 0.903598, 1)
+Button/colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
+Button/colors/font_outline_color = Color(0.0214347, 0.0214346, 0.0214346, 1)
+Button/colors/font_pressed_color = Color(0.870588, 0.933333, 0.839216, 1)
 Button/constants/outline_size = 2
 Button/font_sizes/font_size = 32
 Button/styles/disabled = SubResource("StyleBoxEmpty_fkojh")
@@ -26,5 +27,6 @@ Button/styles/hover = SubResource("StyleBoxEmpty_61qlu")
 Button/styles/normal = SubResource("StyleBoxEmpty_840rd")
 Button/styles/pressed = SubResource("StyleBoxEmpty_6cvkc")
 Label/colors/font_color = Color(0.94902, 0.94902, 0.94902, 1)
+Label/colors/font_outline_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 Label/constants/outline_size = 2
 Label/font_sizes/font_size = 24

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6d48qiaivpxr"]
+[gd_scene load_steps=19 format=4 uid="uid://b6d48qiaivpxr"]
 
 [ext_resource type="Script" uid="uid://oo6slnyhfsbo" path="res://entities/hud/main_menu/main_menu.gd" id="1_wprdj"]
 [ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="2_wprdj"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://buwr2lro001aj" path="res://entities/scenario/tile_maps/terrain/terrain.tscn" id="5_gnm5j"]
 [ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="6_j4gct"]
 [ext_resource type="PackedScene" uid="uid://7nh7rfflrncj" path="res://entities/others/camera/camera.tscn" id="7_nisxd"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="10_x3s63"]
+[ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="11_x1f5w"]
+[ext_resource type="AudioStream" uid="uid://dfxaap05rfp3g" path="res://assets/sounds/sfx/ui/menu_select.wav" id="12_y2io5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61qlu"]
 atlas = ExtResource("3_fkojh")
@@ -138,11 +141,22 @@ language = "en_US"
 
 [node name="Camera" parent="." instance=ExtResource("7_nisxd")]
 position = Vector2(192, 92)
+zoom = Vector2(3, 3)
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("6_j4gct")]
 position = Vector2(192, 152)
 is_controllable = false
+
+[node name="AudioController" parent="." instance=ExtResource("10_x3s63")]
+
+[node name="MenuFocus" type="AudioStreamPlayer" parent="AudioController"]
+stream = ExtResource("11_x1f5w")
+volume_db = -10.0
+bus = &"UI"
+
+[node name="MenuSelect" type="AudioStreamPlayer" parent="AudioController"]
+stream = ExtResource("12_y2io5")
 
 [connection signal="focus_entered" from="Buttons/StartButton" to="." method="_on_start_button_focus_entered"]
 [connection signal="mouse_entered" from="Buttons/StartButton" to="." method="_on_start_button_mouse_entered"]

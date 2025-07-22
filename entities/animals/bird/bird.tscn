@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://c0f7ag0qfqshl"]
+[gd_scene load_steps=26 format=3 uid="uid://c0f7ag0qfqshl"]
 
 [ext_resource type="Script" uid="uid://btc0wq1wa7ye3" path="res://entities/animals/bird/bird.gd" id="1_5r5ms"]
 [ext_resource type="Texture2D" uid="uid://bkw17eu0mgsl5" path="res://assets/sprites/animals/bird_flying_3.png" id="2_lnpct"]
 [ext_resource type="Shader" uid="uid://dvx72g57ywtyi" path="res://resources/shaders/color_swap.gdshader" id="2_m6fuc"]
 [ext_resource type="Texture2D" uid="uid://cy3xeorl8n5fy" path="res://assets/sprites/animals/bird_idle_8.png" id="3_m6fuc"]
 [ext_resource type="Texture2D" uid="uid://lob6owcidaro" path="res://assets/sprites/animals/bird_walk_3.png" id="4_sthrx"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="6_m6fuc"]
+[ext_resource type="AudioStream" uid="uid://b552rwmxcvuvi" path="res://assets/sounds/sfx/animals/bird_fly_away.wav" id="7_sthrx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnpct"]
 shader = ExtResource("2_m6fuc")
@@ -161,6 +163,14 @@ shape = SubResource("CircleShape2D_2qswv")
 
 [node name="ChangeActionTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioController" parent="." instance=ExtResource("6_m6fuc")]
+
+[node name="FlyAway" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("7_sthrx")
+volume_db = -2.0
+max_distance = 1000.0
+bus = &"SFX"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]

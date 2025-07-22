@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dnjsn6s5mkus2"]
+[gd_scene load_steps=74 format=3 uid="uid://dnjsn6s5mkus2"]
 
 [ext_resource type="Texture2D" uid="uid://37f4miypnvp7" path="res://assets/sprites/player/idle_4.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bldqe55lqut34" path="res://entities/characters/player/player.gd" id="1_qhqgy"]
@@ -20,9 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://ba1d4c2k3i48w" path="res://entities/characters/player/states/death/death.tscn" id="18_ou7en"]
 [ext_resource type="PackedScene" uid="uid://bgc48gu7448nf" path="res://entities/characters/player/states/interact/interact.tscn" id="20_afbhy"]
 [ext_resource type="PackedScene" uid="uid://c7rpy56e3h3un" path="res://entities/characters/player/states/attack/attack.tscn" id="21_m8clj"]
-[ext_resource type="AudioStream" uid="uid://cuneet0wyysmc" path="res://assets/sounds/sfx/player_footstep.wav" id="22_lhopy"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="22_lymma"]
-[ext_resource type="AudioStream" uid="uid://dcoccw3kmrryt" path="res://assets/sounds/sfx/player_jump.wav" id="24_qquha"]
+[ext_resource type="AudioStream" uid="uid://cuneet0wyysmc" path="res://assets/sounds/sfx/player/player_footstep.wav" id="22_nopo2"]
+[ext_resource type="AudioStream" uid="uid://dcoccw3kmrryt" path="res://assets/sounds/sfx/player/player_jump.wav" id="23_lymma"]
+[ext_resource type="AudioStream" uid="uid://c73l0e8tf0hyl" path="res://assets/sounds/sfx/effects/slash.wav" id="24_lymma"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
 atlas = ExtResource("2_eojnx")
@@ -456,19 +457,25 @@ player = NodePath("../..")
 [node name="Interact" parent="StateMachine" node_paths=PackedStringArray("player") instance=ExtResource("20_afbhy")]
 player = NodePath("../..")
 
-[node name="Attack" parent="StateMachine" node_paths=PackedStringArray("player") instance=ExtResource("21_m8clj")]
+[node name="Attack" parent="StateMachine" node_paths=PackedStringArray("player", "audio_controller") instance=ExtResource("21_m8clj")]
 player = NodePath("../..")
+audio_controller = NodePath("../../AudioController")
 
 [node name="AudioController" parent="." instance=ExtResource("22_lymma")]
 
 [node name="Move" type="AudioStreamPlayer2D" parent="AudioController"]
-stream = ExtResource("22_lhopy")
-volume_db = 7.5
+stream = ExtResource("22_nopo2")
+volume_db = 15.0
 bus = &"SFX"
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="AudioController"]
-stream = ExtResource("24_qquha")
-volume_db = 3.0
+stream = ExtResource("23_lymma")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("24_lymma")
+volume_db = 5.0
 bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var change_action_timer: Timer = $ChangeActionTimer
+@onready var audio_controller: AudioController = $AudioController
 
 const WALK_SPEED := 30
 const FLY_SPEED := Vector2(50, -150)
@@ -79,6 +80,7 @@ func is_out_of_bounds() -> bool:
 	return position.x < OUT_OF_BOUNDS_POSITION.x or position.y < OUT_OF_BOUNDS_POSITION.y
 
 func fly_away() -> void:
+	audio_controller.play_sound("flyaway")
 	animated_sprite_2d.play("fly")
 	velocity = Vector2(FLY_SPEED.x * direction, FLY_SPEED.y)
 	
