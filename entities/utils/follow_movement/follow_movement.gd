@@ -15,6 +15,7 @@ var start_position: Vector2
 var start_direction: float
 var hole_direction := 0
 var enabled : bool = true
+var is_body_out_of_sight : bool = false
 
 func _ready() -> void:
 	start_position = parent.global_position
@@ -23,6 +24,7 @@ func _ready() -> void:
 	
 	player_detector.connect("body_detected", _on_player_detector_body_detected)
 	player_detector.connect("body_lost_detection", _on_player_detector_body_lost_detection)
+	player_detector.connect("body_out_of_sight", _on_player_detector_body_out_of_sight)
 	give_up_countdown.connect("timeout", _on_give_up_countdown_timeout)
 
 func get_motion_velocity() -> Vector2:
@@ -68,7 +70,7 @@ func can_attack(base: Vector2, comparison: Vector2) -> bool:
 	return false
 	
 func check_movement_possiblity() -> void:
-	if wall_detector.is_stopped or not ground_detector.is_colliding():
+	if wall_detector.is_stopped or not ground_detector.is_colliding() or is_body_out_of_sight:
 		if give_up_countdown.is_stopped():
 			give_up_countdown.start()
 	elif not give_up_countdown.is_stopped():
@@ -76,15 +78,20 @@ func check_movement_possiblity() -> void:
 	
 				
 func _on_player_detector_body_detected(body: Node) -> void:
-	if body != target:
-		target = body
-		parent.following()
+	target = body
+	is_body_out_of_sight = false
+	parent.following()
 
 func _on_player_detector_body_lost_detection(body: Node) -> void:
 	if body == target:
 		parent.stop_following()
 		target = null
+		
+func _on_player_detector_body_out_of_sight() -> void:
+	is_body_out_of_sight = true
 
 func _on_give_up_countdown_timeout() -> void:
 	parent.stop_following()
 	target = null
+	is_body_out_of_sight = false
+	player_detector.body_out_of_reach()

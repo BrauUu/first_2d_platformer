@@ -10,12 +10,13 @@ var vision_detected_body : CharacterBody2D = null
 var vision_detected_body_seen: bool
 
 signal body_seen
+signal body_out_of_sight
 
 func _ready() -> void:
 	parent = get_parent()
 
 func _process(_delta: float) -> void:
-	if vision_detected_body_seen or not vision_detected_body : return
+	if not vision_detected_body : return
 	
 	var target_position = vision_detected_body.global_position - global_position
 	target_position.x *= parent.scale.x
@@ -23,10 +24,14 @@ func _process(_delta: float) -> void:
 	vision_detector_line.force_raycast_update()
 	
 	if vision_detector_line.get_collider() != detected_body:
+		if vision_detected_body_seen:
+			body_out_of_sight.emit()
+			vision_detected_body_seen = false
 		return
-		
-	emit_signal('body_seen')
-	vision_detected_body_seen = true
+	
+	if not vision_detected_body_seen:
+		emit_signal('body_seen')
+		vision_detected_body_seen = true
 
 func body_in_reach(body) -> void:
 	detected_body = body
@@ -37,6 +42,6 @@ func body_out_of_reach() -> void:
 	
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		if body == detected_body:
+		if body == detected_body and vision_detected_body != body:
 			vision_detected_body = body
 			vision_detected_body_seen = false
