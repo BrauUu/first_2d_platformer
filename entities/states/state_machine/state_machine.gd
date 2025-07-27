@@ -17,6 +17,9 @@ func _ready() -> void:
 	if initial_state:
 		await get_tree().process_frame
 		push_state(initial_state.name)
+		
+func get_current_state() -> State:
+	return stack.back()
 
 func push_state(state_name: String, params: Dictionary = {}) -> void:
 	_push(state_name, params)

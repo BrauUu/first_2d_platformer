@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	
 func jump() -> void:
-	if is_on_floor() and jump_count < MAX_JUMPS:
+	if is_on_floor() and jump_count < MAX_JUMPS and not knockback_component.is_enabled() and not state_machine.get_current_state() is EnemyDeathState :
 		velocity.y += -jump_power
 		jump_count += 1
 		
