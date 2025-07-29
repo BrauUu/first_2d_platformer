@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://chqd42os0ggp2"]
+[gd_scene load_steps=59 format=3 uid="uid://chqd42os0ggp2"]
 
 [ext_resource type="Script" uid="uid://cpa1fba00wl3u" path="res://entities/characters/enemies/goblin/goblin.gd" id="1_ot5hk"]
 [ext_resource type="Shader" uid="uid://dfm6nh8rjqufc" path="res://resources/shaders/hurt.gdshader" id="2_ddk16"]
@@ -24,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://bjbjgx8xbqx3c" path="res://entities/characters/enemies/states/death/death.tscn" id="21_agc1t"]
 [ext_resource type="PackedScene" uid="uid://4vbbkuihpjhv" path="res://entities/characters/enemies/states/attack/attack.tscn" id="22_s28nd"]
 [ext_resource type="PackedScene" uid="uid://bldnp4cshln61" path="res://entities/characters/enemies/states/chase/chase.tscn" id="24_ddk16"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="25_h6f4w"]
+[ext_resource type="AudioStream" uid="uid://kqr5oqdwir8o" path="res://assets/sounds/sfx/enemies/goblin/goblin_yell.mp3" id="26_fdgn2"]
+[ext_resource type="AudioStream" uid="uid://brbd85crsef7x" path="res://assets/sounds/sfx/enemies/goblin/knife-attack.wav" id="27_fdgn2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxqy6"]
 size = Vector2(12, 16)
@@ -380,6 +383,19 @@ enemy = NodePath("../..")
 
 [node name="Chase" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("24_ddk16")]
 enemy = NodePath("../..")
+
+[node name="AudioController" parent="." instance=ExtResource("25_h6f4w")]
+
+[node name="Yell" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("26_fdgn2")
+max_distance = 250.0
+bus = &"SFX"
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("27_fdgn2")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="FlippedNode/Animator" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="FlippedNode/Attack" to="." method="_on_attack_area_body_entered"]

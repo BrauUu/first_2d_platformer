@@ -9,6 +9,7 @@ extends Enemy
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hitbox_component: Area2D = $HitboxComponent
+@onready var audio_controller: AudioController = $AudioController
 
 const MAX_JUMPS := 1
 
@@ -68,6 +69,7 @@ func is_invunerable(layer: int = 2) -> bool:
 		
 func attack() -> void:
 	if current_cooldown <= 0:
+		audio_controller.play_sound("Attack")
 		current_cooldown = cooldown
 		state_machine.push_state("Attack")
 		attack_area.disabled = false
@@ -97,9 +99,12 @@ func look_for_player(attacker: Node2D) -> void:
 		flipped_node.scale.x = -1
 
 func following() -> void:
-	state_machine.change_state("Chase")
-	exclamation.show_warning()
-	current_cooldown = cooldown
+	var actual_state = state_machine.get_current_state()
+	if not actual_state is EnemyChaseState and not actual_state is EnemyAttackState:
+		state_machine.change_state("Chase")
+		audio_controller.play_sound("Yell")
+		exclamation.show_warning()
+		current_cooldown = cooldown
 	
 func stop_following() -> void:
 	state_machine.change_state("Idle")

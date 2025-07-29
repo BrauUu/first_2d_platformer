@@ -123,6 +123,7 @@ visible = false
 shape = SubResource("RectangleShape2D_y4xfp")
 
 [node name="InteractionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

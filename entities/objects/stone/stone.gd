@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 var can_be_interacted := false
 var is_being_interacted := false
+var was_on_floor := true
 
 var player : Player
 
@@ -14,6 +15,9 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if not was_on_floor and is_on_floor():
+		audio_controller.play_sound("Drop")
 		
 	if is_being_interacted:
 		var new_velocity = player.direction * (player.force / weight) * 30
@@ -25,7 +29,9 @@ func _physics_process(delta: float) -> void:
 			audio_controller.stop_sound("Push")
 	else:
 		velocity.x = 0
+		audio_controller.stop_sound("Push")
 		
+	was_on_floor = is_on_floor()
 	move_and_slide()
 
 func _on_interactive_zone_body_entered(body: Node2D, side: int) -> void:

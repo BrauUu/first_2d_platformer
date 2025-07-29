@@ -6,6 +6,8 @@ const ATTACK := preload("res://entities/actions/attack/attack.tscn")
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hitbox_component: Area2D = $HitboxComponent
+@onready var audio_listener_2d: AudioListener2D = $AudioListener2D
+@onready var audio_controller: AudioController = $AudioController
 
 const MAX_JUMPS := 2
 const DEADZONE := 0.05
@@ -34,6 +36,9 @@ func set_animation(animation: String) -> void:
 func _input(event: InputEvent) -> void:
 	if is_controllable:
 		state_machine.handle_input(event)
+		
+func _ready() -> void:
+	audio_listener_2d.make_current()
 
 func _process(delta: float) -> void:
 	
@@ -71,6 +76,7 @@ func _physics_process(delta: float) -> void:
 				set_animation("double_jump")
 			
 		if not was_on_floor and is_on_floor():
+			audio_controller.play_sound("Drop")
 			spawn_dust_effect("after_jump_dust")
 			jump_count = 0
 
@@ -103,6 +109,7 @@ func hurt(damage_info: Dictionary) -> void:
 	GameManager.notify_player_hurted(damage_info)
 	if not damage_info.source is DeadZone:
 		set_invulnerability(4, true)
+		audio_controller.play_sound("Damage")
 	await apply_hurt_effect()
 	set_invulnerability(4, false)
 		

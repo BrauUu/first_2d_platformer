@@ -133,8 +133,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coj5w"]
 size = Vector2(8, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sthrx"]
-size = Vector2(100, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sthrx"]
+radius = 35.0
+height = 90.0
 
 [node name="Bird" type="CharacterBody2D"]
 collision_layer = 256
@@ -156,10 +157,11 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_coj5w")
 
 [node name="DetectArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
-visible = false
-shape = SubResource("RectangleShape2D_sthrx")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sthrx")
 
 [node name="ChangeActionTimer" type="Timer" parent="."]
 autostart = true
@@ -168,8 +170,8 @@ autostart = true
 
 [node name="FlyAway" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("7_sthrx")
-volume_db = -2.0
-max_distance = 1000.0
+max_distance = 250.0
+attenuation = 2.0
 bus = &"SFX"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

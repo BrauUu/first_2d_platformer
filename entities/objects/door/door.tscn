@@ -1,9 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://c7ph1xkahply3"]
+[gd_scene load_steps=46 format=3 uid="uid://c7ph1xkahply3"]
 
 [ext_resource type="Texture2D" uid="uid://b14slv21jb635" path="res://assets/sprites/objects/strange_door_closed_anim_strip_10.png" id="1_b2uvk"]
 [ext_resource type="Script" uid="uid://klo10lyweykn" path="res://entities/objects/door/door.gd" id="1_sdjg2"]
 [ext_resource type="Texture2D" uid="uid://d2wyb8mc36y0e" path="res://assets/sprites/objects/strange_door_closing_anim_strip_14.png" id="2_icyyl"]
 [ext_resource type="Texture2D" uid="uid://bea55mvb6kxuw" path="res://assets/sprites/objects/strange_door_opening_anim_strip_14.png" id="2_sdjg2"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="5_wy38q"]
+[ext_resource type="AudioStream" uid="uid://3ce0dd0f204f" path="res://assets/sounds/sfx/effects/door_shut.wav" id="6_biwhv"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="7_biwhv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cak7b"]
 atlas = ExtResource("2_icyyl")
@@ -297,5 +300,18 @@ animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cak7b")
+
+[node name="AudioController" parent="." instance=ExtResource("5_wy38q")]
+
+[node name="Shut" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("6_biwhv")
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="Move" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("7_biwhv")
+volume_db = -2.0
+max_distance = 250.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
