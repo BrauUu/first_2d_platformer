@@ -80,6 +80,7 @@ func finish_attack() -> void:
 	
 func hurt(damage_info) -> void:
 	last_damage_info = damage_info
+	audio_controller.play_sound("Hurt")
 	set_invulnerability(2, true)
 	current_cooldown = cooldown
 	look_for_player(last_damage_info.source)
@@ -108,9 +109,11 @@ func following() -> void:
 	
 func stop_following() -> void:
 	state_machine.change_state("Idle")
+	audio_controller.play_sound("GiveUp")
 	exclamation.hide_warning()
 
 func die(damage_info) -> void:
+	audio_controller.play_sound("Die")
 	follow_movement.enabled = false
 	state_machine.change_state("Death", {"damage_info" : damage_info})
 	apply_hurt_effect()

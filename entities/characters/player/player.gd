@@ -121,6 +121,7 @@ func apply_hurt_effect() -> void:
 		await get_tree().create_timer(0.1).timeout
 
 func die(damage_info: Dictionary) -> void:
+	audio_controller.play_sound("Damage")
 	state_machine.change_state("Death", {"damage_info" : damage_info})
 	GameManager.notify_player_dead(damage_info)
 

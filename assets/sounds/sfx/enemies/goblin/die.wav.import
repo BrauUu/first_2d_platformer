@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://8p3ia65w41bp"
-path="res://.godot/imported/damage.wav-508f66213a406d008238e88375b2709a.sample"
+uid="uid://3mge6v46kiyg"
+path="res://.godot/imported/die.wav-5a70fff70a6a93a0d1d62cc4448650cc.sample"
 
 [deps]
 
-source_file="res://assets/sounds/sfx/player/damage.wav"
-dest_files=["res://.godot/imported/damage.wav-508f66213a406d008238e88375b2709a.sample"]
+source_file="res://assets/sounds/sfx/enemies/goblin/die.wav"
+dest_files=["res://.godot/imported/die.wav-5a70fff70a6a93a0d1d62cc4448650cc.sample"]
 
 [params]
 
