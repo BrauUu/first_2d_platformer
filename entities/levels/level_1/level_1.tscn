@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=30 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_a6cpv"]
 [ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="1_lnu2h"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dllc0dgstiw0v" path="res://assets/sprites/objects/chest.tscn" id="24_tutln"]
 [ext_resource type="Script" uid="uid://03ir3cxmvyb0" path="res://resources/treasure_data.gd" id="25_o2xk8"]
 [ext_resource type="PackedScene" uid="uid://c4sb2jgackvsy" path="res://entities/itens/treasures/coin/coin.tscn" id="26_fdybo"]
+[ext_resource type="AudioStream" uid="uid://cam7emghepafm" path="res://assets/sounds/sfx/ambience.wav" id="28_x23lp"]
 
 [sub_resource type="Resource" id="Resource_o2xk8"]
 script = ExtResource("25_o2xk8")
@@ -183,3 +184,7 @@ treasures = Array[ExtResource("25_o2xk8")]([SubResource("Resource_o2xk8")])
 treasures_cluster = NodePath("../Treasures")
 
 [node name="Treasures" type="Node2D" parent="."]
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_x23lp")
+volume_db = -10.0

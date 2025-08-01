@@ -18,6 +18,7 @@ func _ready() -> void:
 	
 	START_BUTTON.grab_focus.call_deferred()
 	player.animator.flip_h = true
+	audio_controller.play_sound("Music")
 
 func _on_start_button_pressed() -> void:
 	disable_menu(START_BUTTON)

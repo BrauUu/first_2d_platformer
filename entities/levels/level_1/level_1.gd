@@ -6,6 +6,7 @@ extends Node2D
 @onready var tutorial: Control = $Tutorial
 @onready var debug_spawn_point: SpawnPoint = $DebugSpawnPoint
 @onready var spawn_point: SpawnPoint = $SpawnPoint
+@onready var ambience: AudioStreamPlayer = $Ambience
 
 @export var show_cutscenes : bool
 
@@ -16,7 +17,7 @@ signal cinematic_started
 signal cinematic_ended
 
 func _ready() -> void:
-	
+	ambience.play()
 	cinematic_started.connect(_on_cinematic_started)
 	cinematic_ended.connect(_on_cinematic_ended)
 	await get_tree().process_frame

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://b6d48qiaivpxr"]
+[gd_scene load_steps=21 format=4 uid="uid://b6d48qiaivpxr"]
 
 [ext_resource type="Script" uid="uid://oo6slnyhfsbo" path="res://entities/hud/main_menu/main_menu.gd" id="1_wprdj"]
 [ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="2_wprdj"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="10_x3s63"]
 [ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="11_x1f5w"]
 [ext_resource type="AudioStream" uid="uid://bimjq4td4qkin" path="res://assets/sounds/sfx/ui/menu_select.wav" id="12_y2io5"]
+[ext_resource type="AudioStream" uid="uid://oqjdwhxlc40y" path="res://assets/sounds/sfx/musics/Adventure's Spirit - Title Theme.wav" id="13_6e1fr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61qlu"]
 atlas = ExtResource("3_fkojh")
@@ -160,6 +161,10 @@ bus = &"UI"
 [node name="MenuSelect" type="AudioStreamPlayer" parent="AudioController"]
 stream = ExtResource("12_y2io5")
 volume_db = -10.0
+bus = &"UI"
+
+[node name="Music" type="AudioStreamPlayer" parent="AudioController"]
+stream = ExtResource("13_6e1fr")
 bus = &"UI"
 
 [connection signal="focus_entered" from="Buttons/StartButton" to="." method="_on_start_button_focus_entered"]
