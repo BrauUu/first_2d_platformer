@@ -23,10 +23,10 @@ func _on_start_button_pressed() -> void:
 	disable_menu(START_BUTTON)
 	audio_controller.play_sound("MenuSelect")
 	player.move()
-	while player.position.x < 240:
+	while player.position.x < 185:
 		await get_tree().process_frame
 	player.force_jump()
-	while player.position.x < 385:
+	while player.position.x < 320:
 		await get_tree().process_frame
 	FadeIn.transition()
 	await FadeIn.transition_finished
@@ -46,7 +46,7 @@ func _on_quit_button_pressed() -> void:
 	disable_menu(QUIT_BUTTON)
 	audio_controller.play_sound("MenuSelect")
 	player.quit_game()
-	while player.position.y < 200:
+	while player.position.y < 160:
 		await get_tree().process_frame
 	FadeIn.transition()
 	await FadeIn.transition_finished

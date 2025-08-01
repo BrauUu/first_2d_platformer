@@ -9,7 +9,8 @@ var icons_paths = {
 		"jump": Rect2(80,80,80,16),
 		"attack": Rect2(112,48,16,16),
 		"pause": Rect2(24,0,24,16),
-		"interact": Rect2(80,32,16,16)
+		"interact": Rect2(80,32,16,16),
+		"interact-pressed": Rect2(80,128,16,16)
 	},
 	"xbox": {
 		"path": "res://assets/sprites/hud/keys/xone.png",
@@ -19,7 +20,8 @@ var icons_paths = {
 		"jump": Rect2(0,16,16,16),
 		"attack": Rect2(0,48,16,16),
 		"pause": Rect2(64,16,16,16),
-		"interact": Rect2(0,80,16,16)
+		"interact": Rect2(0,80,16,16),
+		"interact-pressed": Rect2(16,32,16,16)
 	},
 	"ps": {
 		"path": "res://assets/sprites/hud/keys/ps4.png",
@@ -29,6 +31,7 @@ var icons_paths = {
 		"jump": Rect2(0,16,16,16),
 		"attack": Rect2(0,48,16,16),
 		"pause": Rect2(48,16,16,16),
-		"interact": Rect2(0,80,16,16)
+		"interact": Rect2(0,80,16,16),
+		"interact-pressed": Rect2(16,80,16,16),
 	}
 }

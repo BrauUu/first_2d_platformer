@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cixxtajaia4x3"]
+[gd_scene load_steps=11 format=3 uid="uid://cixxtajaia4x3"]
 
 [ext_resource type="Texture2D" uid="uid://ca1kq7vancn4v" path="res://assets/sprites/objects/stone.png" id="1_kxjt8"]
 [ext_resource type="Script" uid="uid://dj4pofibd61l" path="res://entities/objects/stone/stone.gd" id="2_mohl7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_qjtlu"]
 [ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="5_tabol"]
 [ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="6_qjtlu"]
+[ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="7_tabol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tabol"]
 size = Vector2(14, 16)
@@ -14,6 +15,7 @@ size = Vector2(14, 16)
 size = Vector2(5, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjtlu"]
+region = Rect2(16, 80, 16, 16)
 
 [node name="Stone" type="CharacterBody2D" groups=["PushableObject"]]
 collision_layer = 16
@@ -49,6 +51,7 @@ offset_top = -15.0
 offset_right = 9.0
 offset_bottom = -6.0
 sprite_2d = NodePath("Sprite2D")
+action = "interact"
 
 [node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
 texture = SubResource("AtlasTexture_qjtlu")
@@ -64,6 +67,13 @@ bus = &"SFX"
 [node name="Drop" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("6_qjtlu")
 volume_db = 10.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"
+
+[node name="Interact" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("7_tabol")
+volume_db = -10.0
 max_distance = 500.0
 attenuation = 0.5
 bus = &"SFX"

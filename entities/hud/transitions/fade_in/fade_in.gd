@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var forward: AudioStreamPlayer = $Forward
+@onready var reverse: AudioStreamPlayer = $Reverse
+
 
 signal transition_finished
 
@@ -11,10 +14,12 @@ func _ready() -> void:
 func transition() -> void:
 	visible = true
 	animation_player.play("fade_in")
+	forward.play()
 
 func _on_animation_finished(animation_name: StringName) -> void:
 	if animation_name == "fade_in":
 		transition_finished.emit()
 		animation_player.play("fade_out")
+		reverse.play()
 	elif animation_name == "fade_out":
 		visible = false

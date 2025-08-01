@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4tujt2mudx8v"]
+[gd_scene load_steps=8 format=3 uid="uid://c4tujt2mudx8v"]
 
 [ext_resource type="Script" uid="uid://bqfqesnex1pn2" path="res://entities/hud/transitions/fade_in/fade_in.gd" id="1_c7c2x"]
+[ext_resource type="AudioStream" uid="uid://d1a6vwg1f4liw" path="res://assets/sounds/sfx/ui/transition.wav" id="2_dkny7"]
+[ext_resource type="AudioStream" uid="uid://b7wagkipobpde" path="res://assets/sounds/sfx/ui/transition-reverse.wav" id="3_787hy"]
 
 [sub_resource type="Animation" id="Animation_787hy"]
 length = 0.001
@@ -75,3 +77,13 @@ color = Color(0.15, 0.15, 0.15, 1)
 libraries = {
 &"": SubResource("AnimationLibrary_p6vph")
 }
+
+[node name="Forward" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dkny7")
+volume_db = -10.0
+bus = &"UI"
+
+[node name="Reverse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_787hy")
+volume_db = -10.0
+bus = &"UI"
