@@ -6,7 +6,7 @@ extends Node2D
 @onready var tutorial: Control = $Tutorial
 @onready var debug_spawn_point: SpawnPoint = $DebugSpawnPoint
 @onready var spawn_point: SpawnPoint = $SpawnPoint
-@onready var ambience: AudioStreamPlayer = $Ambience
+@onready var audio_controller: AudioController = $AudioController
 
 @export var show_cutscenes : bool
 
@@ -17,9 +17,14 @@ signal cinematic_started
 signal cinematic_ended
 
 func _ready() -> void:
-	ambience.play()
+	audio_controller.play_sound("Ambience")
+	audio_controller.play_sound("DefaultMusic")
+	
 	cinematic_started.connect(_on_cinematic_started)
 	cinematic_ended.connect(_on_cinematic_ended)
+	GameManager.gm_player_entered_battle.connect(_on_player_enter_battle)
+	GameManager.gm_player_left_battle.connect(_on_player_leave_battle)
+	
 	await get_tree().process_frame
 	door.open(false)
 	if show_cutscenes:
@@ -57,3 +62,11 @@ func _on_cinematic_ended() -> void:
 	hud.visible = true
 	tutorial.visible = true
 	player.is_controllable = true
+	
+func _on_player_enter_battle() -> void:
+	audio_controller.stop_sound("DefaultMusic")
+	audio_controller.play_sound("BattleMusic")
+	
+func _on_player_leave_battle() -> void:
+	audio_controller.stop_sound("BattleMusic")
+	audio_controller.play_sound("DefaultMusic")

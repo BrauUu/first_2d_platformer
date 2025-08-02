@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4sb2jgackvsy"]
+[gd_scene load_steps=21 format=3 uid="uid://c4sb2jgackvsy"]
 
 [ext_resource type="Texture2D" uid="uid://bhgmfyt7r5q48" path="res://assets/sprites/itens/coin_anim_strip_6.png" id="1_5pjg4"]
 [ext_resource type="Script" uid="uid://dhmyuupto3271" path="res://entities/itens/treasures/coin/coin.gd" id="1_oh4us"]
 [ext_resource type="Texture2D" uid="uid://daujb6jdkr6ro" path="res://assets/sprites/itens/coin_pickup_anim_strip_6.png" id="1_p61pe"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_ehyl8"]
+[ext_resource type="AudioStream" uid="uid://pypcx058blvo" path="res://assets/sounds/sfx/effects/treasure_collected.wav" id="5_o4mgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmyae"]
 atlas = ExtResource("1_p61pe")
@@ -107,12 +109,13 @@ size = Vector2(8, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehyl8"]
 size = Vector2(14, 12)
 
-[node name="Coin" type="CharacterBody2D" node_paths=PackedStringArray("animator", "interaction_area")]
+[node name="Coin" type="CharacterBody2D" node_paths=PackedStringArray("animator", "interaction_area", "audio_controller")]
 collision_layer = 1024
 collision_mask = 48
 script = ExtResource("1_oh4us")
 animator = NodePath("AnimatedSprite2D")
 interaction_area = NodePath("InteractionArea")
+audio_controller = NodePath("AudioController")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jmyae")
@@ -128,3 +131,10 @@ collision_layer = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_ehyl8")
+
+[node name="AudioController" parent="." instance=ExtResource("4_ehyl8")]
+
+[node name="Collect" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_o4mgs")
+volume_db = -10.0
+bus = &"SFX"

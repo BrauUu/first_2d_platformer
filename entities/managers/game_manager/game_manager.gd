@@ -5,6 +5,8 @@ signal gm_player_spawned
 signal gm_player_hurted (damage_info: Dictionary)
 signal gm_player_entered_fake_terrain (left_cell: Vector2i )
 signal gm_player_left_fake_terrain (entered_cell: Vector2i)
+signal gm_player_entered_battle
+signal gm_player_left_battle
 
 var can_pause : bool = true
 
@@ -19,6 +21,12 @@ func spawn(node: Node2D, pos: Vector2) -> Node2D:
 func notify_spawn_player() -> void:
 	spawn_player()
 	emit_signal("gm_player_spawned")
+	
+func emit_player_entered_battle() -> void:
+	gm_player_entered_battle.emit()
+	
+func emit_player_left_battle() -> void:
+	gm_player_left_battle.emit()
 	
 func spawn_player(is_game_over: bool = false) -> CharacterBody2D:
 		can_pause = true

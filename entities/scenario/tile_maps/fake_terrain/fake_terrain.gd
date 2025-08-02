@@ -42,3 +42,5 @@ func _on_player_leave_fake_terrain(left_cell: Vector2i) -> void:
 	for ind in len(previous_cells):
 		var cell = previous_cells[ind]
 		set_cell(cell, 4, previous_cells_atlas_coords[ind])
+	previous_cells.clear()
+	previous_cells_atlas_coords.clear()

@@ -304,15 +304,19 @@ scale = Vector2(0.75, 0.75)
 frame = 1
 frame_progress = 0.0
 
-[node name="WallDetector" parent="FlippedNode" node_paths=PackedStringArray("top_detector", "bottom_detector", "parent", "player_detector") instance=ExtResource("10_ybj5d")]
+[node name="WallDetector" parent="FlippedNode" node_paths=PackedStringArray("top_detector", "bottom_detector", "fake_terrain_detector", "parent") instance=ExtResource("10_ybj5d")]
 top_detector = NodePath("TopDetector")
 bottom_detector = NodePath("BottomDetector")
+fake_terrain_detector = NodePath("FakeTerrainDetector")
 parent = NodePath("../..")
-player_detector = NodePath("../../PlayerDetector")
 
 [node name="TopDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
 target_position = Vector2(0, 0)
 collision_mask = 48
+
+[node name="FakeTerrainDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+target_position = Vector2(0, 0)
+collision_mask = 512
 
 [node name="BottomDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
 target_position = Vector2(0, 0)

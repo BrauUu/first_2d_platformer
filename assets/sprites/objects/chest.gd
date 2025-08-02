@@ -7,6 +7,7 @@ extends Node2D
 @export var treasures_cluster: Node2D 
 
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
+@onready var open_audio: AudioStreamPlayer2D = $Open
 
 const SPEED : int = 2
 enum CHEST_STATES {CLOSED, OPENING, OPEN}
@@ -87,6 +88,7 @@ func _process(delta: float) -> void:
 
 func open_chest() -> void:
 	set_current_state(CHEST_STATES.OPENING)
+	open_audio.play()
 	update_animation()
 	position.y -= 1
 	while animator.frame < 3:

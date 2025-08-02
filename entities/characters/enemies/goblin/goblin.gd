@@ -105,10 +105,12 @@ func following() -> void:
 		state_machine.change_state("Chase")
 		audio_controller.play_sound("Yell")
 		exclamation.show_warning()
+		GameManager.emit_player_entered_battle()
 		current_cooldown = cooldown
 	
 func stop_following() -> void:
 	state_machine.change_state("Idle")
+	GameManager.emit_player_left_battle()
 	audio_controller.play_sound("GiveUp")
 	exclamation.hide_warning()
 

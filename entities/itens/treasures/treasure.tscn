@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbp3k062dulnk"]
 
-[ext_resource type="Script" uid="uid://b7xdcwwchalp4" path="res://entities/itens/treasures/treasure.gd" id="1_my1q3"]
+[ext_resource type="Script" uid="uid://b7xdcwwchalp4" path="res://entities/controllers/audio_controller/treasure.gd" id="1_my1q3"]
 
 [node name="Treasure" type="CharacterBody2D"]
 collision_layer = 1024
