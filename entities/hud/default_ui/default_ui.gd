@@ -23,6 +23,7 @@ func create_health_hud() -> void:
 		full_heart.visible = true
 		full_heart.position.x = (node_size + node_gap) * i
 		$HeartsContainer.add_child(full_heart)
+		full_heart.animation = "full"
 
 func lose_health_hud(lost_health: int) -> void:
 	var hearts = $HeartsContainer.get_children()

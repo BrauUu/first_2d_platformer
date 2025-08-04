@@ -1,6 +1,7 @@
 extends Camera2D
 
 @export var target: Node2D
+
 var target_group : String
 
 func _ready() -> void:

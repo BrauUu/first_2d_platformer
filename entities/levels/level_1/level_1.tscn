@@ -1,7 +1,6 @@
 [gd_scene load_steps=33 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_a6cpv"]
-[ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="2_gdnll"]
 [ext_resource type="PackedScene" uid="uid://c7ph1xkahply3" path="res://entities/objects/door/door.tscn" id="4_bx8d6"]
 [ext_resource type="PackedScene" uid="uid://buwr2lro001aj" path="res://entities/scenario/tile_maps/terrain/terrain.tscn" id="4_iywne"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/spawn_point.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://dq482mnd4c4y3" path="res://entities/hud/default_ui/default_ui.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background_old.tscn" id="9_fgeg5"]
 [ext_resource type="PackedScene" uid="uid://m0grdck1ywqo" path="res://entities/hud/pause_menu/pause_menu.tscn" id="9_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cvkkp8diqjwdl" path="res://entities/hud/player_dead_ui/player_dead_ui.tscn" id="10_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cixxtajaia4x3" path="res://entities/objects/stone/stone.tscn" id="11_p5ttm"]
@@ -82,8 +82,7 @@ offset_top = 117.0
 offset_right = 1041.0
 offset_bottom = 132.0
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("1_lnu2h")]
-layer = -1
+[node name="ParallaxBackground2" parent="." instance=ExtResource("9_fgeg5")]
 
 [node name="Environment" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -146,7 +145,7 @@ direction = 1
 position = Vector2(700, 136)
 
 [node name="DangerArea" parent="Environment" instance=ExtResource("4_vtaks")]
-position = Vector2(0, 235)
+position = Vector2(0, 200)
 metadata/_edit_lock_ = true
 
 [node name="Camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_p57ef")]
