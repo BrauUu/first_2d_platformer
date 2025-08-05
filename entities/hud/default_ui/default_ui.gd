@@ -1,7 +1,11 @@
 extends Control
 
+@onready var animation_timer: Timer = $AnimationTimer
+
 var player: Player
 var player_health_component : HealthComponent
+
+var count := 0
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -14,10 +18,11 @@ func _ready() -> void:
 func get_player() -> void:
 		player = $"../../Player"
 		player_health_component = player.get_node("HealthComponent")
+		count = 0
 	
 func create_health_hud() -> void:
 	var node_size = 48
-	var node_gap = 4
+	var node_gap = 5
 	for i in player_health_component.health:
 		var full_heart = $HeartsContainer/FullHeart.duplicate()
 		full_heart.visible = true
@@ -33,6 +38,21 @@ func lose_health_hud(lost_health: int) -> void:
 			heart.play("lost")
 			await heart.animation_finished
 			heart.animation = "empty"
+			
+func animation() -> void:
+	if not player: return
+	var hearts = $HeartsContainer.get_children()
+	for i in range(player_health_component.current_health - count, 0, - 1):
+		var heart = hearts[i]
+		if heart.animation == "full":
+			var tween = create_tween()
+			heart.play("idle")
+			tween.tween_property(heart, "scale", Vector2(3.5, 3.5), 0.75)
+			tween.tween_property(heart, "scale", Vector2(3, 3), 0.75)
+			await heart.animation_finished
+			heart.animation = "full"
+			count = (count + 1) % (len(hearts) - 1)
+			break
 	
 func recovery_health_hud() -> void:
 	var hearts = $HeartsContainer.get_children()
@@ -55,3 +75,7 @@ func _on_player_dead(damage_info: Dictionary) -> void:
 func _on_player_respawned() -> void:
 	get_player()
 	reset_health_hud()
+
+func _on_animation_timer_timeout() -> void:
+	animation()
+	animation_timer.start()
