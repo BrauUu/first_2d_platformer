@@ -28,8 +28,8 @@ func pop_state() -> void:
 	if stack.size() == 0:
 		return
 		
-	var pop_state = stack.pop_back()
-	pop_state.exit()
+	var popped_state = stack.pop_back()
+	popped_state.exit()
 	
 	if stack.size() > 0:
 		stack.back().resume()

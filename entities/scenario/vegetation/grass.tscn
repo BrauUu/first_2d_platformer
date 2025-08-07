@@ -1,0 +1,122 @@
+[gd_scene load_steps=18 format=3 uid="uid://cu0qn6hgxsmqw"]
+
+[ext_resource type="Texture2D" uid="uid://ceokbjrq0fawp" path="res://assets/sprites/scenarios/blowing_grass.png" id="1_bokex"]
+[ext_resource type="Texture2D" uid="uid://b6xl8agsypp2l" path="res://assets/sprites/scenarios/cutted_grass.png" id="2_c3ty5"]
+[ext_resource type="Texture2D" uid="uid://dwy485323msaw" path="res://assets/sprites/scenarios/grass.png" id="3_5ial4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isj4x"]
+atlas = ExtResource("1_bokex")
+region = Rect2(0, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50xiv"]
+atlas = ExtResource("1_bokex")
+region = Rect2(20, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kecye"]
+atlas = ExtResource("1_bokex")
+region = Rect2(40, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apk0n"]
+atlas = ExtResource("1_bokex")
+region = Rect2(60, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gupg8"]
+atlas = ExtResource("1_bokex")
+region = Rect2(100, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmuwy"]
+atlas = ExtResource("1_bokex")
+region = Rect2(120, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmgmr"]
+atlas = ExtResource("1_bokex")
+region = Rect2(140, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xer8h"]
+atlas = ExtResource("1_bokex")
+region = Rect2(160, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04l06"]
+atlas = ExtResource("1_bokex")
+region = Rect2(180, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r71f3"]
+atlas = ExtResource("1_bokex")
+region = Rect2(200, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak81v"]
+atlas = ExtResource("1_bokex")
+region = Rect2(220, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdomg"]
+atlas = ExtResource("2_c3ty5")
+region = Rect2(0, 0, 20, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jci0j"]
+atlas = ExtResource("3_5ial4")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ykd2"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_isj4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50xiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kecye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apk0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gupg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmuwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmgmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xer8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04l06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r71f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak81v")
+}],
+"loop": true,
+"name": &"blowing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdomg")
+}],
+"loop": true,
+"name": &"chopped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jci0j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Grass" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_4ykd2")
+animation = &"blowing"
+autoplay = "blowing"
+frame = 10
+frame_progress = 0.699013
+offset = Vector2(0, 4)

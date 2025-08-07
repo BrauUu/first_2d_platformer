@@ -6,11 +6,11 @@ extends Node2D
 @onready var tutorial: Control = $Tutorial
 @onready var debug_spawn_point: SpawnPoint = $DebugSpawnPoint
 @onready var spawn_point: SpawnPoint = $SpawnPoint
+@onready var music_controller: MusicController = $MusicController
 @onready var audio_controller: AudioController = $AudioController
 
 @export var show_cutscenes : bool
 
-#var player_start_position : Vector2
 var player_start_position : Vector2
 
 signal cinematic_started
@@ -18,12 +18,14 @@ signal cinematic_ended
 
 func _ready() -> void:
 	audio_controller.play_sound("Ambience")
-	audio_controller.play_sound("DefaultMusic")
+	music_controller.play_sound("DefaultMusic")
 	
 	cinematic_started.connect(_on_cinematic_started)
 	cinematic_ended.connect(_on_cinematic_ended)
 	GameManager.gm_player_entered_battle.connect(_on_player_enter_battle)
+	GameManager.gm_player_spawned.connect(_on_player_leave_battle)
 	GameManager.gm_player_left_battle.connect(_on_player_leave_battle)
+	GameManager.gm_player_dead.connect(_on_player_die)
 	
 	await get_tree().process_frame
 	door.open(false)
@@ -64,9 +66,10 @@ func _on_cinematic_ended() -> void:
 	player.is_controllable = true
 	
 func _on_player_enter_battle() -> void:
-	audio_controller.stop_sound("DefaultMusic")
-	audio_controller.play_sound("BattleMusic")
+	music_controller.play_sound("BattleMusic")
 	
 func _on_player_leave_battle() -> void:
-	audio_controller.stop_sound("BattleMusic")
-	audio_controller.play_sound("DefaultMusic")
+	music_controller.play_sound("DefaultMusic")
+	
+func _on_player_die(damage_info: Dictionary) -> void:
+	music_controller.play_sound("DieMusic")

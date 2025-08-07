@@ -1,6 +1,6 @@
 class_name KnockbackComponent extends Node
 
-var deceleration : int
+var deceleration : float
 var knockback_velocity: Vector2 = Vector2.ZERO
 var enabled := false
 
@@ -13,7 +13,7 @@ func apply_knockback(knockback_info: Dictionary) -> void:
 func get_knockback_force(knockback_info: Dictionary) -> Vector2:
 	var source = knockback_info.source
 	var position = source.global_position
-	var distance = get_parent().global_position - source.global_position
+	var distance = get_parent().global_position - position
 	var direction = _get_vector_direction(distance)
 	return direction * knockback_info.knockback_force
 

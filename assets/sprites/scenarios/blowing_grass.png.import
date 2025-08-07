@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwy485323msaw"
-path="res://.godot/imported/grass.png-f841a504c8cac1d59ddcdafdb5560985.ctex"
+uid="uid://ceokbjrq0fawp"
+path="res://.godot/imported/blowing_grass.png-a810427d02dda7054a4cff1dc2e4165c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/scenarios/grass.png"
-dest_files=["res://.godot/imported/grass.png-f841a504c8cac1d59ddcdafdb5560985.ctex"]
+source_file="res://assets/sprites/scenarios/blowing_grass.png"
+dest_files=["res://.godot/imported/blowing_grass.png-a810427d02dda7054a4cff1dc2e4165c.ctex"]
 
 [params]
 

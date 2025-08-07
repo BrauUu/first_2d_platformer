@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgsgpmnwe0243"
-path="res://.godot/imported/far_background.png-f2f7a1b018bdc89134f1e6a4037670a9.ctex"
+uid="uid://dwtw7ufri4yfh"
+path="res://.godot/imported/chopped_grass.png-0386715a77cd05b577293a2192eee51f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/backgrounds/far_background.png"
-dest_files=["res://.godot/imported/far_background.png-f2f7a1b018bdc89134f1e6a4037670a9.ctex"]
+source_file="res://assets/sprites/scenarios/chopped_grass.png"
+dest_files=["res://.godot/imported/chopped_grass.png-0386715a77cd05b577293a2192eee51f.ctex"]
 
 [params]
 
