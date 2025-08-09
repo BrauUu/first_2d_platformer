@@ -494,10 +494,10 @@ volume_db = 2.0
 max_distance = 250.0
 bus = &"SFX"
 
-[node name="TileMapDetector" parent="." instance=ExtResource("25_qquha")]
-visible = false
+[node name="FakeTerrainDetector" parent="." instance=ExtResource("25_qquha")]
+collision_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FakeTerrainDetector"]
 shape = SubResource("RectangleShape2D_jk2m4")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

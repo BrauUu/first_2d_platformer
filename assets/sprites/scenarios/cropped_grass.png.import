@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs11ubsmydcea"
-path="res://.godot/imported/nearest_background.png-cb6874a9a8eb9331588fa7d7e2b35fcd.ctex"
+uid="uid://wk8y2i75lnc0"
+path="res://.godot/imported/cropped_grass.png-af3aa234f0a68279ad47087d3da6dcd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background2/nearest_background.png"
-dest_files=["res://.godot/imported/nearest_background.png-cb6874a9a8eb9331588fa7d7e2b35fcd.ctex"]
+source_file="res://assets/sprites/scenarios/cropped_grass.png"
+dest_files=["res://.godot/imported/cropped_grass.png-af3aa234f0a68279ad47087d3da6dcd6.ctex"]
 
 [params]
 

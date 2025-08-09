@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlp1c7ly7tu46"]
 
 [ext_resource type="Script" uid="uid://dt054vfprtxyg" path="res://entities/others/parallax_background/parallax_background.gd" id="1_8ceml"]
-[ext_resource type="Texture2D" uid="uid://dfdlt12y8mpwp" path="res://assets/sprites/background2/sky.png" id="2_8ceml"]
-[ext_resource type="Texture2D" uid="uid://dmk542obmsnhr" path="res://assets/sprites/background2/clouds.png" id="3_8ceml"]
-[ext_resource type="Texture2D" uid="uid://3pkwbjhfi0vc" path="res://assets/sprites/background2/mountains.png" id="4_8ceml"]
-[ext_resource type="Texture2D" uid="uid://dj4tqj0jclq5u" path="res://assets/sprites/background2/fields.png" id="5_8ceml"]
+[ext_resource type="Texture2D" uid="uid://dfdlt12y8mpwp" path="res://assets/sprites/background/sky.png" id="2_8ceml"]
+[ext_resource type="Texture2D" uid="uid://dmk542obmsnhr" path="res://assets/sprites/background/clouds.png" id="3_8ceml"]
+[ext_resource type="Texture2D" uid="uid://3pkwbjhfi0vc" path="res://assets/sprites/background/mountains.png" id="4_8ceml"]
+[ext_resource type="Texture2D" uid="uid://dj4tqj0jclq5u" path="res://assets/sprites/background/fields.png" id="5_8ceml"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_offset = Vector2(0, -200)

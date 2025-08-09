@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3pkwbjhfi0vc"
-path="res://.godot/imported/mountains.png-4beddb38b8c9398346f043f12a4d8131.ctex"
+uid="uid://180rfikbh7r6"
+path="res://.godot/imported/blowing_flowers.png-8179e3995c39bb03db1aa9c49433405b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background2/mountains.png"
-dest_files=["res://.godot/imported/mountains.png-4beddb38b8c9398346f043f12a4d8131.ctex"]
+source_file="res://assets/sprites/scenarios/blowing_flowers.png"
+dest_files=["res://.godot/imported/blowing_flowers.png-8179e3995c39bb03db1aa9c49433405b.ctex"]
 
 [params]
 

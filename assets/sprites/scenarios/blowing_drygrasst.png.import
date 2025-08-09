@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmk542obmsnhr"
-path="res://.godot/imported/clouds.png-2e8a21cc9d8e3bc4f6cb041201c98c48.ctex"
+uid="uid://4u70ystkj3wv"
+path="res://.godot/imported/blowing_drygrasst.png-95ef1f949f4cf15d21daf294ffcf137e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background2/clouds.png"
-dest_files=["res://.godot/imported/clouds.png-2e8a21cc9d8e3bc4f6cb041201c98c48.ctex"]
+source_file="res://assets/sprites/scenarios/blowing_drygrasst.png"
+dest_files=["res://.godot/imported/blowing_drygrasst.png-95ef1f949f4cf15d21daf294ffcf137e.ctex"]
 
 [params]
 

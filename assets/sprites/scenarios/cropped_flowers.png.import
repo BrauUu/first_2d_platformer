@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1nwfxh5vvm4x"
-path="res://.godot/imported/plat_life_tile_map.png-eb44a3d7889020f6db9666e761a78b9a.ctex"
+uid="uid://ogylpy4xvgd"
+path="res://.godot/imported/cropped_flowers.png-6ed34e2d7910823af3b81b2ed5955b31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/tile_maps/plat_life_tile_map.png"
-dest_files=["res://.godot/imported/plat_life_tile_map.png-eb44a3d7889020f6db9666e761a78b9a.ctex"]
+source_file="res://assets/sprites/scenarios/cropped_flowers.png"
+dest_files=["res://.godot/imported/cropped_flowers.png-6ed34e2d7910823af3b81b2ed5955b31.ctex"]
 
 [params]
 

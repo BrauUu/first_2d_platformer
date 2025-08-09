@@ -5,8 +5,8 @@ var previous_cells_atlas_coords : Array[Vector2i]
 var previous_cells : Array[Vector2i]
 
 func _ready() -> void:
-	GameManager.connect("gm_player_entered_fake_terrain", _on_player_enter_fake_terrain)
-	GameManager.connect("gm_player_left_fake_terrain", _on_player_leave_fake_terrain)
+	GameManager.connect("gm_node_entered_layer", _on_player_enter_layer)
+	GameManager.connect("gm_node_left_layer", _on_player_leave_layer)
 
 func _process(delta: float) -> void:
 	pass
@@ -31,14 +31,16 @@ func get_neighbors_cells(start_cell: Vector2i) -> Array[Vector2i]:
 					queue.append(new_cell)
 	return neighbors
 	
-func _on_player_enter_fake_terrain(entered_cell: Vector2i) -> void:
+func _on_player_enter_layer(entered_cell: Vector2i, entered_layer) -> void:
+	if not entered_layer is FakeTerrain or previous_cells: return
 	var neighbor_cells := get_neighbors_cells(entered_cell)
 	previous_cells = neighbor_cells
 	for cell in neighbor_cells:
 		previous_cells_atlas_coords.append(get_cell_atlas_coords(cell))
 		set_cell(cell, 4, Vector2i(4,4))
 		
-func _on_player_leave_fake_terrain(left_cell: Vector2i) -> void:
+func _on_player_leave_layer(left_layer) -> void:
+	if not left_layer is FakeTerrain or not previous_cells: return
 	for ind in len(previous_cells):
 		var cell = previous_cells[ind]
 		set_cell(cell, 4, previous_cells_atlas_coords[ind])
