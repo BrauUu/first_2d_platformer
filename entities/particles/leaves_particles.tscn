@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://crjjrs2hjpd8q"]
+
+[ext_resource type="Material" uid="uid://b78oq6sd0mptv" path="res://resources/particles/leaf.tres" id="2_iu10g"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ibcbc"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="LeavesParticles" type="GPUParticles2D"]
+z_index = 6
+material = SubResource("CanvasItemMaterial_ibcbc")
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("2_iu10g")
