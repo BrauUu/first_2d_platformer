@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dj4tqj0jclq5u" path="res://assets/sprites/background/fields.png" id="5_8ceml"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
+process_mode = 3
 scroll_base_offset = Vector2(0, -200)
 script = ExtResource("1_8ceml")
 

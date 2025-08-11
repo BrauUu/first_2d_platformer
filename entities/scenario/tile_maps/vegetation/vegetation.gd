@@ -1,6 +1,8 @@
 class_name VegetationLayer
 extends TileMapLayer
 
+@onready var grass_hit: AudioStreamPlayer2D = $GrassHit
+
 const CROPPEDS_COORDS = {
 	Vector2i(0,0) : {
 		'coords': Vector2i(4,3),
@@ -49,6 +51,8 @@ func _on_node_enter_layer(entered_cell: Vector2i, entered_layer) -> void:
 		add_child(leaves_particles)
 		
 		set_cell(entered_cell, 6, cropped_coords.coords, get_cell_alternative_tile(entered_cell))
+		grass_hit.position = map_to_local(entered_cell)
+		grass_hit.play()
 
 func get_cropped_coords(coords: Vector2i) -> Dictionary:
 	return CROPPEDS_COORDS[coords]

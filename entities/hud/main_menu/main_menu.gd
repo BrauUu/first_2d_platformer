@@ -1,27 +1,24 @@
 extends Control
 
-var SELECT_ICON : AnimatedSprite2D
-var START_BUTTON : Button
-var QUIT_BUTTON : Button
-var BUTTONS : VBoxContainer
+@onready var select_icon: AnimatedSprite2D = $HUD/SelectIcon
+@onready var buttons: VBoxContainer = $HUD/Buttons
+@onready var start_button: Button = $HUD/Buttons/StartButton
+@onready var quit_button: Button = $HUD/Buttons/QuitButton
 
 @onready var player: Player = $Player
 @onready var audio_controller: AudioController = $AudioController
+@onready var music_controller: MusicController = $MusicController
 
 var ignore_next_focus: bool = true
 
 func _ready() -> void:
-	SELECT_ICON = $SelectIcon
-	START_BUTTON = $Buttons/StartButton
-	QUIT_BUTTON = $Buttons/QuitButton
-	BUTTONS = $Buttons
-	
-	START_BUTTON.grab_focus.call_deferred()
+	start_button.grab_focus.call_deferred()
 	player.animator.flip_h = true
-	audio_controller.play_sound("Music")
+	music_controller.play_sound("Music")
+	audio_controller.play_sound("Ambience")
 
 func _on_start_button_pressed() -> void:
-	disable_menu(START_BUTTON)
+	disable_menu(start_button)
 	audio_controller.play_sound("MenuSelect")
 	player.move()
 	while player.position.x < 185:
@@ -34,17 +31,17 @@ func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://entities/levels/level_1/level_1.tscn")
 
 func _on_start_button_focus_entered() -> void:
-	SELECT_ICON.position = BUTTONS.position + START_BUTTON.position + Vector2(0, START_BUTTON.size.y / 2)
+	select_icon.position = buttons.position + start_button.position + Vector2(0, start_button.size.y / 2)
 	if ignore_next_focus:
 		ignore_next_focus = false
 		return
 	audio_controller.play_sound("MenuFocus")
 	
 func _on_start_button_mouse_entered() -> void:
-	START_BUTTON.grab_focus()
+	start_button.grab_focus()
 	
 func _on_quit_button_pressed() -> void:
-	disable_menu(QUIT_BUTTON)
+	disable_menu(quit_button)
 	audio_controller.play_sound("MenuSelect")
 	player.quit_game()
 	while player.position.y < 160:
@@ -54,14 +51,14 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_quit_button_focus_entered() -> void:
-	SELECT_ICON.position = BUTTONS.position + QUIT_BUTTON.position + Vector2(0, QUIT_BUTTON.size.y / 2)
+	select_icon.position = buttons.position + quit_button.position + Vector2(0, quit_button.size.y / 2)
 	audio_controller.play_sound("MenuFocus")
 
 func _on_quit_button_mouse_entered() -> void:
-	QUIT_BUTTON.grab_focus()
+	quit_button.grab_focus()
 	
 func disable_menu(actual_selection: Control) -> void:
-	for option in BUTTONS.get_children():
+	for option in buttons.get_children():
 		option.focus_mode = Control.FOCUS_NONE
 		option.mouse_filter = MOUSE_FILTER_IGNORE
 		if option == actual_selection:

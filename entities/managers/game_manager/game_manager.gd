@@ -9,6 +9,8 @@ signal gm_player_left_battle
 signal gm_node_entered_layer (entered_cell: Vector2i, entered_layer )
 signal gm_node_left_layer (left_cell: Vector2i, entered_layer)
 
+signal gm_music_toggle(toggled_on: bool)
+
 var can_pause : bool = true
 
 func _ready() -> void:
@@ -57,3 +59,6 @@ func notify_node_entered_layer(entered_cell: Vector2i, entered_layer) -> void:
 	
 func notify_node_left_layer(left_layer) -> void:
 	gm_node_left_layer.emit(left_layer)
+	
+func toggle_music(toggled_on: bool) -> void:
+	gm_music_toggle.emit(toggled_on)

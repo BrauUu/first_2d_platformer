@@ -5,5 +5,4 @@ extends ParallaxBackground
 var clouds_speed := 5
 
 func _process(delta: float) -> void:
-	clouds.motion_offset.x -= clouds_speed * delta
-	
+	clouds.motion_offset.x += clouds_speed * delta

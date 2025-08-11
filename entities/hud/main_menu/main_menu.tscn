@@ -1,18 +1,21 @@
-[gd_scene load_steps=21 format=4 uid="uid://b6d48qiaivpxr"]
+[gd_scene load_steps=24 format=4 uid="uid://b6d48qiaivpxr"]
 
 [ext_resource type="Script" uid="uid://oo6slnyhfsbo" path="res://entities/hud/main_menu/main_menu.gd" id="1_wprdj"]
 [ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="2_wprdj"]
 [ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="3_dqd6p"]
 [ext_resource type="Texture2D" uid="uid://dlp25yu8gyl5k" path="res://assets/sprites/hud/select_icon_5.png" id="3_fkojh"]
 [ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="4_mjim0"]
-[ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="4_n0ggh"]
 [ext_resource type="PackedScene" uid="uid://buwr2lro001aj" path="res://entities/scenario/tile_maps/terrain/terrain.tscn" id="5_gnm5j"]
 [ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="6_j4gct"]
 [ext_resource type="PackedScene" uid="uid://7nh7rfflrncj" path="res://entities/others/camera/camera.tscn" id="7_nisxd"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="10_x3s63"]
+[ext_resource type="AudioStream" uid="uid://cam7emghepafm" path="res://assets/sounds/sfx/ambience.wav" id="11_aqjfe"]
 [ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="11_x1f5w"]
 [ext_resource type="AudioStream" uid="uid://bimjq4td4qkin" path="res://assets/sounds/sfx/ui/menu_select.wav" id="12_y2io5"]
 [ext_resource type="AudioStream" uid="uid://oqjdwhxlc40y" path="res://assets/sounds/musics/Adventure's Spirit - Title Theme.wav" id="13_6e1fr"]
+[ext_resource type="PackedScene" uid="uid://diapsm5olsx07" path="res://entities/controllers/music_controller/music_controller.tscn" id="13_d2l7q"]
+[ext_resource type="PackedScene" uid="uid://jxvd5gh4tcb8" path="res://entities/hud/music_switch/music_switch.tscn" id="15_aqjfe"]
+[ext_resource type="PackedScene" uid="uid://cfqt1o24gphyn" path="res://entities/scenario/tile_maps/vegetation/vegetation.tscn" id="16_aqjfe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61qlu"]
 atlas = ExtResource("3_fkojh")
@@ -62,29 +65,60 @@ animations = [{
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wprdj")
 
-[node name="Terrain" type="Node2D" parent="."]
+[node name="HUD" type="Control" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Terrain" parent="Terrain" instance=ExtResource("5_gnm5j")]
-tile_map_data = PackedByteArray("AAALAAoAAQABAAEAAAALAAsAAQABAAEAAAAMAAoAAQABAAEAAAAMAAsAAQABAAEAAAANAAoAAQAHAAEAAAANAAsAAQABAAEAAAAOAAoAAQABAAEAAAAOAAsAAQABAAEAAAAPAAoAAQABAAEAAAAPAAsAAQABAAEAAAAQAAkAAQABAAEAAAAQAAoAAQABAAEAAAAQAAsAAQABAAEAAAARAAkAAQADAAIAAAARAAoAAQABAAEAAAARAAsAAQABAAEAAAASAAkAAQABAAAAAAASAAoAAQABAAEAAAASAAsAAQABAAEAAAATAAkAAQABAAAAAAATAAoAAQABAAEAAAATAAsAAQABAAEAAAAUAAkAAQABAAAAAAAUAAoAAQABAAEAAAAUAAsAAQABAAEAAAAVAP//AQAHAAEAAAAVAAAAAQAHAAEAAAAVAAEAAQAHAAEAAAAVAAIAAQAHAAEAAAAVAAoAAQABAAEAAAAVAAsAAQABAAEAAAAIAAkAAQAAAAAAAAAIAAoAAQAAAAEAAAAIAAsAAQAAAAEAAAAJAAkAAQABAAAAAAAJAAoAAQABAAEAAAAJAAsAAQABAAEAAAAKAAkAAQABAAAAAAAKAAoAAQABAAEAAAAKAAsAAQABAAEAAAALAAkAAQABAAAAAAAMAAkAAQABAAAAAAANAAgAAQAAAAAAAAANAAkAAQAFAAIAAAAOAAgAAQABAAAAAAAOAAkAAQABAAEAAAAPAAgAAQABAAAAAAAPAAkAAQABAAEAAAAQAAgAAQABAAAAAAARAAgAAQACAAAAAAASAP7/AQAGAAEAAAASAP//AQAGAAEAAAASAAAAAQAGAAEAAAASAAEAAQAGAAIAAAATAP7/AQAHAAEAAAATAP//AQAHAAEAAAATAAAAAQAHAAEAAAATAAEAAQALAAAAAAATAAIAAQAGAAEAAAATAAMAAQAGAAEAAAATAAQAAQAGAAEAAAATAAUAAQAGAAIAAAAUAP7/AQAHAAEAAAAUAP//AQAHAAEAAAAUAAAAAQAHAAEAAAAUAAEAAQAHAAEAAAAUAAIAAQAHAAEAAAAUAAMAAQAHAAEAAAAUAAQAAQAJAAAAAAAUAAUAAQAIAAIAAAAVAP7/AQAHAAEAAAAVAAMAAQAHAAEAAAAVAAQAAQAHAAIAAAAVAAkAAQABAAAAAAA=")
-
-[node name="Background" parent="Terrain" instance=ExtResource("3_dqd6p")]
-tile_map_data = PackedByteArray("AAASAAgAAgABAAQAAAAUAAgAAgABAAQAAAAVAAYAAgABAAQAAAAVAAcAAgABAAQAAAAVAAgAAgABAAQAAAALAAgAAgACAAYAAAAPAAcAAgADAAYAAAARAAcAAgAAAAMAAAASAAUAAgAAAAMAAAASAAYAAgAAAAQAAAASAAcAAgAFAAUAAAATAAUAAgABAAQAAAATAAYAAgABAAQAAAATAAcAAgABAAQAAAATAAgAAgABAAQAAAAUAAUAAgABAAQAAAAUAAYAAgABAAQAAAAUAAcAAgABAAQAAAAVAAUAAgABAAQAAAA=")
-
-[node name="Foreground" parent="Terrain" instance=ExtResource("4_n0ggh")]
-tile_map_data = PackedByteArray("AAAIAAgAAwADAAYAAAAKAAgAAwADAAYAAAAOAAcAAwAAAAYAAAATAAYAAwAEAAYAAAATAAgAAwABAAYAAAAUAAgAAwABAAYAAAAVAAUAAwAEAAYAAAA=")
-
-[node name="SelectIcon" type="AnimatedSprite2D" parent="."]
+[node name="SelectIcon" type="AnimatedSprite2D" parent="HUD"]
 position = Vector2(80, 80)
 sprite_frames = SubResource("SpriteFrames_mr57l")
 autoplay = "default"
 frame_progress = 0.0337854
 
-[node name="TitleContainer" type="VBoxContainer" parent="."]
+[node name="MusicSwitch" parent="HUD" instance=ExtResource("15_aqjfe")]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 8.0
+offset_right = 335.0
+offset_bottom = 37.0
+
+[node name="Buttons" type="VBoxContainer" parent="HUD"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 174.0
+offset_bottom = 106.0
+theme = ExtResource("2_wprdj")
+theme_override_constants/separation = 2
+
+[node name="StartButton" type="Button" parent="HUD/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme = ExtResource("2_wprdj")
+action_mode = 0
+text = "Start game"
+language = "en_US"
+
+[node name="QuitButton" type="Button" parent="HUD/Buttons"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+text = "Quit
+"
+language = "en_US"
+
+[node name="TitleContainer" type="VBoxContainer" parent="HUD"]
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 4
@@ -97,7 +131,7 @@ offset_bottom = 72.0
 grow_vertical = 2
 theme = ExtResource("2_wprdj")
 
-[node name="MainTitle" type="Label" parent="TitleContainer"]
+[node name="MainTitle" type="Label" parent="HUD/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
@@ -105,40 +139,13 @@ text = "Blue coat"
 uppercase = true
 language = "en_US"
 
-[node name="SubTitle" type="Label" parent="TitleContainer"]
+[node name="SubTitle" type="Label" parent="HUD/TitleContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxTexture_y2io5")
 text = "guy"
 uppercase = true
-language = "en_US"
-
-[node name="Buttons" type="VBoxContainer" parent="."]
-texture_filter = 1
-layout_mode = 0
-offset_left = 80.0
-offset_top = 72.0
-offset_right = 174.0
-offset_bottom = 106.0
-theme = ExtResource("2_wprdj")
-theme_override_constants/separation = 2
-
-[node name="StartButton" type="Button" parent="Buttons"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-theme = ExtResource("2_wprdj")
-action_mode = 0
-text = "Start game"
-language = "en_US"
-
-[node name="QuitButton" type="Button" parent="Buttons"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../StartButton")
-text = "Quit
-"
 language = "en_US"
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_mjim0")]
@@ -163,13 +170,31 @@ stream = ExtResource("12_y2io5")
 volume_db = -10.0
 bus = &"UI"
 
-[node name="Music" type="AudioStreamPlayer" parent="AudioController"]
+[node name="Ambience" type="AudioStreamPlayer" parent="AudioController"]
+stream = ExtResource("11_aqjfe")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="MusicController" parent="." instance=ExtResource("13_d2l7q")]
+
+[node name="Music" type="AudioStreamPlayer" parent="MusicController"]
 stream = ExtResource("13_6e1fr")
 bus = &"Music"
 
-[connection signal="focus_entered" from="Buttons/StartButton" to="." method="_on_start_button_focus_entered"]
-[connection signal="mouse_entered" from="Buttons/StartButton" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="focus_entered" from="Buttons/QuitButton" to="." method="_on_quit_button_focus_entered"]
-[connection signal="mouse_entered" from="Buttons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
-[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Terrain" parent="Terrain" instance=ExtResource("5_gnm5j")]
+tile_map_data = PackedByteArray("AAALAAoAAQABAAEAAAALAAsAAQABAAEAAAAMAAoAAQABAAEAAAAMAAsAAQABAAEAAAANAAoAAQAHAAEAAAANAAsAAQABAAEAAAAOAAoAAQABAAEAAAAOAAsAAQABAAEAAAAPAAoAAQABAAEAAAAPAAsAAQABAAEAAAAQAAkAAQABAAEAAAAQAAoAAQABAAEAAAAQAAsAAQABAAEAAAARAAkAAQADAAIAAAARAAoAAQABAAEAAAARAAsAAQABAAEAAAASAAkAAQAHAAAAAAASAAoAAQABAAEAAAASAAsAAQABAAEAAAATAAkAAQAHAAAAAAATAAoAAQABAAEAAAATAAsAAQABAAEAAAAUAAkAAQAHAAAAAAAUAAoAAQABAAEAAAAUAAsAAQABAAEAAAAVAP//AQAHAAEAAAAVAAAAAQAHAAEAAAAVAAEAAQAHAAEAAAAVAAIAAQAHAAEAAAAVAAoAAQABAAEAAAAVAAsAAQABAAEAAAAIAAkAAQAAAAAAAAAIAAoAAQAAAAEAAAAIAAsAAQAAAAEAAAAJAAkAAQABAAAAAAAJAAoAAQABAAEAAAAJAAsAAQABAAEAAAAKAAkAAQABAAAAAAAKAAoAAQABAAEAAAAKAAsAAQABAAEAAAALAAkAAQABAAAAAAAMAAkAAQABAAAAAAANAAgAAQAAAAAAAAANAAkAAQAFAAIAAAAOAAgAAQABAAAAAAAOAAkAAQABAAEAAAAPAAgAAQABAAAAAAAPAAkAAQABAAEAAAAQAAgAAQABAAAAAAARAAgAAQACAAAAAAASAP7/AQAGAAEAAAASAP//AQAGAAEAAAASAAAAAQAGAAEAAAASAAEAAQAGAAIAAAATAP7/AQAHAAEAAAATAP//AQAHAAEAAAATAAAAAQAHAAEAAAATAAEAAQALAAAAAAATAAIAAQAGAAEAAAATAAMAAQAGAAEAAAATAAQAAQAGAAEAAAATAAUAAQAGAAIAAAAUAP7/AQAHAAEAAAAUAP//AQAHAAEAAAAUAAAAAQAHAAEAAAAUAAEAAQAHAAEAAAAUAAIAAQAHAAEAAAAUAAMAAQAHAAEAAAAUAAQAAQAJAAAAAAAUAAUAAQAIAAIAAAAVAP7/AQAHAAEAAAAVAAMAAQAHAAEAAAAVAAQAAQAHAAIAAAAVAAkAAQAHAAAAAAA=")
+
+[node name="Background" parent="Terrain" instance=ExtResource("3_dqd6p")]
+tile_map_data = PackedByteArray("AAASAAgAAgABAAQAAAAUAAgAAgABAAQAAAAVAAYAAgABAAQAAAAVAAcAAgABAAQAAAAVAAgAAgABAAQAAAARAAcAAgAAAAMAAAASAAUAAgAAAAMAAAASAAYAAgAAAAQAAAASAAcAAgAFAAUAAAATAAUAAgABAAQAAAATAAYAAgABAAQAAAATAAcAAgABAAQAAAATAAgAAgABAAQAAAAUAAUAAgABAAQAAAAUAAYAAgABAAQAAAAUAAcAAgABAAQAAAAVAAUAAgABAAQAAAA=")
+
+[node name="Vegetation" parent="Terrain" instance=ExtResource("16_aqjfe")]
+tile_map_data = PackedByteArray("AAANAAcABgAAAAAAAAAIAAgABgAAAAAAAQAJAAgABgAAAAEAAQAOAAcABgAAAAAAAAAUAAgABgAAAAIAAAAUAAYABgADAAMAAAATAAYABgADAAMAAAAQAAcABgAAAAAAAAA=")
+
+[connection signal="focus_entered" from="HUD/Buttons/StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="mouse_entered" from="HUD/Buttons/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="pressed" from="HUD/Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="HUD/Buttons/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="mouse_entered" from="HUD/Buttons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="HUD/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
