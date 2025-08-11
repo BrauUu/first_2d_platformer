@@ -12,18 +12,23 @@ const CROPPEDS_COORDS = {
 	},
 	Vector2i(0,1) : {
 		'coords': Vector2i(5,3),
+		'texture': "res://assets/sprites/scenarios/flowers_particles.png"
 	},
 	Vector2i(1,3) : {
 		'coords': Vector2i(5,3),
+		'texture': "res://assets/sprites/scenarios/flowers_particles.png"
 	},
 	Vector2i(0,2) : {
-		'coords': Vector2i(6,3)
+		'coords': Vector2i(6,3),
+		'texture': "res://assets/sprites/scenarios/dryleaves_particles.png"
 		},
 	Vector2i(2,3) : {
-		'coords': Vector2i(6,3)
+		'coords': Vector2i(6,3),
+		'texture': "res://assets/sprites/scenarios/dryleaves_particles.png"
 		},
 	Vector2i(3,3) : {
 		'coords': Vector2i(7,3),
+		'texture': "res://assets/sprites/scenarios/root_particles.png"
 		}
 }
 
