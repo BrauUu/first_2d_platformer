@@ -34,25 +34,27 @@ func lose_health_hud(lost_health: int) -> void:
 	var hearts = $HeartsContainer.get_children()
 	for i in range(lost_health + player_health_component.current_health, player_health_component.current_health, - 1):
 		var heart = hearts[i]
-		if heart.animation == "full":
+		if heart.animation != "empty":
 			heart.play("lost")
 			await heart.animation_finished
 			heart.animation = "empty"
+			count -= 1
 			
 func animation() -> void:
 	if not player: return
 	var hearts = $HeartsContainer.get_children()
-	for i in range(player_health_component.current_health - count, 0, - 1):
-		var heart = hearts[i]
-		if heart.animation == "full":
-			var tween = create_tween()
-			heart.play("idle")
-			tween.tween_property(heart, "scale", Vector2(3.5, 3.5), 0.75)
-			tween.tween_property(heart, "scale", Vector2(3, 3), 0.75)
-			await heart.animation_finished
-			heart.animation = "full"
-			count = (count + 1) % (len(hearts) - 1)
-			break
+	var heart = hearts[player_health_component.current_health - count]
+	while heart.animation != "full":
+		count += 1
+		heart = hearts[player_health_component.current_health - count]
+	var tween = create_tween()
+	heart.play("idle")
+	tween.tween_property(heart, "scale", Vector2(3.5, 3.5), 0.75)
+	tween.tween_property(heart, "scale", Vector2(3, 3), 0.75)
+	await heart.animation_finished
+	heart.animation = "full"
+	if player_health_component:
+		count = (count + 1) % (player_health_component.current_health)
 	
 func recovery_health_hud() -> void:
 	var hearts = $HeartsContainer.get_children()

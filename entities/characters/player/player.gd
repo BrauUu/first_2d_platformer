@@ -107,9 +107,12 @@ func set_invulnerability(layer: int, invulnerable: bool) -> void:
 
 func hurt(damage_info: Dictionary) -> void: 
 	GameManager.notify_player_hurted(damage_info)
-	if not damage_info.source is DeadZone:
-		set_invulnerability(4, true)
-		audio_controller.play_sound("Damage")
+	var source = damage_info.source
+	audio_controller.play_sound("Damage")
+	if source is DeadZone:
+		fell_in_dead_zone(source)
+		return
+	set_invulnerability(4, true)
 	await apply_hurt_effect()
 	set_invulnerability(4, false)
 		
@@ -155,6 +158,10 @@ func force_jump() -> void:
 func quit_game() -> void:
 	direction = -1
 	velocity.x = direction * speed
+	
+func fell_in_dead_zone(deadzone: DeadZone):
+	var last_checkpoint : Area2D = deadzone.get_last_checkpoint()
+	GameManager.spawn(self, last_checkpoint.global_position)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	match animator.animation:

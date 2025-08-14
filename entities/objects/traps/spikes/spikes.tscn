@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://da3gkidv2p2gc"]
+
+[ext_resource type="Script" uid="uid://cwvhs2btb3rdw" path="res://entities/objects/traps/spikes/spikes.gd" id="1_ny20e"]
+[ext_resource type="PackedScene" uid="uid://67a5824a1pja" path="res://entities/utils/repeating_sprite/repeating_sprite.tscn" id="2_jtmuu"]
+[ext_resource type="Texture2D" uid="uid://bnahruvgib0ym" path="res://assets/sprites/objects/spikes_trap.png" id="2_wd1r5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd1r5"]
+size = Vector2(0, 0)
+
+[node name="Spikes" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_ny20e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wd1r5")
+
+[node name="RepeatingSprite" parent="." instance=ExtResource("2_jtmuu")]
+texture_repeat = 2
+texture = ExtResource("2_wd1r5")

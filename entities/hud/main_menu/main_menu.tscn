@@ -106,6 +106,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = ExtResource("2_wprdj")
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "Start game"
 language = "en_US"
@@ -114,6 +115,7 @@ language = "en_US"
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 16
 text = "Quit
 "
 language = "en_US"

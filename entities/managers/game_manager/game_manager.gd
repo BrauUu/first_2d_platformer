@@ -17,7 +17,9 @@ func _ready() -> void:
 	pass
 	
 func spawn(node: Node2D, pos: Vector2) -> Node2D:
-	get_node("/root/Game").add_child(node)
+	var game = get_node("/root/Game")
+	if not game.is_ancestor_of(node):
+		game.add_child(node)
 	node.position = pos
 	return node
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=38 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_a6cpv"]
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="2_gdnll"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b3smspvrw2ris" path="res://entities/tutorial.tscn" id="16_ix0xh"]
 [ext_resource type="PackedScene" uid="uid://cfqt1o24gphyn" path="res://entities/scenario/tile_maps/vegetation/vegetation.tscn" id="17_s7nsw"]
 [ext_resource type="PackedScene" uid="uid://wouoc7eq5i23" path="res://entities/hud/floating_instruction/move_instruction/move_instruction.tscn" id="18_p8ehy"]
+[ext_resource type="PackedScene" uid="uid://da3gkidv2p2gc" path="res://entities/objects/traps/spikes/spikes.tscn" id="19_s7nsw"]
 [ext_resource type="PackedScene" uid="uid://chqd42os0ggp2" path="res://entities/characters/enemies/goblin/goblin.tscn" id="23_h2bps"]
 [ext_resource type="PackedScene" uid="uid://dllc0dgstiw0v" path="res://assets/sprites/objects/chest.tscn" id="24_tutln"]
 [ext_resource type="Script" uid="uid://03ir3cxmvyb0" path="res://resources/treasure_data.gd" id="25_o2xk8"]
@@ -34,6 +35,9 @@
 [ext_resource type="PackedScene" uid="uid://diapsm5olsx07" path="res://entities/controllers/music_controller/music_controller.tscn" id="30_oquf2"]
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="31_q2e1t"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="33_is1k8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
+a = Vector2(0, -1000)
 
 [sub_resource type="Resource" id="Resource_o2xk8"]
 script = ExtResource("25_o2xk8")
@@ -152,15 +156,44 @@ direction = 1
 [node name="Stone" parent="Environment/Objects" instance=ExtResource("11_p5ttm")]
 position = Vector2(700, 136)
 
-[node name="DangerArea" parent="Environment" instance=ExtResource("4_vtaks")]
-position = Vector2(0, 200)
-metadata/_edit_lock_ = true
-
 [node name="Vegetation" parent="Environment" instance=ExtResource("17_s7nsw")]
 tile_map_data = PackedByteArray("AAAJAAgABgAAAAAAAQAKAAgABgAAAAAAAAALAAgABgAAAAAAAAAQAAgABgAAAAAAAQAWAAcABgAAAAAAAAAZAAYABgAAAAAAAAAsAAgABgAAAAAAAAArAAgABgAAAAAAAQASAAgABgAAAAEAAQAcAAUABgAAAAEAAAAhAAgABgAAAAEAAAAtAAgABgAAAAAAAABFAAgABgAAAAAAAAARAAgABgAAAAAAAQAbAAUABgAAAAAAAAAgAAgABgAAAAAAAQBAAAkABgAAAAAAAAA3AAQABgAAAAAAAQAFAAgABgAAAAIAAAAnAAcABgAAAAIAAAAxAAkABgAAAAIAAABBAAkABgAAAAIAAAA9AAkABgAAAAIAAAA8AAkABgAAAAIAAAD9/wgABgACAAMAAAAkAAgABgAAAAAAAAA5AAgABgAAAAAAAQA6AAgABgAAAAAAAAD9/wUABgADAAMAAAD8/wUABgADAAMAAAA1AAQABgAAAAEAAQA2AAQABgAAAAAAAQAAAAQABgADAAMAAAA3AAcABgADAAMAAAA2AAcABgADAAMAAAA3AAgABgACAAMAAAA=")
 
+[node name="DeadZones" type="Node2D" parent="Environment"]
+
+[node name="DefaultDeadZone" parent="Environment/DeadZones" node_paths=PackedStringArray("checkpoints") instance=ExtResource("4_vtaks")]
+position = Vector2(0, 256)
+checkpoints = [NodePath("Area2D")]
+
+[node name="Area2D" type="Area2D" parent="Environment/DeadZones/DefaultDeadZone"]
+position = Vector2(102, -120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadZones/DefaultDeadZone/Area2D"]
+shape = SubResource("SegmentShape2D_is1k8")
+
+[node name="DeadZone01" parent="Environment/DeadZones" node_paths=PackedStringArray("checkpoints") instance=ExtResource("4_vtaks")]
+position = Vector2(480, 224)
+checkpoints = [NodePath("LeftCheckpoint"), NodePath("RightCheckpoint")]
+
+[node name="LeftCheckpoint" type="Area2D" parent="Environment/DeadZones/DeadZone01"]
+position = Vector2(-32, -136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadZones/DeadZone01/LeftCheckpoint"]
+shape = SubResource("SegmentShape2D_is1k8")
+
+[node name="RightCheckpoint" type="Area2D" parent="Environment/DeadZones/DeadZone01"]
+position = Vector2(32, -88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadZones/DeadZone01/RightCheckpoint"]
+shape = SubResource("SegmentShape2D_is1k8")
+
+[node name="Spikes" parent="Environment" instance=ExtResource("19_s7nsw")]
+position = Vector2(600, 88)
+width = 64.0
+
 [node name="Camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_p57ef")]
 position = Vector2(192, 92)
+limit_bottom = 180
 target = NodePath("../Player")
 metadata/_edit_lock_ = true
 
@@ -168,7 +201,7 @@ metadata/_edit_lock_ = true
 position = Vector2(102, 134)
 
 [node name="DebugSpawnPoint" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(928, 128)
+position = Vector2(232, 128)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

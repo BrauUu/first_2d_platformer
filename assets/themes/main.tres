@@ -32,6 +32,7 @@ Button/colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
 Button/colors/font_outline_color = Color(0.0214347, 0.0214346, 0.0214346, 1)
 Button/colors/font_pressed_color = Color(0.870588, 0.933333, 0.839216, 1)
 Button/constants/outline_size = 2
+Button/font_sizes/font_size = 40
 Button/styles/disabled = SubResource("StyleBoxEmpty_fkojh")
 Button/styles/focus = SubResource("StyleBoxEmpty_wprdj")
 Button/styles/hover = SubResource("StyleBoxEmpty_61qlu")
