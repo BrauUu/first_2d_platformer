@@ -14,7 +14,7 @@ class_name RepeatingSprite
 		
 func _set(property: StringName, value) -> bool:
 	if property == "texture":
-		set(property, value)
+		texture = value
 		update_region()
 		return true
 	return false

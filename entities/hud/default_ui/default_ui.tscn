@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://dq482mnd4c4y3"]
+[gd_scene load_steps=23 format=3 uid="uid://dq482mnd4c4y3"]
 
 [ext_resource type="Script" uid="uid://c6tgwfhbmv20w" path="res://entities/hud/default_ui/default_ui.gd" id="1_fdptq"]
 [ext_resource type="Texture2D" uid="uid://c4ia10tef4rvx" path="res://assets/sprites/hud/hearts_hud.png" id="2_iv06q"]
 [ext_resource type="Texture2D" uid="uid://cqifxiup4kbal" path="res://assets/sprites/hud/no_hearts_hud.png" id="2_sonvl"]
 [ext_resource type="Texture2D" uid="uid://68kbqn615svh" path="res://assets/sprites/hud/lost_hearts_5.png" id="3_sonvl"]
 [ext_resource type="Texture2D" uid="uid://bjc4dngmhfd6k" path="res://assets/sprites/hud/hearts_hud_anim.png" id="4_or3m0"]
+[ext_resource type="Texture2D" uid="uid://cjih78cod5xck" path="res://assets/sprites/hud/coins_hud.png" id="6_nuocn"]
+[ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="7_dn234"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plgrs"]
 atlas = ExtResource("2_sonvl")
@@ -136,12 +138,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fdptq")
 
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [node name="HeartsContainer" type="BoxContainer" parent="."]
-layout_mode = 0
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
 offset_left = 30.0
 offset_top = 28.0
 offset_right = 230.0
-offset_bottom = 76.0
+offset_bottom = 68.0
 
 [node name="FullHeart" type="AnimatedSprite2D" parent="HeartsContainer"]
 visible = false
@@ -149,9 +156,27 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_plgrs")
 animation = &"idle"
 
-[node name="AnimationTimer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
+[node name="CoinsContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+offset_left = 8.0
+offset_top = 58.0
+offset_right = 208.0
+offset_bottom = 99.0
 
-[connection signal="animation_finished" from="HeartsContainer/FullHeart" to="." method="_on_full_heart_animation_finished"]
+[node name="Coin" type="TextureRect" parent="CoinsContainer"]
+layout_mode = 2
+texture = ExtResource("6_nuocn")
+expand_mode = 2
+
+[node name="Amount" type="Label" parent="CoinsContainer"]
+layout_mode = 2
+theme = ExtResource("7_dn234")
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 44
+text = "0"
+vertical_alignment = 1
+
 [connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]
+[connection signal="animation_finished" from="HeartsContainer/FullHeart" to="." method="_on_full_heart_animation_finished"]

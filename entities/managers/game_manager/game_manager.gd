@@ -11,7 +11,11 @@ signal gm_node_left_layer (left_cell: Vector2i, entered_layer)
 
 signal gm_music_toggle(toggled_on: bool)
 
+signal gm_coin_collected
+
 var can_pause : bool = true
+var is_player_dead : bool = false
+var coins_count : int = 0
 
 func _ready() -> void:
 	pass
@@ -31,22 +35,20 @@ func emit_player_entered_battle() -> void:
 	gm_player_entered_battle.emit()
 	
 func emit_player_left_battle() -> void:
-	gm_player_left_battle.emit()
+	if not is_player_dead:
+		gm_player_left_battle.emit()
 	
-func spawn_player(is_game_over: bool = false) -> CharacterBody2D:
+func spawn_player() -> CharacterBody2D:
 		can_pause = true
 		var player := preload("res://entities/characters/player/player.tscn").instantiate()
 		var spawn_point := get_current_spawn_point()
 			
 		var pos = spawn_point.position
 		return spawn(player, pos)
-
-func restart() -> void:
-	spawn_player(true)
-	emit_signal("gm_player_spawned")
 	
 func notify_player_dead(damage_info: Dictionary) -> void:
 	can_pause = false
+	is_player_dead = true
 	gm_player_dead.emit(damage_info)
 	
 func notify_player_hurted(damage_info: Dictionary) -> void:
@@ -54,6 +56,8 @@ func notify_player_hurted(damage_info: Dictionary) -> void:
 
 func get_current_spawn_point() -> SpawnPoint:
 	#TODO: Checkpoint logic
+	if $"../Game/DebugSpawnPoint".active:
+		return $"../Game/DebugSpawnPoint"
 	return $"../Game/SpawnPoint"
 
 func notify_node_entered_layer(entered_cell: Vector2i, entered_layer) -> void:
@@ -64,3 +68,7 @@ func notify_node_left_layer(left_layer) -> void:
 	
 func toggle_music(toggled_on: bool) -> void:
 	gm_music_toggle.emit(toggled_on)
+	
+func coin_collected() -> void:
+	coins_count += 1
+	gm_coin_collected.emit()

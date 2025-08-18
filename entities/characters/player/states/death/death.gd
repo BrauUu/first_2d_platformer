@@ -4,8 +4,11 @@ extends State
 @export var player : Player
 
 func enter(params: Dictionary = {}) -> void:
+	player.velocity.x = 0
 	if params.damage_info.get("not_play_animation"):
 		exit()
+	player.on_animation = true
+	player.is_controllable = false
 	player.set_animation("die")
 	
 func exit() -> void:

@@ -166,6 +166,6 @@ func fell_in_dead_zone(deadzone: DeadZone):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	match animator.animation:
 		"die":
-			queue_free()
+			state_machine.pop_state()
 		"attack":
 			state_machine.pop_state()
