@@ -2,6 +2,7 @@ extends Control
 
 @onready var animation_timer: Timer = $AnimationTimer
 @onready var coins_amount: Label = $CoinsContainer/Amount
+@onready var coins_container: BoxContainer = $CoinsContainer
 
 var player: Player
 var player_health_component : HealthComponent
@@ -17,6 +18,7 @@ func _ready() -> void:
 	GameManager.connect("gm_coin_collected", _on_coin_collected)
 	get_player()
 	create_health_hud()
+	coins_container.visible = true
 	
 func get_player() -> void:
 		player = $"../../Player"

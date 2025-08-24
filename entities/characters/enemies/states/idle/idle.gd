@@ -4,16 +4,13 @@ extends State
 @export var enemy : Enemy
 
 func enter(params: Dictionary = {}) -> void:
-	pass
+	enemy.set_animation("idle")
 	
 func exit() -> void:
 	pass
 	
 func update(_delta: float) -> void:
-	if enemy.velocity.x:
-		enemy.set_animation("move")
-	else:
-		enemy.set_animation("idle")
+	pass
 	
 func physics_update(_delta: float) -> void:
 	pass

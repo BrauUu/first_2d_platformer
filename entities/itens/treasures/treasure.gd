@@ -58,5 +58,5 @@ func _on_interaction_area_body_entered(body: Node2D) -> void:
 
 func _on_animation_finished() -> void:
 	if is_current_state(TREASURE_STATES.COLLECTED):
-		#TODO: remover todo o tesouro (path
+		#TODO: remover todo o tesouro (path)
 		queue_free()

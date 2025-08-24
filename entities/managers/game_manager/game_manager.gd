@@ -44,6 +44,7 @@ func spawn_player() -> CharacterBody2D:
 		var spawn_point := get_current_spawn_point()
 			
 		var pos = spawn_point.position
+		is_player_dead = false
 		return spawn(player, pos)
 	
 func notify_player_dead(damage_info: Dictionary) -> void:

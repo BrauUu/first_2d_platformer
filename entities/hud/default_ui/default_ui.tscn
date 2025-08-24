@@ -157,6 +157,7 @@ sprite_frames = SubResource("SpriteFrames_plgrs")
 animation = &"idle"
 
 [node name="CoinsContainer" type="BoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 offset_left = 8.0
