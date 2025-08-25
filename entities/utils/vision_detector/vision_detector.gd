@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 	if not vision_detected_body : return
 	
 	var target_position = vision_detected_body.global_position - global_position
+	if target_position.length() < 10: return
 	target_position.x *= parent.scale.x
 	vision_detector_line.target_position = Vector2(target_position.x, target_position.y)
 	vision_detector_line.force_raycast_update()

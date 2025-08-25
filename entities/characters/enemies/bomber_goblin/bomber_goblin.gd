@@ -37,6 +37,9 @@ func _process(delta: float) -> void:
 	if current_cooldown > 0:
 		current_cooldown -= delta
 	
+	if target:
+		look_for_player(target)
+	
 	animator.play()
 
 func _physics_process(delta: float) -> void:
@@ -55,12 +58,12 @@ func is_invunerable(layer: int = 2) -> bool:
 func attack() -> void:
 	if current_cooldown <= 0 and target:
 		set_animation("attack")
-		audio_controller.play_sound("Attack")
+		audio_controller.play_sound("Yell")
 		current_cooldown = cooldown
 		
 func throw_bomb() -> void:
 	var bomb = BOMB_ENTITY.instantiate()
-	bomb.velocity = get_bomb_arch(position, target.position, 0.5)
+	bomb.velocity = get_bomb_arch(position, target.position, 0.4)
 	bomb.explosion_area = 30
 	bomb.damage = 2
 	bomb.position = position
@@ -86,8 +89,8 @@ func apply_hurt_effect() -> void:
 	await get_tree().create_timer(0.5).timeout
 	material.set_shader_parameter("flash_amount", 0.0)
 	
-func look_for_player(attacker: Node2D) -> void:
-	if attacker.global_position > global_position:
+func look_for_player(player: Player) -> void:
+	if player.global_position > global_position:
 		flipped_node.scale.x = 1
 	else:
 		flipped_node.scale.x = -1
@@ -101,10 +104,12 @@ func die(damage_info) -> void:
 		
 func _on_player_detected(player: Player) -> void:
 	state_machine.change_state("Attack")
+	audio_controller.play_sound("Yell")
 	target = player
 	
 func _on_player_lost_detection(player: Player) -> void:
 	state_machine.change_state("Idle")
+	audio_controller.play_sound("GiveUp")
 	target = null
 
 func _on_animator_animation_finished() -> void:

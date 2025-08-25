@@ -1,16 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7cjpp05jcbcu"]
+[gd_scene load_steps=15 format=3 uid="uid://c7cjpp05jcbcu"]
 
 [ext_resource type="Script" uid="uid://bebu27wu2rcn6" path="res://entities/itens/bomb/bomb.gd" id="1_wuxqo"]
 [ext_resource type="Texture2D" uid="uid://3fk3bequ7hcw" path="res://assets/sprites/itens/bomb_thrown_anim_strip_3.png" id="2_yw362"]
 [ext_resource type="Texture2D" uid="uid://bfc6mrvxydeqh" path="res://assets/sprites/itens/bomb_on_ground_anim_strip_8.png" id="3_v8onk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a04j6"]
-atlas = ExtResource("3_v8onk")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yuegm"]
-atlas = ExtResource("3_v8onk")
-region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a13dj"]
 atlas = ExtResource("3_v8onk")
@@ -52,12 +44,6 @@ region = Rect2(16, 0, 8, 8)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a04j6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yuegm")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_a13dj")
 }, {
 "duration": 1.0,
@@ -80,7 +66,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dropped",
-"speed": 12.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -94,13 +80,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"thrown",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j2mg"]
 size = Vector2(8, 8)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wuxqo"]
 
 [node name="Bomb" type="CharacterBody2D"]
 collision_layer = 0
@@ -114,12 +98,6 @@ animation = &"dropped"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_6j2mg")
-
-[node name="PreviewArea" type="Area2D" parent="."]
-visible = false
-
-[node name="PreviewAreaShape" type="CollisionShape2D" parent="PreviewArea"]
-shape = SubResource("CircleShape2D_wuxqo")
 
 [connection signal="animation_finished" from="Animator" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="Animator" to="." method="_on_animator_frame_changed"]

@@ -114,7 +114,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,7 +189,6 @@ sprite_frames = SubResource("SpriteFrames_q1u14")
 animation = &"attack"
 
 [node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("6_ovppl")]
-visible = false
 collision_mask = 17
 vision_detector_shape = NodePath("VisionDetectorShape")
 vision_detector_line = NodePath("VisionDetectorLine")
@@ -214,7 +213,6 @@ visible = false
 shape = SubResource("RectangleShape2D_jd5tn")
 
 [node name="PlayerDetector" parent="." node_paths=PackedStringArray("detector_shape", "vision_detector") instance=ExtResource("8_3bvdd")]
-visible = false
 collision_layer = 0
 detector_shape = NodePath("DetectorShape")
 vision_detector = NodePath("../FlippedNode/VisionDetector")

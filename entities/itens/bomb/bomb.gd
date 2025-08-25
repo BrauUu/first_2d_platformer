@@ -2,7 +2,6 @@ class_name Bomb
 extends CharacterBody2D
 
 @onready var animator: AnimatedSprite2D = $Animator
-@onready var preview_area_shape: CollisionShape2D = $PreviewArea/PreviewAreaShape
 
 const EXPLOSION = preload("res://entities/actions/explosion/explosion.tscn")
 
@@ -11,8 +10,9 @@ var damage : int
 
 enum BOMB_STATES {THROWN, DROPPED}
 
-var current_state : int
+var current_state: int
 var animations: PackedStringArray
+var show_preview: bool
 
 func update_animation() -> void:
 	var animation = BOMB_STATES.keys()[current_state].to_lower()
@@ -37,9 +37,6 @@ func _ready() -> void:
 	set_current_state(BOMB_STATES.THROWN)
 	animations = animator.sprite_frames.get_animation_names()
 	update_animation()
-	
-	if preview_area_shape.shape.radius:
-		preview_area_shape.shape.radius = explosion_area
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -52,9 +49,21 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 		
 	move_and_slide()
+	
+func _draw():
+	if show_preview:
+		draw_circle(Vector2.ZERO, explosion_area, "#dadada50")
+
+func set_show_preview_area(value: bool):
+	show_preview = value
+	queue_redraw()
 
 func _on_animator_frame_changed() -> void:
-	if animator.animation == "dropped" and animator.frame == 7:
+	if animator.animation != "dropped" : return
+	if animator.frame == 1:
+		set_show_preview_area(true)
+	if animator.frame == 5:
+		set_show_preview_area(false)
 		var explosion = EXPLOSION.instantiate()
 		explosion.explosion_area = explosion_area
 		explosion.damage = damage
