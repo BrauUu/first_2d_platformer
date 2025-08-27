@@ -4,12 +4,11 @@ extends Node
 @export var attack_area: Area2D
 @export var parent: Bat
 
-var velocity: Vector2
+var velocity: Vector2 = Vector2.ZERO
 var enabled: bool = false
-var target: Player
-var attack_target_position: Vector2
-var attacking: bool
-var target_in_range_to_attack: bool
+var target: Player = null
+var attack_target_position: Vector2 = Vector2.ZERO
+var target_in_range_to_attack: bool = false
 
 func _ready() -> void:
 	
@@ -27,22 +26,22 @@ func _physics_process(delta: float) -> void:
 		
 	var distance = 0
 	
-	if attack_target_position and parent.current_cooldown <= 0 and (target_in_range_to_attack or attacking):
-		attacking = true
+	if attack_target_position and parent.current_cooldown <= 0 and (target_in_range_to_attack or parent.attacking):
+		parent.attacking = true
 		distance = attack_target_position - parent.global_position
 		velocity = distance.normalized() * parent.attack_speed
 		attack_target_position += velocity
 		if parent.global_position.distance_to(target.global_position) > 100:
-			attacking = false
+			parent.attacking = false
 			parent.current_cooldown = parent.cooldown
 		for i in range(parent.get_slide_collision_count()):
-			attacking = false
+			parent.attacking = false
 			parent.current_cooldown = parent.cooldown
 	else:
 		distance = target.global_position - parent.global_position
 		velocity = distance.normalized() * parent.speed
 		
-	if not attacking and attack_target_position:
+	if not parent.attacking and attack_target_position:
 		attack_target_position = target.global_position
 		
 	if distance.x > 0:
@@ -69,7 +68,7 @@ func flies_back_and_forth() -> Vector2:
 		-sign(distance_to_initial_point.y)
 	).normalized() * parent.speed
 
-func get_motion_velocity() -> Vector2:
+func get_velocity() -> Vector2:
 	return velocity
 
 func is_enabled() -> bool:
@@ -82,7 +81,8 @@ func _on_awake_area_player_exited(player: Player) -> void:
 	target = null
 	
 func _on_attack_area_player_entered(player: Player) -> void:
-	attack_target_position = player.global_position
+	if not attack_target_position:
+		attack_target_position = player.global_position
 	target_in_range_to_attack = true
 
 func _on_attack_area_player_exited(player: Player) -> void:

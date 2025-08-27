@@ -27,7 +27,7 @@ func _ready() -> void:
 	player_detector.connect("body_out_of_sight", _on_player_detector_body_out_of_sight)
 	give_up_countdown.connect("timeout", _on_give_up_countdown_timeout)
 
-func get_motion_velocity() -> Vector2:
+func get_velocity() -> Vector2:
 	
 	check_movement_possiblity()
 	

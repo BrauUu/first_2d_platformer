@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 			enabled = false
 			knockback_velocity = Vector2.ZERO
 
-func get_motion_velocity() -> Vector2:
+func get_velocity() -> Vector2:
 	return knockback_velocity
 
 func is_enabled() -> bool:

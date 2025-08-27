@@ -6,7 +6,7 @@ var movement_modules := []
 func _ready() -> void:
 	for data in movement_modules_data:
 		var mod = get_node_or_null(data.module)
-		if mod and mod.has_method("get_motion_velocity"):
+		if mod and mod.has_method("get_velocity"):
 			movement_modules.append({ "module": mod, "priority": data.priority })
 	
 	movement_modules.sort_custom(_sort_by_priority)
@@ -32,6 +32,6 @@ func get_combined_velocity() -> Vector2:
 	for entry in active_entries:
 		if entry.priority == max_priority:
 			top_entries.append(entry)
-			velocity += entry.module.get_motion_velocity()
+			velocity += entry.module.get_velocity()
 
 	return velocity
