@@ -2,6 +2,7 @@ class_name Bomb
 extends CharacterBody2D
 
 @onready var animator: AnimatedSprite2D = $Animator
+@onready var audio_controller: AudioController = $AudioController
 
 const EXPLOSION = preload("res://entities/actions/explosion/explosion.tscn")
 
@@ -37,6 +38,7 @@ func _ready() -> void:
 	set_current_state(BOMB_STATES.THROWN)
 	animations = animator.sprite_frames.get_animation_names()
 	update_animation()
+	audio_controller.play_sound("Wick")
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -45,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if is_current_state(BOMB_STATES.THROWN):
 			set_current_state(BOMB_STATES.DROPPED)
+			audio_controller.play_sound("Drop")
 		if velocity.x:
 			velocity.x = 0
 		
@@ -63,6 +66,7 @@ func _on_animator_frame_changed() -> void:
 	if animator.frame == 1:
 		set_show_preview_area(true)
 	if animator.frame == 5:
+		audio_controller.stop_sound("Wick")
 		set_show_preview_area(false)
 		var explosion = EXPLOSION.instantiate()
 		explosion.explosion_area = explosion_area

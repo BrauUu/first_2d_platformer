@@ -259,6 +259,7 @@ damage = 1
 initial_direction = 1
 jump_power = 200
 cooldown = 1.5
+health = 3
 
 [node name="FlippedNode" type="Node2D" parent="."]
 
@@ -367,7 +368,6 @@ parent = NodePath("..")
 movement_modules_data = Array[ExtResource("16_yhjil")]([SubResource("Resource_ffrj2"), SubResource("Resource_yhjil")])
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("10_muknj")]
-visible = false
 collision_layer = 4
 collision_mask = 66
 health_component = NodePath("../HealthComponent")

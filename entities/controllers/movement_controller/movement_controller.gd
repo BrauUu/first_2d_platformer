@@ -12,7 +12,7 @@ func _ready() -> void:
 	movement_modules.sort_custom(_sort_by_priority)
 
 func _sort_by_priority(a, b) -> int:
-	return b.priority - a.priority
+	return a.priority > b.priority
 	
 func get_combined_velocity() -> Vector2:
 	var active_entries := []

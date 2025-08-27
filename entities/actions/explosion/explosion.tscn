@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://chhnew3sh8k2o"]
+[gd_scene load_steps=17 format=3 uid="uid://chhnew3sh8k2o"]
 
 [ext_resource type="Script" uid="uid://bva33i823bdik" path="res://entities/actions/explosion/explosion.gd" id="1_x7724"]
 [ext_resource type="Texture2D" uid="uid://q2mtw4iih802" path="res://assets/sprites/effects/explosion_anim_strip_10.png" id="2_hqu2p"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="3_cre8m"]
+[ext_resource type="AudioStream" uid="uid://dw2bvo6hxr0ua" path="res://assets/sounds/sfx/effects/explosion.wav" id="4_nhhlt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udwmm"]
 radius = 30.0
@@ -98,3 +100,11 @@ autoplay = "default"
 frame = 9
 frame_progress = 1.0
 offset = Vector2(0, -12)
+
+[node name="AudioController" parent="." instance=ExtResource("3_cre8m")]
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("4_nhhlt")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
