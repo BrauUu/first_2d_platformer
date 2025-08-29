@@ -16,6 +16,7 @@ func _ready() -> void:
 	GameManager.connect("gm_player_spawned", _on_player_respawned)
 	GameManager.connect("gm_player_hurted", _on_player_hurted)
 	GameManager.connect("gm_coin_collected", _on_coin_collected)
+	GameManager.connect("gm_player_recovery_health", _on_recovery_health)
 	get_player()
 	create_health_hud()
 	coins_container.visible = true
@@ -61,16 +62,23 @@ func animation() -> void:
 	await heart.animation_finished
 	heart.animation = "full"
 	
-func recovery_health_hud() -> void:
+func recovery_health_hud(health_amount: int) -> void:
 	var hearts = $HeartsContainer.get_children()
-	var heart = hearts[player_health_component.current_health]
-	heart.animation = "full"
+	for i in range(player_health_component.current_health - 1, player_health_component.current_health - 1 + health_amount):
+		if hearts[i]:
+			var heart = hearts[i]
+			if heart.animation != "full":
+				heart.play("full")
+				count += 1
 	
 func reset_health_hud() -> void:
 	var hearts = $HeartsContainer.get_children().slice(1, len($HeartsContainer.get_children()))
 	for heart in hearts:
 		$HeartsContainer.remove_child(heart)
 	create_health_hud()
+	
+func _on_recovery_health(health_amount: int) -> void:
+	recovery_health_hud(health_amount)
 	
 func _on_player_hurted(damage_info: Dictionary) -> void:
 	var damage = damage_info.damage

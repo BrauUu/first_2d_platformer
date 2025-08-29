@@ -5,6 +5,7 @@ signal gm_player_spawned
 signal gm_player_hurted (damage_info: Dictionary)
 signal gm_player_entered_battle
 signal gm_player_left_battle
+signal gm_player_recovery_health (health_amount: int)
 
 signal gm_node_entered_layer (entered_cell: Vector2i, entered_layer )
 signal gm_node_left_layer (left_cell: Vector2i, entered_layer)
@@ -46,6 +47,9 @@ func spawn_player() -> CharacterBody2D:
 		var pos = spawn_point.position
 		is_player_dead = false
 		return spawn(player, pos)
+		
+func recovery_health(health_amount: int) -> void:
+	gm_player_recovery_health.emit(health_amount)
 	
 func notify_player_dead(damage_info: Dictionary) -> void:
 	can_pause = false
@@ -57,7 +61,7 @@ func notify_player_hurted(damage_info: Dictionary) -> void:
 
 func get_current_spawn_point() -> SpawnPoint:
 	#TODO: Checkpoint logic
-	if $"../Game/DebugSpawnPoint".active:
+	if $"../Game/DebugSpawnPoint" and $"../Game/DebugSpawnPoint".active:
 		return $"../Game/DebugSpawnPoint"
 	return $"../Game/SpawnPoint"
 

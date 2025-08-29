@@ -105,7 +105,7 @@ func _on_awake_area_player_entered(player: Player) -> void:
 		set_current_state(BAT_STATES.FLY)
 		movement_component.enabled = true
 		update_animation()
-
+	
 func _on_animator_animation_finished() -> void:
 	match animator.animation:
 		"dead":

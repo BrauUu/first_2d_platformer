@@ -8,6 +8,7 @@ extends Enemy
 @onready var hitbox_component: Area2D = $HitboxComponent
 @onready var audio_controller: AudioController = $AudioController
 @onready var player_detector: Area2D = $PlayerDetector
+@onready var give_up_countdown: Timer = $GiveUpCountdown
 
 const BOMB_ENTITY = preload("res://entities/itens/bomb/bomb.tscn")
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 	
 	player_detector.connect("body_detected", _on_player_detected)
 	player_detector.connect("body_lost_detection", _on_player_lost_detection)
+	player_detector.connect("body_out_of_sight", _on_player_out_of_sight)
 	
 func _process(delta: float) -> void:
 	
@@ -102,15 +104,23 @@ func die(damage_info) -> void:
 	if exclamation.visible:
 		exclamation.hide_warning(false)
 		
+		
 func _on_player_detected(player: Player) -> void:
+	give_up_countdown.stop()
 	state_machine.change_state("Attack")
 	audio_controller.play_sound("Yell")
 	target = player
+	GameManager.emit_player_entered_battle()
 	
 func _on_player_lost_detection(player: Player) -> void:
 	state_machine.change_state("Idle")
 	audio_controller.play_sound("GiveUp")
 	target = null
+	flipped_node.scale.x = initial_direction
+	GameManager.emit_player_left_battle()
+	
+func _on_player_out_of_sight() -> void:
+	give_up_countdown.start()
 
 func _on_animator_animation_finished() -> void:
 	match animator.animation:
@@ -122,3 +132,6 @@ func _on_animator_animation_finished() -> void:
 func _on_animator_frame_changed() -> void:
 	if animator.animation == "attack" and animator.frame == 4:
 		throw_bomb()
+
+func _on_give_up_countdown_timeout() -> void:
+	_on_player_lost_detection(target)

@@ -10,7 +10,10 @@ func exit() -> void:
 	pass
 	
 func update(_delta: float) -> void:
-	pass
+	if enemy.velocity.x and !enemy.is_invunerable():
+		enemy.set_animation("move")
+	else:
+		enemy.set_animation("idle")
 	
 func physics_update(_delta: float) -> void:
 	pass

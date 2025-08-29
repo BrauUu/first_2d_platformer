@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://dacfecrwwqmnq"]
+
+[ext_resource type="Script" uid="uid://cs068ryf6nx4r" path="res://entities/itens/heal_itens/potion/potion.gd" id="1_4vit8"]
+[ext_resource type="Texture2D" uid="uid://cbbeh7vnc7vqa" path="res://assets/sprites/itens/health_potion.png" id="1_h0wrh"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="2_4vit8"]
+[ext_resource type="Texture2D" uid="uid://v8ipfjgabc7g" path="res://assets/sprites/itens/health_potion_collected.png" id="2_180qe"]
+[ext_resource type="AudioStream" uid="uid://cfdcmi54ss04u" path="res://assets/sounds/sfx/effects/sip.wav" id="4_4vit8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1k76"]
+atlas = ExtResource("2_180qe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk8u8"]
+atlas = ExtResource("2_180qe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ntau"]
+atlas = ExtResource("2_180qe")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mx8c"]
+atlas = ExtResource("2_180qe")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q26f2"]
+atlas = ExtResource("2_180qe")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_180qe"]
+atlas = ExtResource("1_h0wrh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_180qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1k76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk8u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ntau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mx8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q26f2")
+}],
+"loop": false,
+"name": &"collected",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_180qe")
+}],
+"loop": false,
+"name": &"dropped",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1k76"]
+size = Vector2(8, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nomb"]
+size = Vector2(12, 14)
+
+[node name="Potion" type="CharacterBody2D" node_paths=PackedStringArray("interaction_area", "audio_controller", "animated_sprite_2d")]
+collision_layer = 0
+collision_mask = 48
+script = ExtResource("1_4vit8")
+interaction_area = NodePath("InteractionArea")
+audio_controller = NodePath("AudioController")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+heal_amount = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_180qe")
+animation = &"dropped"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_w1k76")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_3nomb")
+
+[node name="AudioController" parent="." instance=ExtResource("2_4vit8")]
+
+[node name="Collect" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("4_4vit8")
+max_distance = 250.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

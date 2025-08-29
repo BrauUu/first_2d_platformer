@@ -227,3 +227,4 @@ bus = &"SFX"
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
 [connection signal="frame_changed" from="Animator" to="." method="_on_animator_frame_changed"]
 [connection signal="body_entered" from="AwakeArea" to="." method="_on_awake_area_player_entered"]
+[connection signal="body_exited" from="AwakeArea" to="." method="_on_awake_area_player_exited"]

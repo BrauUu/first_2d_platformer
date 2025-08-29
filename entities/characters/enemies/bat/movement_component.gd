@@ -63,6 +63,9 @@ func flies_back_and_forth() -> Vector2:
 	if should_change_direction:
 		parent.change_direction()
 		
+	if abs(distance_to_initial_point.y) < 2:
+		distance_to_initial_point.y = 0
+		
 	return Vector2(
 		parent.direction, 
 		-sign(distance_to_initial_point.y)
@@ -76,9 +79,11 @@ func is_enabled() -> bool:
 	
 func _on_awake_area_player_entered(player: Player) -> void:
 	target = player
+	GameManager.emit_player_entered_battle()
 
 func _on_awake_area_player_exited(player: Player) -> void:
 	target = null
+	GameManager.emit_player_left_battle()
 	
 func _on_attack_area_player_entered(player: Player) -> void:
 	if not attack_target_position:

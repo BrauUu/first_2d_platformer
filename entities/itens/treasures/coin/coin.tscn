@@ -120,8 +120,6 @@ audio_controller = NodePath("AudioController")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jmyae")
 animation = &"dropped"
-frame = 4
-frame_progress = 0.199739
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -139,4 +137,5 @@ shape = SubResource("RectangleShape2D_ehyl8")
 [node name="Collect" type="AudioStreamPlayer2D" parent="AudioController"]
 stream = ExtResource("5_o4mgs")
 volume_db = -10.0
+max_distance = 250.0
 bus = &"SFX"

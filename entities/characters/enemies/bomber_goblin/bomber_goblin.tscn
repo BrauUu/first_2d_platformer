@@ -189,6 +189,7 @@ sprite_frames = SubResource("SpriteFrames_q1u14")
 animation = &"attack"
 
 [node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("6_ovppl")]
+visible = false
 collision_mask = 17
 vision_detector_shape = NodePath("VisionDetectorShape")
 vision_detector_line = NodePath("VisionDetectorLine")
@@ -213,6 +214,7 @@ visible = false
 shape = SubResource("RectangleShape2D_jd5tn")
 
 [node name="PlayerDetector" parent="." node_paths=PackedStringArray("detector_shape", "vision_detector") instance=ExtResource("8_3bvdd")]
+visible = false
 collision_layer = 0
 detector_shape = NodePath("DetectorShape")
 vision_detector = NodePath("../FlippedNode/VisionDetector")
@@ -277,6 +279,11 @@ volume_db = 3.0
 max_distance = 250.0
 bus = &"SFX"
 
+[node name="GiveUpCountdown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="animation_finished" from="FlippedNode/Animator" to="." method="_on_animator_animation_finished"]
 [connection signal="frame_changed" from="FlippedNode/Animator" to="." method="_on_animator_frame_changed"]
 [connection signal="body_entered" from="FlippedNode/VisionDetector" to="FlippedNode/VisionDetector" method="_on_body_entered"]
+[connection signal="timeout" from="GiveUpCountdown" to="." method="_on_give_up_countdown_timeout"]

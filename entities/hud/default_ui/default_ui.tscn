@@ -154,7 +154,7 @@ offset_bottom = 68.0
 visible = false
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_plgrs")
-animation = &"idle"
+animation = &"full"
 
 [node name="CoinsContainer" type="BoxContainer" parent="."]
 visible = false
