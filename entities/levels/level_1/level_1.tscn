@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=38 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_a6cpv"]
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="2_gdnll"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://diapsm5olsx07" path="res://entities/controllers/music_controller/music_controller.tscn" id="30_oquf2"]
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="31_q2e1t"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="33_is1k8"]
+[ext_resource type="PackedScene" uid="uid://dps8mxrk7xdq6" path="res://entities/objects/checkpoint/checkpoint.tscn" id="35_s7nsw"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -210,7 +211,7 @@ metadata/_edit_lock_ = true
 position = Vector2(102, 134)
 
 [node name="DebugSpawnPoint" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(1112, 132)
+position = Vector2(936, 136)
 active = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -257,3 +258,7 @@ bus = &"Music"
 [node name="DieMusic" type="AudioStreamPlayer" parent="MusicController"]
 stream = ExtResource("33_is1k8")
 bus = &"Music"
+
+[node name="Checkpoint" parent="." instance=ExtResource("35_s7nsw")]
+position = Vector2(1088, 118)
+frame = 7

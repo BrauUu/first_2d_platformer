@@ -1,0 +1,144 @@
+[gd_scene load_steps=21 format=3 uid="uid://dps8mxrk7xdq6"]
+
+[ext_resource type="Texture2D" uid="uid://g1bttw6bdiup" path="res://assets/sprites/objects/save_point_anim_strip_9.png" id="1_btvdl"]
+[ext_resource type="Texture2D" uid="uid://bhu07oyamq12q" path="res://assets/sprites/objects/save_point_saving_anim_strip_3.png" id="2_a6a1m"]
+[ext_resource type="Script" uid="uid://ce3id0q2ow5j" path="res://entities/objects/checkpoint/checkpoint.gd" id="3_a6a1m"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_jc6a8"]
+[ext_resource type="AudioStream" uid="uid://b8w6x40c0rgm6" path="res://assets/sounds/sfx/effects/checkpoint_activation.wav" id="5_i8i86"]
+[ext_resource type="AudioStream" uid="uid://diddadk1pl2h6" path="res://assets/sounds/sfx/effects/checkpoint_active.wav" id="6_i8i86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8i86"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(0, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0fi1"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(12, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmqc6"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(24, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhw4y"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(36, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5vn5"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(48, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2304g"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(60, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3on6t"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(72, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7uo2"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(84, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k6yq"]
+atlas = ExtResource("2_a6a1m")
+region = Rect2(0, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq8q4"]
+atlas = ExtResource("2_a6a1m")
+region = Rect2(12, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7md7"]
+atlas = ExtResource("2_a6a1m")
+region = Rect2(24, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dqi5"]
+atlas = ExtResource("1_btvdl")
+region = Rect2(0, 0, 12, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhw4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8i86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0fi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmqc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhw4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5vn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2304g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3on6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7uo2")
+}],
+"loop": false,
+"name": &"activating",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k6yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq8q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7md7")
+}],
+"loop": true,
+"name": &"active",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dqi5")
+}],
+"loop": false,
+"name": &"inactive",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5vn5"]
+size = Vector2(200, 64)
+
+[node name="Checkpoint" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mhw4y")
+animation = &"activating"
+frame = 7
+frame_progress = 1.0
+script = ExtResource("3_a6a1m")
+
+[node name="CheckpointArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointArea"]
+shape = SubResource("RectangleShape2D_h5vn5")
+
+[node name="AudioController" parent="." instance=ExtResource("4_jc6a8")]
+
+[node name="Activating" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_i8i86")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
+
+[node name="OnActive" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("6_i8i86")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
+[connection signal="body_entered" from="CheckpointArea" to="." method="_on_checkpoint_area_player_entered"]
