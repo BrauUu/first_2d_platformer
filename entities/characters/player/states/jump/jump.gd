@@ -7,7 +7,7 @@ extends State
 func enter(params: Dictionary = {}) -> void:
 	player.velocity.y = -player.jump_power
 	player.jump_count += 1
-	audio_controller.play_sound("Jump", {"must_stop" : true})
+	audio_controller.play_sound("Jump", false, {"must_stop" : true})
 	
 func exit() -> void:
 	pass

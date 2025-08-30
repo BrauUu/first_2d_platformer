@@ -44,7 +44,7 @@ func update_collision_shape() -> void:
 	if shape_node.shape.resource_local_to_scene == false:
 			shape_node.shape = shape_node.shape.duplicate()
 	if shape_node and shape_node.shape is RectangleShape2D:
-		shape_node.shape.size = Vector2(width, (height - 2) or 0)
+		shape_node.shape.size = Vector2(width, height)
 		shape_node.position = Vector2(0, -2)
 		
 func get_damage() -> Dictionary:
