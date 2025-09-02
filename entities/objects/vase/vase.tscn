@@ -1,0 +1,157 @@
+[gd_scene load_steps=21 format=3 uid="uid://dk5m4v7q4p7a4"]
+
+[ext_resource type="Script" uid="uid://uvvrunetnjeg" path="res://entities/objects/vase/vase.gd" id="1_15ldt"]
+[ext_resource type="Texture2D" uid="uid://dcsg067f1o3e4" path="res://assets/sprites/objects/vase_breaking_anim_strip_5.png" id="2_52ad8"]
+[ext_resource type="Texture2D" uid="uid://cuh4j0kjtovik" path="res://assets/sprites/objects/vase.png" id="3_xbawp"]
+[ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/floating_key.tscn" id="4_7wcag"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_a3y1d"]
+[ext_resource type="AudioStream" uid="uid://c13pt0t1dckub" path="res://assets/sounds/sfx/effects/vase_break.wav" id="5_52ad8"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="7_hf1sh"]
+[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="8_5wyif"]
+[ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="9_8ye4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wcag"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npocu"]
+size = Vector2(10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wcag"]
+atlas = ExtResource("2_52ad8")
+region = Rect2(0, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf1sh"]
+atlas = ExtResource("2_52ad8")
+region = Rect2(16, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wyif"]
+atlas = ExtResource("2_52ad8")
+region = Rect2(32, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ye4j"]
+atlas = ExtResource("2_52ad8")
+region = Rect2(64, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df03a"]
+atlas = ExtResource("3_xbawp")
+region = Rect2(0, 0, 16, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6bfs1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wcag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf1sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wyif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ye4j")
+}],
+"loop": false,
+"name": &"break",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df03a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df03a"]
+size = Vector2(5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2qtk"]
+size = Vector2(5, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bfs1"]
+region = Rect2(16, 80, 16, 16)
+
+[node name="Vase" type="CharacterBody2D" node_paths=PackedStringArray("animator", "hitbox_area", "collisor", "floating_key", "audio_controller", "interactive_zone_left", "interactive_zone_right")]
+scale = Vector2(2, 2)
+collision_layer = 48
+collision_mask = 32
+script = ExtResource("1_15ldt")
+animator = NodePath("AnimatedSprite2D")
+hitbox_area = NodePath("HitboxArea")
+collisor = NodePath("CollisionShape2D")
+size = 1
+floating_key = NodePath("FloatingKey")
+audio_controller = NodePath("AudioController")
+interactive_zone_left = NodePath("InteractiveZoneLeft")
+interactive_zone_right = NodePath("InteractiveZoneRight")
+weight = 80
+
+[node name="HitboxArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+shape = SubResource("RectangleShape2D_7wcag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_npocu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6bfs1")
+
+[node name="InteractiveZoneLeft" type="Area2D" parent="."]
+position = Vector2(-8, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneLeft"]
+shape = SubResource("RectangleShape2D_df03a")
+
+[node name="InteractiveZoneRight" type="Area2D" parent="."]
+position = Vector2(8, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneRight"]
+shape = SubResource("RectangleShape2D_j2qtk")
+
+[node name="FloatingKey" parent="." node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_7wcag")]
+offset_top = -15.0
+offset_right = 9.0
+offset_bottom = -6.0
+scale = Vector2(1.00176, 0.991888)
+sprite_2d = NodePath("Sprite2D")
+action = "interact"
+
+[node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
+texture = SubResource("AtlasTexture_6bfs1")
+
+[node name="AudioController" parent="." instance=ExtResource("4_a3y1d")]
+
+[node name="Break" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_52ad8")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
+
+[node name="Push" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("7_hf1sh")
+volume_db = -10.0
+max_distance = 250.0
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("8_5wyif")
+volume_db = 10.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"
+
+[node name="Interact" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("9_8ye4j")
+volume_db = -10.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"
+
+[connection signal="area_entered" from="HitboxArea" to="." method="_on_player_attack"]

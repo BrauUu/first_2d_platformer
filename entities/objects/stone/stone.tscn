@@ -17,10 +17,14 @@ size = Vector2(5, 12)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjtlu"]
 region = Rect2(16, 80, 16, 16)
 
-[node name="Stone" type="CharacterBody2D" groups=["PushableObject"]]
+[node name="Stone" type="CharacterBody2D" node_paths=PackedStringArray("floating_key", "audio_controller", "interactive_zone_left", "interactive_zone_right") groups=["PushableObject"]]
 collision_layer = 16
-collision_mask = 33
+collision_mask = 49
 script = ExtResource("2_mohl7")
+floating_key = NodePath("FloatingKey")
+audio_controller = NodePath("AudioController")
+interactive_zone_left = NodePath("InteractiveZoneLeft")
+interactive_zone_right = NodePath("InteractiveZoneRight")
 weight = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -77,8 +81,3 @@ volume_db = -10.0
 max_distance = 500.0
 attenuation = 0.5
 bus = &"SFX"
-
-[connection signal="body_entered" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_left_body_entered"]
-[connection signal="body_exited" from="InteractiveZoneLeft" to="." method="_on_interactive_zone_body_exited"]
-[connection signal="body_entered" from="InteractiveZoneRight" to="." method="_on_interactive_zone_right_body_entered"]
-[connection signal="body_exited" from="InteractiveZoneRight" to="." method="_on_interactive_zone_body_exited"]

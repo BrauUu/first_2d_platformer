@@ -1,20 +1,16 @@
 extends Control
 
-var SELECT_ICON : AnimatedSprite2D
-var RESUME_BUTTON : Button
-var MAIN_MENU_BUTTON : Button
-var QUIT_BUTTON : Button
-var BUTTONS : VBoxContainer
+@onready var BUTTONS: VBoxContainer = $Buttons
+@onready var RESUME_BUTTON: Button = $Buttons/ResumeButton
+@onready var MAIN_MENU_BUTTON: Button = $Buttons/BackToMenuButton
+@onready var QUIT_BUTTON: Button = $Buttons/QuitButton
+@onready var MUSIC_SWITCH: CheckButton = $MusicSwitch
+@onready var SELECT_ICON: AnimatedSprite2D = $SelectIcon
 
 var on_pause := false
 
 func _ready() -> void:
 	visible = on_pause
-	SELECT_ICON = $SelectIcon
-	RESUME_BUTTON = $Buttons/ResumeButton
-	MAIN_MENU_BUTTON = $Buttons/BackToMenuButton
-	QUIT_BUTTON = $Buttons/QuitButton
-	BUTTONS = $Buttons
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -61,3 +57,10 @@ func _on_quit_button_focus_entered() -> void:
 
 func _on_quit_button_mouse_entered() -> void:
 	QUIT_BUTTON.grab_focus()
+
+
+func _on_music_switch_focus_entered() -> void:
+	SELECT_ICON.position = MUSIC_SWITCH.position + Vector2(-10, MUSIC_SWITCH.size.y  * MUSIC_SWITCH.scale.y / 2 - 2)
+
+func _on_music_switch_mouse_entered() -> void:
+	MUSIC_SWITCH.grab_focus()

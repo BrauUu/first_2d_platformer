@@ -1,0 +1,123 @@
+[gd_scene load_steps=19 format=3 uid="uid://dyum8384np4d8"]
+
+[ext_resource type="Texture2D" uid="uid://b0w8xup7m2vji" path="res://assets/sprites/objects/tiki_torch_props_strip_12.png" id="1_h3se3"]
+[ext_resource type="Texture2D" uid="uid://b1k8uk83xk7xk" path="res://assets/sprites/others/2d_lights_and_shadows_neutral_point_light.webp" id="2_0uvos"]
+[ext_resource type="Script" uid="uid://b73u8k1gb11d2" path="res://entities/objects/tiki_torch/tiki_torch.gd" id="2_1hh1i"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="3_612nc"]
+[ext_resource type="AudioStream" uid="uid://b2uvti26y0dfx" path="res://assets/sounds/sfx/effects/fire.wav" id="4_1hh1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_612nc"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(0, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hh1i"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(8, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbyk8"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(16, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v7u5"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(24, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaauk"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(32, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcbr4"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(40, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp1pq"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(48, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2mg1"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(56, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k47no"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(64, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idiyo"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(72, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d1w1"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(80, 0, 8, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ft2h"]
+atlas = ExtResource("1_h3se3")
+region = Rect2(88, 0, 8, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_00xcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_612nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hh1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbyk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v7u5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaauk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcbr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp1pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2mg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k47no")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idiyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d1w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ft2h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="TikiTorch" type="AnimatedSprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_00xcl")
+autoplay = "default"
+frame = 2
+frame_progress = 0.555478
+script = ExtResource("2_1hh1i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+color = Color(0.689287, 0.577842, 0.423543, 1)
+energy = 0.75
+texture = ExtResource("2_0uvos")
+texture_scale = 0.5
+
+[node name="AudioController" parent="." instance=ExtResource("3_612nc")]
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("4_1hh1i")
+volume_db = -5.0
+max_distance = 100.0
+attenuation = 2.0
+bus = &"SFX"

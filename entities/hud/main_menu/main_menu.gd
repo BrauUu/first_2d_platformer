@@ -4,6 +4,7 @@ extends Control
 @onready var buttons: VBoxContainer = $HUD/Buttons
 @onready var start_button: Button = $HUD/Buttons/StartButton
 @onready var quit_button: Button = $HUD/Buttons/QuitButton
+@onready var music_switch: CheckButton = $HUD/MusicSwitch
 
 @onready var player: Player = $Player
 @onready var audio_controller: AudioController = $AudioController
@@ -56,6 +57,14 @@ func _on_quit_button_focus_entered() -> void:
 
 func _on_quit_button_mouse_entered() -> void:
 	quit_button.grab_focus()
+	
+func _on_music_switch_focus_entered() -> void:
+	select_icon.position = music_switch.position + + Vector2(-10, music_switch.size.y  * music_switch.scale.y / 2 - 2)
+	audio_controller.play_sound("MenuFocus")
+	
+func _on_music_switch_mouse_entered() -> void:
+	music_switch.grab_focus()
+
 	
 func disable_menu(actual_selection: Control) -> void:
 	for option in buttons.get_children():

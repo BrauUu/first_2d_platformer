@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=38 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_a6cpv"]
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="2_gdnll"]
@@ -35,8 +35,6 @@
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="31_q2e1t"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="33_is1k8"]
 [ext_resource type="PackedScene" uid="uid://dps8mxrk7xdq6" path="res://entities/objects/checkpoint/checkpoint.tscn" id="35_s7nsw"]
-[ext_resource type="PackedScene" uid="uid://r0rg6dvahvno" path="res://entities/scenario/waterfall/waterfall_main.tscn" id="36_nj48e"]
-[ext_resource type="PackedScene" uid="uid://c20vsqtamtjya" path="res://entities/scenario/waterfall/waterfall_bottom.tscn" id="37_2ghvg"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -214,7 +212,7 @@ position = Vector2(102, 134)
 active = true
 
 [node name="DebugSpawnPoint" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(1248, 128)
+position = Vector2(176, 136)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -267,24 +265,3 @@ bus = &"Music"
 position = Vector2(1360, 118)
 frame_progress = 0.0
 id = 1
-
-[node name="WaterFallMain" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, 116)
-
-[node name="WaterFallMain2" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, 92)
-
-[node name="WaterFallMain3" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, 68)
-
-[node name="WaterFallMain4" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, 44)
-
-[node name="WaterFallMain5" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, 20)
-
-[node name="WaterFallMain6" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(1408, -4)
-
-[node name="WaterfallBottom" parent="." instance=ExtResource("37_2ghvg")]
-position = Vector2(1408, 124)
