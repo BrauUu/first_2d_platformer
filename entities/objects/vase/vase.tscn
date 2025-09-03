@@ -74,9 +74,8 @@ size = Vector2(5, 12)
 region = Rect2(16, 80, 16, 16)
 
 [node name="Vase" type="CharacterBody2D" node_paths=PackedStringArray("animator", "hitbox_area", "collisor", "floating_key", "audio_controller", "interactive_zone_left", "interactive_zone_right")]
-scale = Vector2(2, 2)
 collision_layer = 48
-collision_mask = 32
+collision_mask = 49
 script = ExtResource("1_15ldt")
 animator = NodePath("AnimatedSprite2D")
 hitbox_area = NodePath("HitboxArea")
@@ -100,6 +99,7 @@ shape = SubResource("RectangleShape2D_npocu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6bfs1")
+frame_progress = 1.0
 
 [node name="InteractiveZoneLeft" type="Area2D" parent="."]
 position = Vector2(-8, 0)

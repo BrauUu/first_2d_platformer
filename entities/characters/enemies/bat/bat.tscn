@@ -165,7 +165,7 @@ health = 1
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_1tqix")
 sprite_frames = SubResource("SpriteFrames_p502a")
-animation = &"fly"
+animation = &"sleeping"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
