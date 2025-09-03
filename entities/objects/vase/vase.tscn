@@ -99,7 +99,6 @@ shape = SubResource("RectangleShape2D_npocu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6bfs1")
-frame_progress = 1.0
 
 [node name="InteractiveZoneLeft" type="Area2D" parent="."]
 position = Vector2(-8, 0)

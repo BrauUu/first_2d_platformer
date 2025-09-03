@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dnjsn6s5mkus2"]
+[gd_scene load_steps=78 format=3 uid="uid://dnjsn6s5mkus2"]
 
 [ext_resource type="Texture2D" uid="uid://37f4miypnvp7" path="res://assets/sprites/player/idle_4.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bldqe55lqut34" path="res://entities/characters/player/player.gd" id="1_qhqgy"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bn3gfei44p2h6" path="res://assets/sprites/player/pushing_foward_6.png" id="10_2l4js"]
 [ext_resource type="PackedScene" uid="uid://dtw2oe6rya3fc" path="res://entities/utils/health_component/health_component.tscn" id="11_jk2m4"]
 [ext_resource type="PackedScene" uid="uid://dd4ds2iiul82s" path="res://entities/utils/hitbox_component/hitbox_component.tscn" id="12_xhtjm"]
+[ext_resource type="PackedScene" uid="uid://d3wdau0mkkvja" path="res://entities/utils/knockback_component/knockback_component.tscn" id="14_b3e7h"]
 [ext_resource type="PackedScene" uid="uid://cr0mcltrohvl4" path="res://entities/states/state_machine/state_machine.tscn" id="14_y66pm"]
 [ext_resource type="PackedScene" uid="uid://bexalwe60qhw1" path="res://entities/characters/player/states/idle/idle.tscn" id="15_y66pm"]
 [ext_resource type="PackedScene" uid="uid://daa1mg0v5eeny" path="res://entities/characters/player/states/move/move.tscn" id="16_y66pm"]
@@ -426,17 +427,20 @@ frame_progress = 0.864971
 visible = false
 shape = SubResource("RectangleShape2D_tuyoq")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("11_jk2m4")]
-parent = NodePath("..")
-
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("12_xhtjm")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("12_xhtjm")]
 visible = false
 collision_mask = 72
 health_component = NodePath("../HealthComponent")
+knockback_component = NodePath("../KnockbackComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jk2m4")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("11_jk2m4")]
+parent = NodePath("..")
+
+[node name="KnockbackComponent" parent="." instance=ExtResource("14_b3e7h")]
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("14_y66pm")]
 initial_state = NodePath("Idle")

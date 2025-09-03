@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=39 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_pbot3"]
 [ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="2_nsdsy"]
@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="34_p7dw1"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="35_721ax"]
 [ext_resource type="PackedScene" uid="uid://dps8mxrk7xdq6" path="res://entities/objects/checkpoint/checkpoint.tscn" id="36_e3e04"]
+[ext_resource type="PackedScene" uid="uid://chqd42os0ggp2" path="res://entities/characters/enemies/goblin/goblin.tscn" id="36_jh73a"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -212,7 +213,7 @@ position = Vector2(102, 134)
 active = true
 
 [node name="DebugSpawnPoint" parent="." instance=ExtResource("22_uow2y")]
-position = Vector2(632, 120)
+position = Vector2(992, 128)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -265,3 +266,7 @@ bus = &"Music"
 position = Vector2(1360, 118)
 frame_progress = 0.0
 id = 1
+
+[node name="Goblin" parent="." instance=ExtResource("36_jh73a")]
+position = Vector2(952, 136)
+initial_direction = -1

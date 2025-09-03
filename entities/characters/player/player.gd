@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody2D
+class_name Player 
+extends CharacterBody2D
 
 const DUST_EFFECT_ON_JUMP := preload("res://entities/effects/dust_effect_on_jump/dust_effect_on_jump.tscn")
 const ATTACK := preload("res://entities/actions/attack/attack.tscn")

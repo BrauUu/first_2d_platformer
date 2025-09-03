@@ -3,6 +3,7 @@ extends Control
 @onready var animation_timer: Timer = $AnimationTimer
 @onready var coins_amount: Label = $CoinsContainer/Amount
 @onready var coins_container: BoxContainer = $CoinsContainer
+@onready var hearts_container: BoxContainer = $HeartsContainer
 
 var player: Player
 var player_health_component : HealthComponent
@@ -20,6 +21,7 @@ func _ready() -> void:
 	get_player()
 	create_health_hud()
 	coins_container.visible = true
+	hearts_container.visible = true
 	
 func get_player() -> void:
 		player = $"../../Player"
@@ -29,16 +31,16 @@ func get_player() -> void:
 func create_health_hud() -> void:
 	var node_size = 48
 	var node_gap = 5
-	for i in player_health_component.health:
+	for i in range(1, player_health_component.health):
 		var full_heart = $HeartsContainer/FullHeart.duplicate()
 		full_heart.visible = true
 		full_heart.position.x = (node_size + node_gap) * i
-		$HeartsContainer.add_child(full_heart)
+		hearts_container.add_child(full_heart)
 		full_heart.animation = "full"
 
 func lose_health_hud(lost_health: int) -> void:
-	var hearts = $HeartsContainer.get_children()
-	for i in range(lost_health + player_health_component.current_health, player_health_component.current_health, - 1):
+	var hearts = hearts_container.get_children()
+	for i in range(lost_health + player_health_component.current_health - 1, player_health_component.current_health - 1, - 1):
 		var heart = hearts[i]
 		if heart.animation != "empty":
 			heart.play("lost")
@@ -48,12 +50,12 @@ func lose_health_hud(lost_health: int) -> void:
 			
 func animation() -> void:
 	if not player: return
-	var hearts = $HeartsContainer.get_children()
-	var heart = hearts[player_health_component.current_health - count]
 	if player_health_component.current_health == 0: return
+	var hearts = hearts_container.get_children()
+	var heart = hearts[player_health_component.current_health - 1 - count]
 	while heart.animation != "full":
 		count += 1
-		heart = hearts[player_health_component.current_health - count]
+		heart = hearts[player_health_component.current_health - 1 - count]
 	count = (count + 1) % (player_health_component.current_health)
 	var tween = create_tween()
 	heart.play("idle")
@@ -63,8 +65,8 @@ func animation() -> void:
 	heart.animation = "full"
 	
 func recovery_health_hud(health_amount: int) -> void:
-	var hearts = $HeartsContainer.get_children()
-	for i in range(player_health_component.current_health - 1, player_health_component.current_health - 1 + health_amount):
+	var hearts = hearts_container.get_children()
+	for i in range(player_health_component.current_health - health_amount, player_health_component.current_health):
 		if hearts[i]:
 			var heart = hearts[i]
 			if heart.animation != "full":
@@ -72,9 +74,12 @@ func recovery_health_hud(health_amount: int) -> void:
 				count += 1
 	
 func reset_health_hud() -> void:
-	var hearts = $HeartsContainer.get_children().slice(1, len($HeartsContainer.get_children()))
+	var hearts = hearts_container.get_children().slice(1, len(hearts_container.get_children()))
+	var heart_0 = hearts_container.get_children()[0]
+	if heart_0.animation != "full":
+		heart_0.play("full")
 	for heart in hearts:
-		$HeartsContainer.remove_child(heart)
+		hearts_container.remove_child(heart)
 	create_health_hud()
 	
 func _on_recovery_health(health_amount: int) -> void:

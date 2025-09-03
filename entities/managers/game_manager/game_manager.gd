@@ -64,13 +64,14 @@ func notify_player_hurted(damage_info: Dictionary) -> void:
 	emit_signal("gm_player_hurted", damage_info)
 
 func get_current_checkpoint_position() -> Vector2:
-	var checkpoints = get_node("/root/Game/Checkpoints").get_children()
-	for checkpoint in checkpoints:
-		if checkpoint.id == current_checkpoint_id:
-			return checkpoint.position
-	
-	var debug_spawn_point = get_node("/root/Game/DebugSpawnPoint")
-	if debug_spawn_point.active:
+	if get_node_or_null("/root/Game/Checkpoints"):
+		var checkpoints = get_node("/root/Game/Checkpoints").get_children()
+		for checkpoint in checkpoints:
+			if checkpoint.id == current_checkpoint_id:
+				return checkpoint.position
+		
+	var debug_spawn_point = get_node_or_null("/root/Game/DebugSpawnPoint")
+	if debug_spawn_point and debug_spawn_point.active:
 		return debug_spawn_point.position
 		
 	return get_node("/root/Game/SpawnPoint").position

@@ -11,7 +11,7 @@ func _ready() -> void:
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 50,
+		"knockback_force": 100,
 		"source": parent,
 		"death_cause": "Turns out goblins do know how to use knives. Who knew?"
 	}

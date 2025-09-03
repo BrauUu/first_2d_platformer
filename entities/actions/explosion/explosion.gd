@@ -24,7 +24,7 @@ func set_show_preview_area(value: bool):
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 0,
+		"knockback_force": 100,
 		"source": self,
 		"death_cause": "KABOOM!!"
 	}
