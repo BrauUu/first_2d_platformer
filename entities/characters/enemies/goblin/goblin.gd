@@ -67,6 +67,7 @@ func is_invunerable(layer: int = 2) -> bool:
 		
 func attack() -> void:
 	if current_cooldown <= 0:
+		set_animation('attack')
 		audio_controller.play_sound("Attack")
 		current_cooldown = cooldown
 		state_machine.push_state("Attack")

@@ -8,7 +8,7 @@ func apply_knockback(knockback_info: Dictionary) -> void:
 	var force = get_knockback_force(knockback_info)
 	enabled = true
 	knockback_velocity = Vector2(force.x, 0)
-	deceleration = abs(force.x)
+	deceleration = 20
 
 func get_knockback_force(knockback_info: Dictionary) -> Vector2:
 	var source = knockback_info.source

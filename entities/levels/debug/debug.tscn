@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://yy838l12c17a"]
+[gd_scene load_steps=21 format=4 uid="uid://yy838l12c17a"]
 
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="3_b1nul"]
 [ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="4_0o050"]
@@ -10,9 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/spawn_point.tscn" id="16_peudi"]
 [ext_resource type="PackedScene" uid="uid://dq482mnd4c4y3" path="res://entities/hud/default_ui/default_ui.tscn" id="17_sxhl5"]
 [ext_resource type="PackedScene" uid="uid://m0grdck1ywqo" path="res://entities/hud/pause_menu/pause_menu.tscn" id="18_wcy8d"]
+[ext_resource type="PackedScene" uid="uid://cubvga5nekft1" path="res://entities/characters/enemies/bomber_goblin/bomber_goblin.tscn" id="19_8fle1"]
 [ext_resource type="PackedScene" uid="uid://cvkkp8diqjwdl" path="res://entities/hud/player_dead_ui/player_dead_ui.tscn" id="19_tdmcy"]
-[ext_resource type="PackedScene" uid="uid://dacfecrwwqmnq" path="res://entities/itens/heal_itens/potion/potion.tscn" id="20_2mts4"]
-[ext_resource type="PackedScene" uid="uid://5dau80qo71nx" path="res://entities/itens/heal_itens/apple/apple.tscn" id="20_5gtla"]
 [ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="20_6m1x1"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="24_j7oct"]
 [ext_resource type="AudioStream" uid="uid://cam7emghepafm" path="res://assets/sounds/sfx/ambience.wav" id="25_pdfi0"]
@@ -114,11 +113,8 @@ bus = &"Music"
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(236, 141)
 
-[node name="Apple" parent="." instance=ExtResource("20_5gtla")]
-position = Vector2(271, 133)
-
-[node name="Potion" parent="." instance=ExtResource("20_2mts4")]
-position = Vector2(247, 134)
-
 [node name="SpawnPoint" parent="." instance=ExtResource("16_peudi")]
 position = Vector2(159, 139)
+
+[node name="BomberGoblin" parent="." instance=ExtResource("19_8fle1")]
+position = Vector2(249, 136)

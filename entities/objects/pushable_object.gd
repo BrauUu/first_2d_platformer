@@ -8,9 +8,11 @@ extends CharacterBody2D
 
 @export var weight : int
 
-var can_be_interacted: bool = false
+var can_reach: bool = false
 var is_being_interacted: bool = false
 var was_on_floor: bool = true
+var can_be_interacted: bool = false
+var interaction_direction: int = 0
 
 var player : Player
 
@@ -22,6 +24,35 @@ func _ready() -> void:
 		interactive_zone_right.connect("body_exited",_on_interactive_zone_body_exited)
 		interactive_zone_right.connect("body_entered",_on_interactive_zone_right_body_entered)
 
+func _process(delta: float) -> void:
+	if not can_reach: return
+	
+	if floating_key:
+		if can_be_interacted:
+			floating_key.player_on_interactive_zone()
+		else:
+			floating_key.player_out_interactive_zone()
+	
+	
+	var pushable_objects = get_tree().get_nodes_in_group("PushableObject")
+	
+	if len(pushable_objects) <= 1: 
+		can_be_interacted = true
+		return
+	
+	var nearest_object_distance : float = INF
+	var nearest_object : PushableObject = null
+	
+	for object : PushableObject in pushable_objects:
+		if object.can_reach:
+			if object.is_being_interacted: return
+			var obj_dist = player.global_position.distance_to(object.global_position)
+			if obj_dist < nearest_object_distance:
+				nearest_object_distance = obj_dist
+				nearest_object = object
+	
+	can_be_interacted = self == nearest_object
+
 func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
@@ -31,10 +62,11 @@ func _physics_process(delta: float) -> void:
 		_on_drop()
 		
 	if is_being_interacted:
+		player.interaction_direction = interaction_direction
 		var new_velocity = player.direction * (player.force / weight) * 30
 		velocity.x = new_velocity
 		player.velocity.x = new_velocity
-		if new_velocity:
+		if get_last_motion():
 			_on_push()
 		else:
 			_on_stop_push()
@@ -46,17 +78,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_interactive_zone_body_entered(body: Node2D, side: int) -> void:
-	if floating_key:
-		floating_key.player_on_interactive_zone()
-	can_be_interacted = true
+	can_reach = true
 	player = body
-	player.interaction_direction = side
+	interaction_direction = side
 
 func _on_interactive_zone_body_exited(body: Node2D) -> void:
 	if floating_key:
 		floating_key.player_out_interactive_zone()
 	if is_being_interacted: 
 		finish_interaction()
+	can_reach = false
 	can_be_interacted = false
 	player = null
 

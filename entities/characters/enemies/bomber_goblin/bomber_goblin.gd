@@ -67,7 +67,7 @@ func throw_bomb() -> void:
 	var bomb = BOMB_ENTITY.instantiate()
 	bomb.velocity = get_bomb_arch(position, target.position, 0.4)
 	bomb.explosion_area = 30
-	bomb.damage = 2
+	bomb.damage = damage
 	bomb.position = position
 	get_parent().add_child(bomb)
 	
@@ -81,7 +81,8 @@ func get_bomb_arch(start: Vector2, target: Vector2, time: float = 0.5):
 func hurt(damage_info) -> void:
 	audio_controller.play_sound("Hurt")
 	set_invulnerability(2, true)
-	look_for_player(damage_info.source)
+	if damage_info.source is Player:
+		look_for_player(damage_info.source)
 	await apply_hurt_effect()
 	set_invulnerability(2, false)
 	
