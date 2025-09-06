@@ -1,4 +1,5 @@
-extends Node2D
+class_name Explosion
+extends Attack
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var audio_controller: AudioController = $AudioController
@@ -26,5 +27,9 @@ func get_damage() -> Dictionary:
 		"damage": damage,
 		"knockback_force": 100,
 		"source": self,
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
 		"death_cause": "KABOOM!!"
 	}

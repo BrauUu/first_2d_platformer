@@ -1,7 +1,8 @@
 extends Enemy
 
 @onready var animator: AnimatedSprite2D = $FlippedNode/Animator
-@onready var attack_area: CollisionShape2D = $FlippedNode/Attack/AttackShape
+@onready var attack_area: Attack = $FlippedNode/Attack
+@onready var attack_shape: CollisionShape2D = $FlippedNode/Attack/AttackShape
 @onready var flipped_node: Node2D = $FlippedNode
 @onready var follow_movement: FollowMovement = $FollowMovement
 @onready var exclamation: AnimatedSprite2D = $FlippedNode/Exclamation
@@ -71,24 +72,25 @@ func attack() -> void:
 		audio_controller.play_sound("Attack")
 		current_cooldown = cooldown
 		state_machine.push_state("Attack")
-		attack_area.disabled = false
+		attack_shape.disabled = false
 		
 func finish_attack() -> void:
 	state_machine.pop_state()
-	attack_area.disabled = true
+	attack_shape.disabled = true
+	attack_area.reset_attacked_entities()
 	
 func hurt(damage_info) -> void:
 	audio_controller.play_sound("Hurt")
-	set_invulnerability(2, true)
 	current_cooldown = cooldown
 	look_for_player(damage_info.source)
+	set_invulnerability(2, true)
 	await apply_hurt_effect()
 	set_invulnerability(2, false)
 	
 func apply_hurt_effect() -> void:
 	var material : ShaderMaterial = animator.material
 	material.set_shader_parameter("flash_amount", 1)
-	await get_tree().create_timer(0.5).timeout
+	await knockback_component.knockback_ended
 	material.set_shader_parameter("flash_amount", 0.0)
 	
 func look_for_player(attacker: Node2D) -> void:

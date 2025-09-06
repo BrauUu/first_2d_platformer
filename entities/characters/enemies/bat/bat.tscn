@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqcadimqyfugq"]
+[gd_scene load_steps=37 format=3 uid="uid://bqcadimqyfugq"]
 
 [ext_resource type="Texture2D" uid="uid://c3lst2ua1ichk" path="res://assets/sprites/enemies/fly/blue_fly_attack_anim_srip_3.png" id="1_i8mjl"]
 [ext_resource type="Script" uid="uid://4p876ag87jbe" path="res://entities/characters/enemies/bat/bat.gd" id="1_ksiqf"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="13_r8nds"]
 [ext_resource type="AudioStream" uid="uid://83r4qysoy50r" path="res://assets/sounds/sfx/enemies/bat/bat-wings.wav" id="14_t25be"]
 [ext_resource type="AudioStream" uid="uid://bxc7xitx8lho0" path="res://assets/sounds/sfx/enemies/bat/attack.wav" id="15_t25be"]
+[ext_resource type="Script" uid="uid://bleqm1ldov8dn" path="res://entities/characters/enemies/goblin/attack_area.gd" id="16_8rft6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1tqix"]
 shader = ExtResource("2_hl2id")
@@ -152,7 +153,7 @@ radius = 100.0
 radius = 40.0
 
 [node name="Bat" type="CharacterBody2D"]
-collision_layer = 12
+collision_layer = 4
 collision_mask = 48
 script = ExtResource("1_ksiqf")
 fly_distance = 70
@@ -222,6 +223,17 @@ stream = ExtResource("15_t25be")
 volume_db = -3.0
 max_distance = 250.0
 bus = &"SFX"
+
+[node name="EnemyAttack" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("16_8rft6")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://bleqm1ldov8dn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyAttack"]
+visible = false
+shape = SubResource("RectangleShape2D_mgd4o")
 
 [connection signal="animation_changed" from="Animator" to="." method="_on_animator_animation_changed"]
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]

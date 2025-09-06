@@ -50,7 +50,11 @@ func update_collision_shape() -> void:
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 150,
+		"knockback_force": 400,
 		"source": self,
+		"position": {
+			"x": null,
+			"y": global_position.y
+		},
 		"death_cause": "Well, that was a sharp decision!"
 	}

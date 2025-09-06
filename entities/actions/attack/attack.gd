@@ -1,17 +1,14 @@
+class_name Attack
 extends Area2D
-class_name PlayerAttack
 
-@onready var attack_effect = $AttackEffect
-@export var damage : int
+var attacked_entities : Array = []
 
-func _ready() -> void:
-	await attack_effect.animation_finished
-	queue_free()
-
-func get_damage() -> Dictionary:
-	return {
-		"damage": damage,
-		"knockback_force": 50,
-		"source": self.get_parent(),
-		"death_cause": ""
-	}
+func attacked_entity(entity):
+	if not attacked_entities.has(entity):
+		attacked_entities.append(entity)
+		
+func entity_was_attacked(entity) -> bool:
+	return attacked_entities.has(entity)
+	
+func reset_attacked_entities() -> void:
+	attacked_entities = []

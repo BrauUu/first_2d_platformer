@@ -1,4 +1,4 @@
-extends Area2D
+extends Attack
 class_name EnemyAttack
 
 @export var parent : CharacterBody2D
@@ -11,7 +11,11 @@ func _ready() -> void:
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 100,
+		"knockback_force": 250,
 		"source": parent,
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
 		"death_cause": "Turns out goblins do know how to use knives. Who knew?"
 	}

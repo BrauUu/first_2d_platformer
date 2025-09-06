@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 			parent.attacking = false
 			parent.current_cooldown = parent.cooldown
 	else:
+		parent.dash_finished()
 		distance = target.global_position - parent.global_position
 		velocity = distance.normalized() * parent.speed
 		

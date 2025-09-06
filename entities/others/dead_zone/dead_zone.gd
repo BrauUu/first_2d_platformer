@@ -22,5 +22,9 @@ func get_damage() -> Dictionary:
 		"knockback_force": 0,
 		"not_play_animation": true,
 		"source": self,
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
 		"death_cause": "You tested gravity. Gravity won."
 	}

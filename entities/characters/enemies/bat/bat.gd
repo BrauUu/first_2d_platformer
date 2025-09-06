@@ -6,6 +6,8 @@ extends Enemy
 @onready var movement_controller: MovementController = $MovementController
 @onready var movement_component: Node = $MovementComponent
 @onready var audio_controller: AudioController = $AudioController
+@onready var enemy_attack: EnemyAttack = $EnemyAttack
+
 const BAT_DASH = preload("res://entities/effects/bat_dash/bat_dash.tscn")
 
 enum BAT_STATES {FLY, SLEEPING, DEAD, ATTACK}
@@ -91,12 +93,19 @@ func show_dash_effect() -> void:
 		dash_effect = BAT_DASH.instantiate()
 		get_parent().add_child(dash_effect)
 		dash_effect.position = position - (Vector2(5, 0) * direction)
+		
+func dash_finished() -> void:
+	enemy_attack.reset_attacked_entities()
 	
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
 		"knockback_force": 50,
 		"source": self,
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
 		"death_cause": "A single bat, a mighty foe. Truly legendary."
 	}
 

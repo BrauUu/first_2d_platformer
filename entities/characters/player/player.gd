@@ -2,13 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 const DUST_EFFECT_ON_JUMP := preload("res://entities/effects/dust_effect_on_jump/dust_effect_on_jump.tscn")
-const ATTACK := preload("res://entities/actions/attack/attack.tscn")
+const PLAYER_ATTACK := preload("res://entities/actions/player_attack/player_attack.tscn")
 
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hitbox_component: Area2D = $HitboxComponent
 @onready var audio_listener_2d: AudioListener2D = $AudioListener2D
 @onready var audio_controller: AudioController = $AudioController
+@onready var knockback_component: KnockbackComponent = $KnockbackComponent
 
 const MAX_JUMPS := 2
 const DEADZONE := 0.05
@@ -53,8 +54,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if not is_on_floor():
+	if knockback_component.is_enabled():
+		velocity = knockback_component.get_velocity()
+	
+	if not knockback_component.is_enabled() and not is_on_floor():
 		velocity += get_gravity() * delta
+		
 	
 	if is_controllable:
 		direction = Input.get_axis("move_left", "move_right")
@@ -118,11 +123,9 @@ func hurt(damage_info: Dictionary) -> void:
 	set_invulnerability(4, false)
 		
 func apply_hurt_effect() -> void:
-	for i in 3:
-		modulate = Color("#ffffff78")
-		await get_tree().create_timer(0.25).timeout
-		modulate = Color("#ffffff")
-		await get_tree().create_timer(0.1).timeout
+	modulate = Color("#ffffff78")
+	await knockback_component.knockback_ended
+	modulate = Color("#ffffff")
 
 func die(damage_info: Dictionary) -> void:
 	audio_controller.play_sound("Damage")
@@ -130,7 +133,7 @@ func die(damage_info: Dictionary) -> void:
 	GameManager.notify_player_dead(damage_info)
 
 func spawn_attack_effect() -> void:
-	var local_attack = ATTACK.instantiate()
+	var local_attack = PLAYER_ATTACK.instantiate()
 	add_child(local_attack)
 	local_attack.damage = damage
 	local_attack.attack_effect.flip_h = $AnimatedSprite2D.flip_h

@@ -6,16 +6,18 @@
 [ext_resource type="Script" uid="uid://dengrtk3dyk4r" path="res://entities/controllers/audio_controller/audio_controller.gd" id="4_sdyo3"]
 [ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="5_jiekk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd1r5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdyo3"]
 size = Vector2(0, 0)
 
 [node name="Spikes" type="CharacterBody2D"]
+rotation = 3.14159
 collision_layer = 8
 collision_mask = 32
 script = ExtResource("1_ny20e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wd1r5")
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_sdyo3")
 
 [node name="RepeatingSprite" parent="." instance=ExtResource("2_jtmuu")]
 texture_repeat = 2

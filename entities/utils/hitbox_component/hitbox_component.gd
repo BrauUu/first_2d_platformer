@@ -4,17 +4,15 @@ extends Node
 @export var knockback_component : KnockbackComponent
 
 func apply_damage(damage_info: Dictionary) -> void:
-	if health_component:
-		health_component.apply_damage(damage_info)
 	if knockback_component:
 		knockback_component.apply_knockback(damage_info)
+	if health_component:
+		health_component.apply_damage(damage_info)
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("get_damage"):
-		var damage_info = body.get_damage()
+func _on_area_entered(attack: Attack) -> void:
+	var entity = get_parent()
+	if not attack.entity_was_attacked(entity):
+		attack.attacked_entity(entity)
+		var damage_info = attack.get_damage()
 		apply_damage(damage_info)
-	
-func _on_area_entered(area: Area2D) -> void:
-	if area.has_method("get_damage"):
-		var damage_info = area.get_damage()
-		apply_damage(damage_info)
+		
