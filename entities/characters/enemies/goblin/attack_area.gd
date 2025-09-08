@@ -1,5 +1,4 @@
 extends Attack
-class_name EnemyAttack
 
 @export var parent : CharacterBody2D
 

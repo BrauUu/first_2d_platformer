@@ -274,6 +274,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("7_iym33")
 parent = NodePath("../..")
+should_use_attacked_entities = true
 
 [node name="AttackShape" type="CollisionShape2D" parent="FlippedNode/Attack"]
 position = Vector2(8, 2.5)
@@ -281,9 +282,9 @@ shape = SubResource("RectangleShape2D_yjp8u")
 disabled = true
 
 [node name="GroundDetector" type="RayCast2D" parent="FlippedNode"]
-visible = false
 position = Vector2(6, 0)
-collision_mask = 32
+collision_mask = 34
+collide_with_areas = true
 
 [node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
 visible = false

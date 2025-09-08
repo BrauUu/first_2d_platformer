@@ -19,6 +19,7 @@ func drop_spikes() -> void:
 	var spikes = preload("res://entities/objects/traps/spikes/spikes.tscn").instantiate()
 	spikes.width = 16
 	spikes.height = 16
+	spikes.direction = spikes.DIRECTION_ENUM.DOWN
 	spikes.is_affected_by_gravity = true
 	spikes.position = Vector2(0, 3)
 	spikes.spikes_texture = preload("res://assets/sprites/objects/spikes_trap.png")

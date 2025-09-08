@@ -25,7 +25,7 @@ func set_show_preview_area(value: bool):
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 100,
+		"knockback_force": 400,
 		"source": self,
 		"position": {
 			"x": global_position.x,

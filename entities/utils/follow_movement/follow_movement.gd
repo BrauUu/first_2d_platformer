@@ -52,7 +52,7 @@ func get_velocity() -> Vector2:
 				parent.look_for_player(target)
 			parent.attack()
 			
-		if not ground_detector.is_colliding():
+		if not ground_detector.is_colliding() or ground_detector.get_collider() is Attack:
 			if direction == hole_direction:
 				hole_direction = direction
 				new_velocity.x = 0
@@ -73,7 +73,7 @@ func can_attack(base: Vector2, comparison: Vector2) -> bool:
 	return false
 	
 func check_movement_possiblity() -> void:
-	if wall_detector.is_stopped or wall_detector.force_stop or not ground_detector.is_colliding() or is_body_out_of_sight:
+	if wall_detector.is_stopped or wall_detector.force_stop or not ground_detector.is_colliding() or is_body_out_of_sight or ground_detector.get_collider() is Attack:
 		if give_up_countdown.is_stopped():
 			give_up_countdown.start()
 	elif not give_up_countdown.is_stopped():

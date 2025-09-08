@@ -13,6 +13,7 @@ const PLAYER_ATTACK := preload("res://entities/actions/player_attack/player_atta
 
 const MAX_JUMPS := 2
 const DEADZONE := 0.05
+const KNOCKBACK_FACTOR := 50
 
 @export var jump_power := 260
 @export var force := 150
@@ -54,12 +55,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if knockback_component.is_enabled():
-		velocity = knockback_component.get_velocity()
-	
 	if not knockback_component.is_enabled() and not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	if knockback_component.is_enabled():
+		velocity = knockback_component.get_velocity()
+		is_controllable = abs(velocity.x) < KNOCKBACK_FACTOR
 	
 	if is_controllable:
 		direction = Input.get_axis("move_left", "move_right")
@@ -137,7 +138,7 @@ func spawn_attack_effect() -> void:
 	add_child(local_attack)
 	local_attack.damage = damage
 	local_attack.attack_effect.flip_h = $AnimatedSprite2D.flip_h
-	local_attack.position = Vector2(-15 if $AnimatedSprite2D.flip_h else 15, -1)
+	local_attack.position = Vector2(-20.5 if $AnimatedSprite2D.flip_h else 5.5 , -1)
 	
 func start_interaction() -> void:
 	state_machine.push_state("Interact")

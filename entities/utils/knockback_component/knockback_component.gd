@@ -6,6 +6,7 @@ const KNOCKBACK_DURATION : = {
 	"x": 0.15,
 	"y": 0.1
 }
+
 var knockback_velocity: Vector2 = Vector2.ZERO
 var enabled := false
 

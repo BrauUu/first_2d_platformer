@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpapwusobd6tu"]
+[gd_scene load_steps=10 format=3 uid="uid://dpapwusobd6tu"]
 
 [ext_resource type="Script" uid="uid://dcqjblit77ouu" path="res://entities/actions/player_attack/player_attack.gd" id="1_urk2l"]
 [ext_resource type="Texture2D" uid="uid://kmlsgul43gbf" path="res://assets/sprites/effects/sword_effect_4.png" id="2_vkibv"]
@@ -41,12 +41,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_431xb"]
-size = Vector2(16, 10)
+size = Vector2(15, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruqax"]
-size = Vector2(16, 10)
-
-[node name="PlayerAttack" type="Area2D" groups=["Enemy"]]
+[node name="PlayerAttack" type="Area2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_urk2l")
@@ -56,10 +53,12 @@ damage = 1
 sprite_frames = SubResource("SpriteFrames_tqjlf")
 animation = &"attack"
 autoplay = "attack"
+frame = 3
+frame_progress = 1.0
+offset = Vector2(7.5, -2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1.5, 2.5)
+position = Vector2(7.5, 0.5)
 shape = SubResource("RectangleShape2D_431xb")
 
 [node name="TileMapDetector" parent="." instance=ExtResource("3_431xb")]
@@ -67,7 +66,8 @@ collision_mask = 1024
 tile_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapDetector"]
-position = Vector2(-1.5, 2.5)
-shape = SubResource("RectangleShape2D_ruqax")
+position = Vector2(7.5, 0.5)
+shape = SubResource("RectangleShape2D_431xb")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

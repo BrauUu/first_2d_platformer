@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="13_r8nds"]
 [ext_resource type="AudioStream" uid="uid://83r4qysoy50r" path="res://assets/sounds/sfx/enemies/bat/bat-wings.wav" id="14_t25be"]
 [ext_resource type="AudioStream" uid="uid://bxc7xitx8lho0" path="res://assets/sounds/sfx/enemies/bat/attack.wav" id="15_t25be"]
-[ext_resource type="Script" uid="uid://bleqm1ldov8dn" path="res://entities/characters/enemies/goblin/attack_area.gd" id="16_8rft6"]
+[ext_resource type="Script" uid="uid://clxebky3sk07a" path="res://entities/actions/attack/attack.gd" id="16_8rft6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1tqix"]
 shader = ExtResource("2_hl2id")
@@ -224,14 +224,14 @@ volume_db = -3.0
 max_distance = 250.0
 bus = &"SFX"
 
-[node name="EnemyAttack" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
+[node name="Attack" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("16_8rft6")
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://bleqm1ldov8dn"
+should_use_attacked_entities = true
+metadata/_custom_type_script = "uid://clxebky3sk07a"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyAttack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 visible = false
 shape = SubResource("RectangleShape2D_mgd4o")
 

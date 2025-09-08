@@ -1,5 +1,4 @@
 extends Attack
-class_name PlayerAttack
 
 @onready var attack_effect = $AttackEffect
 @export var damage : int
@@ -14,8 +13,8 @@ func get_damage() -> Dictionary:
 		"knockback_force": 200,
 		"source": self.get_parent(),
 		"position": {
-			"x": global_position.x,
-			"y": global_position.y
+			"x": get_parent().global_position.x,
+			"y": get_parent().global_position.y
 		},
 		"death_cause": ""
 	}
