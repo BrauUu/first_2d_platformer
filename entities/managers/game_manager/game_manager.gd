@@ -7,8 +7,8 @@ signal gm_player_entered_battle
 signal gm_player_left_battle
 signal gm_player_recovery_health (health_amount: int)
 
-signal gm_button_pressed(connection_id: int)
-signal gm_button_released(connection_id: int)
+signal gm_notify_connection_activation(connection_id: int)
+signal gm_notify_connection_deactivation(connection_id: int)
 
 signal gm_node_entered_layer (entered_cell: Vector2i, entered_layer )
 signal gm_node_left_layer (left_cell: Vector2i, entered_layer)
@@ -85,11 +85,11 @@ func notify_node_left_layer(left_layer) -> void:
 func toggle_music(toggled_on: bool) -> void:
 	gm_music_toggle.emit(toggled_on)
 	
-func notify_button_pressed(connection_id: int) -> void:
-	gm_button_pressed.emit(connection_id)
+func notify_connection_activation(connection_id: int) -> void:
+	gm_notify_connection_activation.emit(connection_id)
 	
-func notify_button_released(connection_id: int) -> void:
-	gm_button_released.emit(connection_id)
+func notify_connection_deactivation(connection_id: int) -> void:
+	gm_notify_connection_deactivation.emit(connection_id)
 	
 func coin_collected() -> void:
 	coins_count += 1

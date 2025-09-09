@@ -85,6 +85,7 @@ func apply_hurt_effect() -> void:
 	
 func die(damage_info: Dictionary) -> void:
 	set_current_state(BAT_STATES.DEAD)
+	movement_component.enabled = false
 	update_animation()
 	apply_hurt_effect()
 	

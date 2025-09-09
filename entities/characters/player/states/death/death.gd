@@ -15,7 +15,8 @@ func exit() -> void:
 	player.queue_free()
 	
 func update(_delta: float) -> void:
-	pass
+	player.velocity.x = 0
+	player.is_controllable = false
 	
 func physics_update(_delta: float) -> void:
 	pass

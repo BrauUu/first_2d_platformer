@@ -10,7 +10,7 @@ func _ready() -> void:
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,
-		"knockback_force": 250,
+		"knockback_force": 300,
 		"source": parent,
 		"position": {
 			"x": global_position.x,
