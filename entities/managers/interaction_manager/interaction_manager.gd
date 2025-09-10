@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	var pushable_objects = get_tree().get_nodes_in_group("InteractableObject").filter(
-		func(object): return object.can_reach
+		func(object): return object.active and object.can_reach
 	)
 	
 	if len(pushable_objects) == 0: 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://yy838l12c17a"]
+[gd_scene load_steps=25 format=4 uid="uid://yy838l12c17a"]
 
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="1_is44v"]
 [ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="2_ouqec"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cixxtajaia4x3" path="res://entities/objects/stone/stone.tscn" id="19_auc4c"]
 [ext_resource type="PackedScene" uid="uid://dk5m4v7q4p7a4" path="res://entities/objects/vase/vase.tscn" id="20_skit7"]
 [ext_resource type="PackedScene" uid="uid://bup6y4ts3o7hj" path="res://entities/objects/lever/lever.tscn" id="21_ouqec"]
+[ext_resource type="PackedScene" uid="uid://c7ph1xkahply3" path="res://entities/objects/door/door.tscn" id="22_a8mvr"]
+[ext_resource type="PackedScene" uid="uid://1r4lvv5jxcic" path="res://entities/others/connection_entity/responder.tscn" id="23_e1wtl"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -126,3 +128,12 @@ position = Vector2(162, 134)
 
 [node name="Lever" parent="." instance=ExtResource("21_ouqec")]
 position = Vector2(214, 136)
+connection_id = 10
+
+[node name="Door" parent="." instance=ExtResource("22_a8mvr")]
+position = Vector2(316, 120)
+
+[node name="Responder" parent="Door" instance=ExtResource("23_e1wtl")]
+activation_function = "open"
+deactivation_function = "close"
+connection_id = 10

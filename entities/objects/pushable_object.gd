@@ -10,6 +10,7 @@ extends InteractableObject
 
 var was_on_floor: bool = true
 var interaction_direction: int = 0
+var player : Player
 
 func _ready() -> void:
 	if interactive_zone_left:
@@ -22,7 +23,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 	if not can_reach: return
-	if can_be_interacted:
+	if active and can_be_interacted:
 		floating_key.player_on_interactive_zone()
 	else:
 		floating_key.player_out_interactive_zone()
@@ -67,7 +68,7 @@ func _on_interactive_zone_body_exited(body: Node2D) -> void:
 
 func _input(event):
 	if not can_be_interacted or player.on_animation: return
-	if event.is_action_pressed("interact"):
+	if active and event.is_action_pressed("interact"):
 		_on_interact()
 		if not is_being_interacted:
 			player.start_interaction()

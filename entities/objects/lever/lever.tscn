@@ -8,30 +8,30 @@
 [ext_resource type="PackedScene" uid="uid://c124cocjpi4gk" path="res://entities/others/connection_entity/activator.tscn" id="6_w11u3"]
 [ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/floating_key.tscn" id="7_eg4kx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bn6n"]
-atlas = ExtResource("3_rfg5b")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kpur"]
 atlas = ExtResource("2_e3321")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bn6n"]
+atlas = ExtResource("3_rfg5b")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_psna3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bn6n")
+"texture": SubResource("AtlasTexture_4kpur")
 }],
 "loop": true,
-"name": &"pushed",
+"name": &"off",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4kpur")
+"texture": SubResource("AtlasTexture_1bn6n")
 }],
 "loop": true,
-"name": &"unpushed",
+"name": &"on",
 "speed": 5.0
 }]
 
@@ -43,7 +43,7 @@ script = ExtResource("1_n71q1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_psna3")
-animation = &"unpushed"
+animation = &"off"
 
 [node name="InteractiveZone" type="Area2D" parent="."]
 collision_layer = 0
