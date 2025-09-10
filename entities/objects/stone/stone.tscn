@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cixxtajaia4x3"]
+[gd_scene load_steps=10 format=3 uid="uid://cixxtajaia4x3"]
 
 [ext_resource type="Texture2D" uid="uid://ca1kq7vancn4v" path="res://assets/sprites/objects/stone.png" id="1_kxjt8"]
 [ext_resource type="Script" uid="uid://dj4pofibd61l" path="res://entities/objects/stone/stone.gd" id="2_mohl7"]
@@ -14,17 +14,14 @@ size = Vector2(14, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgox2"]
 size = Vector2(5, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjtlu"]
-region = Rect2(16, 80, 16, 16)
-
-[node name="Stone" type="CharacterBody2D" node_paths=PackedStringArray("floating_key", "audio_controller", "interactive_zone_left", "interactive_zone_right") groups=["PushableObject"]]
+[node name="Stone" type="CharacterBody2D" node_paths=PackedStringArray("interactive_zone_left", "interactive_zone_right", "audio_controller", "floating_key") groups=["InteractableObject"]]
 collision_layer = 16
 collision_mask = 49
 script = ExtResource("2_mohl7")
-floating_key = NodePath("FloatingKey")
-audio_controller = NodePath("AudioController")
 interactive_zone_left = NodePath("InteractiveZoneLeft")
 interactive_zone_right = NodePath("InteractiveZoneRight")
+audio_controller = NodePath("AudioController")
+floating_key = NodePath("FloatingKey")
 weight = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -50,15 +47,10 @@ collision_layer = 128
 position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_wgox2")
 
-[node name="FloatingKey" parent="." node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_djgj8")]
+[node name="FloatingKey" parent="." instance=ExtResource("4_djgj8")]
 offset_top = -15.0
-offset_right = 9.0
-offset_bottom = -6.0
-sprite_2d = NodePath("Sprite2D")
+offset_bottom = -15.0
 action = "interact"
-
-[node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
-texture = SubResource("AtlasTexture_qjtlu")
 
 [node name="AudioController" parent="." instance=ExtResource("4_qjtlu")]
 

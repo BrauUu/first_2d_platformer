@@ -1,0 +1,128 @@
+[gd_scene load_steps=23 format=4 uid="uid://yy838l12c17a"]
+
+[ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="1_is44v"]
+[ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="2_ouqec"]
+[ext_resource type="PackedScene" uid="uid://buwr2lro001aj" path="res://entities/scenario/tile_maps/terrain/terrain.tscn" id="3_5an6x"]
+[ext_resource type="PackedScene" uid="uid://uhxq3wladfes" path="res://entities/scenario/tile_maps/fake_terrain/fake_terrain.tscn" id="4_a8mvr"]
+[ext_resource type="PackedScene" uid="uid://cfqt1o24gphyn" path="res://entities/scenario/tile_maps/vegetation/vegetation.tscn" id="5_e1wtl"]
+[ext_resource type="PackedScene" uid="uid://kaakypnqypnu" path="res://entities/others/dead_zone/dead_zone.tscn" id="6_mjgg8"]
+[ext_resource type="PackedScene" uid="uid://7nh7rfflrncj" path="res://entities/others/camera/camera.tscn" id="7_pqan4"]
+[ext_resource type="PackedScene" uid="uid://dq482mnd4c4y3" path="res://entities/hud/default_ui/default_ui.tscn" id="8_didb1"]
+[ext_resource type="PackedScene" uid="uid://m0grdck1ywqo" path="res://entities/hud/pause_menu/pause_menu.tscn" id="9_rfbu2"]
+[ext_resource type="PackedScene" uid="uid://cvkkp8diqjwdl" path="res://entities/hud/player_dead_ui/player_dead_ui.tscn" id="10_wh2mq"]
+[ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="11_jpxlk"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="12_58s8o"]
+[ext_resource type="AudioStream" uid="uid://cam7emghepafm" path="res://assets/sounds/sfx/ambience.wav" id="13_er72w"]
+[ext_resource type="PackedScene" uid="uid://diapsm5olsx07" path="res://entities/controllers/music_controller/music_controller.tscn" id="14_nlpv1"]
+[ext_resource type="AudioStream" uid="uid://dotouunfxbdnt" path="res://assets/sounds/musics/A Great Journey - Overworld.wav" id="15_goojx"]
+[ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="16_3ndfl"]
+[ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="17_wp1th"]
+[ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/spawn_point.tscn" id="18_477vv"]
+[ext_resource type="PackedScene" uid="uid://cixxtajaia4x3" path="res://entities/objects/stone/stone.tscn" id="19_auc4c"]
+[ext_resource type="PackedScene" uid="uid://dk5m4v7q4p7a4" path="res://entities/objects/vase/vase.tscn" id="20_skit7"]
+[ext_resource type="PackedScene" uid="uid://bup6y4ts3o7hj" path="res://entities/objects/lever/lever.tscn" id="21_ouqec"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
+a = Vector2(0, -1000)
+
+[node name="Game" type="Node2D"]
+texture_filter = 1
+
+[node name="Environment" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Terrain" type="Node2D" parent="Environment"]
+metadata/_edit_lock_ = true
+
+[node name="Foreground" parent="Environment/Terrain" instance=ExtResource("1_is44v")]
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="Environment/Terrain" instance=ExtResource("2_ouqec")]
+metadata/_edit_lock_ = true
+
+[node name="Terrain" parent="Environment/Terrain" instance=ExtResource("3_5an6x")]
+tile_map_data = PackedByteArray("AAAIAAkAAQABAAAAAAAIAAoAAQABAAEAAAAIAAsAAQABAAEAAAAIAAwAAQABAAEAAAAJAAkAAQABAAAAAAAJAAoAAQABAAEAAAAJAAsAAQABAAEAAAAJAAwAAQABAAEAAAAKAAkAAQABAAAAAAALAAkAAQABAAAAAAAMAAkAAQABAAAAAAANAAkAAQABAAAAAAAOAAkAAQABAAAAAAAPAAkAAQABAAAAAAAQAAkAAQABAAAAAAARAAkAAQABAAAAAAASAAkAAQABAAAAAAATAAkAAQABAAAAAAAUAAkAAQABAAAAAAAKAAoAAQABAAEAAAAKAAsAAQABAAEAAAAKAAwAAQABAAEAAAALAAoAAQABAAEAAAALAAsAAQABAAEAAAALAAwAAQABAAEAAAAMAAoAAQABAAEAAAAMAAsAAQABAAEAAAAMAAwAAQABAAEAAAANAAoAAQABAAEAAAANAAsAAQABAAEAAAANAAwAAQABAAEAAAAOAAoAAQABAAEAAAAOAAsAAQABAAEAAAAOAAwAAQABAAEAAAAPAAoAAQABAAEAAAAPAAsAAQABAAEAAAAPAAwAAQABAAEAAAAQAAoAAQABAAEAAAAQAAsAAQABAAEAAAAQAAwAAQABAAEAAAARAAoAAQABAAEAAAARAAsAAQABAAEAAAARAAwAAQABAAEAAAASAAoAAQABAAEAAAASAAsAAQABAAEAAAASAAwAAQABAAEAAAATAAoAAQABAAEAAAATAAsAAQABAAEAAAATAAwAAQABAAEAAAAUAAoAAQABAAEAAAAUAAsAAQABAAEAAAAUAAwAAQABAAEAAAAVAAkAAQABAAAAAAAVAAoAAQABAAEAAAAVAAsAAQABAAEAAAAVAAwAAQABAAEAAAAPAA0AAQABAAEAAAAQAA0AAQABAAEAAAARAA0AAQABAAEAAAASAA0AAQABAAEAAAATAA0AAQABAAEAAAAUAA0AAQABAAEAAAAVAA0AAQABAAEAAAAIAA0AAQABAAEAAAAJAA0AAQABAAEAAAAKAA0AAQABAAEAAAALAA0AAQABAAEAAAAMAA0AAQABAAEAAAANAA0AAQABAAEAAAAOAA0AAQABAAEAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="FakeTerrain" parent="Environment/Terrain" instance=ExtResource("4_a8mvr")]
+metadata/_edit_lock_ = true
+
+[node name="Vegetation" parent="Environment" instance=ExtResource("5_e1wtl")]
+tile_map_data = PackedByteArray("AAAJAAgABgAAAAAAAQAKAAgABgAAAAAAAAALAAgABgAAAAAAAAAQAAgABgAAAAAAAQASAAgABgAAAAEAAQARAAgABgAAAAAAAQA=")
+
+[node name="DeadZones" type="Node2D" parent="Environment"]
+
+[node name="DefaultDeadZone" parent="Environment/DeadZones" node_paths=PackedStringArray("checkpoints") instance=ExtResource("6_mjgg8")]
+position = Vector2(0, 256)
+checkpoints = [NodePath("Area2D"), NodePath("Area2D2")]
+
+[node name="Area2D" type="Area2D" parent="Environment/DeadZones/DefaultDeadZone"]
+position = Vector2(344, -114)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadZones/DefaultDeadZone/Area2D"]
+shape = SubResource("SegmentShape2D_is1k8")
+
+[node name="Area2D2" type="Area2D" parent="Environment/DeadZones/DefaultDeadZone"]
+position = Vector2(134, -115)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DeadZones/DefaultDeadZone/Area2D2"]
+shape = SubResource("SegmentShape2D_is1k8")
+
+[node name="Camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("7_pqan4")]
+position = Vector2(192, 92)
+limit_bottom = 180
+target = NodePath("../Player")
+metadata/_edit_lock_ = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="DefaultUi" parent="HUD" instance=ExtResource("8_didb1")]
+offset_right = -18.0
+metadata/_edit_lock_ = true
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("9_rfbu2")]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="PlayerDiedUI" parent="HUD" instance=ExtResource("10_wh2mq")]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("11_jpxlk")]
+position = Vector2(187, 136)
+
+[node name="AudioController" parent="." instance=ExtResource("12_58s8o")]
+
+[node name="Ambience" type="AudioStreamPlayer" parent="AudioController"]
+stream = ExtResource("13_er72w")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="MusicController" parent="." instance=ExtResource("14_nlpv1")]
+
+[node name="DefaultMusic" type="AudioStreamPlayer" parent="MusicController"]
+stream = ExtResource("15_goojx")
+bus = &"Music"
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="MusicController"]
+stream = ExtResource("16_3ndfl")
+bus = &"Music"
+
+[node name="DieMusic" type="AudioStreamPlayer" parent="MusicController"]
+stream = ExtResource("17_wp1th")
+bus = &"Music"
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(236, 141)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("18_477vv")]
+position = Vector2(159, 139)
+
+[node name="Stone2" parent="." instance=ExtResource("19_auc4c")]
+position = Vector2(252, 136)
+
+[node name="Vase" parent="." instance=ExtResource("20_skit7")]
+position = Vector2(162, 134)
+
+[node name="Lever" parent="." instance=ExtResource("21_ouqec")]
+position = Vector2(214, 136)

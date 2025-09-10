@@ -29,6 +29,7 @@ var direction : float = 0.0
 var interaction_direction : int = 0
 var is_interacting : bool = false
 var was_on_floor := true
+var face_direction : int = 0
 
 var on_animation : bool = false
 
@@ -46,7 +47,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if direction:
-		animator.flip_h = direction < 0
+		animator.flip_h = face_direction == -1
 
 	animator.play()
 	
@@ -68,6 +69,7 @@ func _physics_process(delta: float) -> void:
 			direction = 0.0
 		else:
 			direction = sign(direction)
+			face_direction = direction
 			
 		if not is_interacting:
 			velocity.x = direction * speed
@@ -141,6 +143,7 @@ func spawn_attack_effect() -> void:
 	local_attack.position = Vector2(-20.5 if $AnimatedSprite2D.flip_h else 5.5 , -1)
 	
 func start_interaction() -> void:
+	is_interacting = true
 	state_machine.push_state("Interact")
 	
 func finish_interaction() -> void:

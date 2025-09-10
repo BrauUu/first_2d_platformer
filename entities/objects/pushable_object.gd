@@ -1,20 +1,15 @@
 class_name PushableObject
-extends CharacterBody2D
+extends InteractableObject
 
-@export var floating_key: Control
-@export var audio_controller: AudioController
 @export var interactive_zone_left: Area2D
 @export var interactive_zone_right: Area2D
+@export var audio_controller: AudioController
+@export var floating_key: Control
 
 @export var weight : int
 
-var can_reach: bool = false
-var is_being_interacted: bool = false
 var was_on_floor: bool = true
-var can_be_interacted: bool = false
 var interaction_direction: int = 0
-
-var player : Player
 
 func _ready() -> void:
 	if interactive_zone_left:
@@ -25,33 +20,12 @@ func _ready() -> void:
 		interactive_zone_right.connect("body_entered",_on_interactive_zone_right_body_entered)
 
 func _process(delta: float) -> void:
+	super(delta)
 	if not can_reach: return
-	
-	if floating_key:
-		if can_be_interacted:
-			floating_key.player_on_interactive_zone()
-		else:
-			floating_key.player_out_interactive_zone()
-	
-	
-	var pushable_objects = get_tree().get_nodes_in_group("PushableObject")
-	
-	if len(pushable_objects) <= 1: 
-		can_be_interacted = true
-		return
-	
-	var nearest_object_distance : float = INF
-	var nearest_object : PushableObject = null
-	
-	for object : PushableObject in pushable_objects:
-		if object.can_reach:
-			if object.is_being_interacted: return
-			var obj_dist = player.global_position.distance_to(object.global_position)
-			if obj_dist < nearest_object_distance:
-				nearest_object_distance = obj_dist
-				nearest_object = object
-	
-	can_be_interacted = self == nearest_object
+	if can_be_interacted:
+		floating_key.player_on_interactive_zone()
+	else:
+		floating_key.player_out_interactive_zone()
 
 func _physics_process(delta: float) -> void:
 	
@@ -98,7 +72,6 @@ func _input(event):
 		if not is_being_interacted:
 			player.start_interaction()
 			is_being_interacted = true
-			player.is_interacting = true
 			if floating_key:
 				floating_key.key_pressed()
 		else:

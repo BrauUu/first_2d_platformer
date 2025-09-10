@@ -5,6 +5,7 @@ extends StaticBody2D
 @onready var audio_controller: AudioController = $AudioController
 @onready var large_collision_polygon_2d: CollisionPolygon2D = $LargeCollisionPolygon2D
 @onready var press_zone: Area2D = $PressZone
+@onready var activator: ConnectionActivator = $Activator
 
 ## Only still 'pressed" when there is something above it
 @export var pressure_plate : bool
@@ -27,7 +28,7 @@ func _on_press_zone_body_entered(body: Node2D) -> void:
 		call_deferred("change_shape_disabled", true, large_collision_polygon_2d)
 		animated_sprite_2d.play("pressed")
 		audio_controller.play_sound("Pressed")
-		GameManager.notify_connection_activation(connection_id)
+		activator.on_connection_actived()
 		
 func _on_press_zone_body_exited(body: Node2D) -> void:
 	if pressed:
@@ -35,4 +36,4 @@ func _on_press_zone_body_exited(body: Node2D) -> void:
 		call_deferred("change_shape_disabled", false, large_collision_polygon_2d)
 		animated_sprite_2d.play("unpressed")
 		audio_controller.play_sound("Pressed")
-		GameManager.notify_connection_deactivation(connection_id)
+		activator.on_connection_deactivated()

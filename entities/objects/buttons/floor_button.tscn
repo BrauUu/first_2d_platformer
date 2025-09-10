@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvcsdkjpwr3wa"]
+[gd_scene load_steps=11 format=3 uid="uid://cvcsdkjpwr3wa"]
 
 [ext_resource type="Script" uid="uid://dyyiebn250vjg" path="res://entities/objects/buttons/floor_button.gd" id="1_8viui"]
 [ext_resource type="Texture2D" uid="uid://bag032juxe70g" path="res://assets/sprites/objects/buttom_pressed.png" id="1_nllud"]
 [ext_resource type="Texture2D" uid="uid://wl6jjuxlb6js" path="res://assets/sprites/objects/buttom.png" id="2_8viui"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_2s7co"]
 [ext_resource type="AudioStream" uid="uid://d005iesuln7b5" path="res://assets/sounds/sfx/effects/button-pressed.wav" id="5_21nr6"]
+[ext_resource type="PackedScene" uid="uid://c124cocjpi4gk" path="res://entities/others/connection_entity/activator.tscn" id="6_sguv4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tc5ia"]
 atlas = ExtResource("1_nllud")
@@ -66,5 +67,7 @@ shape = SubResource("RectangleShape2D_tc5ia")
 stream = ExtResource("5_21nr6")
 max_distance = 250.0
 bus = &"SFX"
+
+[node name="Activator" parent="." instance=ExtResource("6_sguv4")]
 
 [connection signal="body_entered" from="PressZone" to="." method="_on_press_zone_body_entered"]

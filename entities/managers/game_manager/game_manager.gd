@@ -23,9 +23,10 @@ var is_player_dead : bool = false
 var coins_count : int = 0
 
 var current_checkpoint_id : int
+var player : Player
 
 func _ready() -> void:
-	pass
+	player = get_tree().get_first_node_in_group("Player")
 	
 func spawn(node: Node2D, pos: Vector2) -> Node2D:
 	var game = get_node("/root/Game")
@@ -47,9 +48,9 @@ func emit_player_left_battle() -> void:
 	
 func spawn_player() -> CharacterBody2D:
 		can_pause = true
-		var player := preload("res://entities/characters/player/player.tscn").instantiate()
+		player = preload("res://entities/characters/player/player.tscn").instantiate()
 		var checkpoint_position : Vector2 = get_current_checkpoint_position()
-		is_player_dead = false
+		is_player_dead = false 
 		return spawn(player, checkpoint_position)
 		
 func recovery_health(health_amount: int) -> void:

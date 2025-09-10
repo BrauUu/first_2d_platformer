@@ -65,29 +65,29 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df03a"]
-size = Vector2(5, 12)
+size = Vector2(5, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2qtk"]
-size = Vector2(5, 12)
+size = Vector2(5, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6bfs1"]
 region = Rect2(16, 80, 16, 16)
 
-[node name="Vase" type="CharacterBody2D" node_paths=PackedStringArray("animator", "hitbox_area", "collisor", "floating_key", "audio_controller", "interactive_zone_left", "interactive_zone_right") groups=["PushableObject"]]
+[node name="Vase" type="CharacterBody2D" node_paths=PackedStringArray("animator", "hitbox_area", "collisor", "interactive_zone_left", "interactive_zone_right", "audio_controller", "floating_key") groups=["InteractableObject"]]
 collision_layer = 48
 collision_mask = 49
 script = ExtResource("1_15ldt")
 animator = NodePath("AnimatedSprite2D")
 hitbox_area = NodePath("HitboxArea")
 collisor = NodePath("CollisionShape2D")
-size = 1
-floating_key = NodePath("FloatingKey")
-audio_controller = NodePath("AudioController")
 interactive_zone_left = NodePath("InteractiveZoneLeft")
 interactive_zone_right = NodePath("InteractiveZoneRight")
+audio_controller = NodePath("AudioController")
+floating_key = NodePath("FloatingKey")
 weight = 80
 
 [node name="HitboxArea" type="Area2D" parent="."]
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 0
 
@@ -95,35 +95,37 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_7wcag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_npocu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6bfs1")
 frame_progress = 1.0
 
 [node name="InteractiveZoneLeft" type="Area2D" parent="."]
-position = Vector2(-8, 0)
+position = Vector2(-10, 0)
+scale = Vector2(2, 2)
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneLeft"]
 shape = SubResource("RectangleShape2D_df03a")
 
 [node name="InteractiveZoneRight" type="Area2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(10, 0)
+scale = Vector2(2, 2)
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneRight"]
 shape = SubResource("RectangleShape2D_j2qtk")
 
-[node name="FloatingKey" parent="." node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_7wcag")]
-offset_top = -15.0
-offset_right = 9.0
-offset_bottom = -6.0
+[node name="FloatingKey" parent="." instance=ExtResource("4_7wcag")]
+offset_top = -16.0
+offset_bottom = -16.0
 scale = Vector2(1.00176, 0.991888)
-sprite_2d = NodePath("Sprite2D")
 action = "interact"
 
-[node name="Sprite2D" type="Sprite2D" parent="FloatingKey"]
+[node name="Sprite2D2" type="Sprite2D" parent="FloatingKey"]
 texture = SubResource("AtlasTexture_6bfs1")
 
 [node name="AudioController" parent="." instance=ExtResource("4_a3y1d")]

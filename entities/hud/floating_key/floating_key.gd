@@ -2,7 +2,7 @@ extends Control
 
 var scales = [Vector2(0.5, 0.5), Vector2(0.6, 0.6)]
 
-@export var sprite_2d : Sprite2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @export var action : String
 var texture : AtlasTexture
 var icons : Dictionary

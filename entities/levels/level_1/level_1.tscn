@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=36 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_nj48e"]
 [ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="2_2ghvg"]
@@ -34,8 +34,6 @@
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="33_myx0b"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="34_452gc"]
 [ext_resource type="PackedScene" uid="uid://dps8mxrk7xdq6" path="res://entities/objects/checkpoint/checkpoint.tscn" id="35_kof44"]
-[ext_resource type="PackedScene" uid="uid://1r4lvv5jxcic" path="res://entities/objects/connected_object.tscn" id="36_2ghvg"]
-[ext_resource type="PackedScene" uid="uid://cvcsdkjpwr3wa" path="res://entities/objects/buttons/floor_button.tscn" id="36_nj48e"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -256,16 +254,3 @@ bus = &"Music"
 position = Vector2(1360, 118)
 frame_progress = 0.0
 id = 1
-
-[node name="FloorButton" parent="." instance=ExtResource("36_nj48e")]
-position = Vector2(944, 142)
-pressure_plate = true
-connection_id = 2
-
-[node name="Door" parent="." instance=ExtResource("15_jun3h")]
-position = Vector2(1016, 120)
-
-[node name="ConnectedObject" parent="Door" instance=ExtResource("36_2ghvg")]
-activation_function = "open"
-desactivation_function = "close"
-connection_id = 1
