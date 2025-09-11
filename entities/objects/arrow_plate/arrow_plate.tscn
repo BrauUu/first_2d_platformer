@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://qwfq0e006q8w"]
+
+[ext_resource type="Texture2D" uid="uid://5ituxpku3c2w" path="res://assets/sprites/objects/arrow_plate_left.png" id="1_wa2gs"]
+[ext_resource type="Texture2D" uid="uid://c226ccncyye0a" path="res://assets/sprites/objects/arrow_plate_right.png" id="2_r3f81"]
+[ext_resource type="Script" uid="uid://pldpese2qslt" path="res://entities/objects/arrow_plate/arrow_plate.gd" id="3_0s0k8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udasr"]
+atlas = ExtResource("1_wa2gs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8fkx"]
+atlas = ExtResource("2_r3f81")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4iiao"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udasr")
+}],
+"loop": false,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8fkx")
+}],
+"loop": false,
+"name": &"right",
+"speed": 5.0
+}]
+
+[node name="ArrowPlate" type="AnimatedSprite2D"]
+z_index = -5
+sprite_frames = SubResource("SpriteFrames_4iiao")
+animation = &"right"
+script = ExtResource("3_0s0k8")

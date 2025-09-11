@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://yy838l12c17a"]
+[gd_scene load_steps=21 format=4 uid="uid://yy838l12c17a"]
 
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="1_is44v"]
 [ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="2_ouqec"]
@@ -18,11 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="16_3ndfl"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="17_wp1th"]
 [ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/spawn_point.tscn" id="18_477vv"]
-[ext_resource type="PackedScene" uid="uid://cixxtajaia4x3" path="res://entities/objects/stone/stone.tscn" id="19_auc4c"]
-[ext_resource type="PackedScene" uid="uid://dk5m4v7q4p7a4" path="res://entities/objects/vase/vase.tscn" id="20_skit7"]
-[ext_resource type="PackedScene" uid="uid://bup6y4ts3o7hj" path="res://entities/objects/lever/lever.tscn" id="21_ouqec"]
-[ext_resource type="PackedScene" uid="uid://c7ph1xkahply3" path="res://entities/objects/door/door.tscn" id="22_a8mvr"]
-[ext_resource type="PackedScene" uid="uid://1r4lvv5jxcic" path="res://entities/others/connection_entity/responder.tscn" id="23_e1wtl"]
+[ext_resource type="PackedScene" uid="uid://qwfq0e006q8w" path="res://entities/objects/arrow_plate/arrow_plate.tscn" id="19_8csex"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -120,20 +116,5 @@ position = Vector2(236, 141)
 [node name="SpawnPoint" parent="." instance=ExtResource("18_477vv")]
 position = Vector2(159, 139)
 
-[node name="Stone2" parent="." instance=ExtResource("19_auc4c")]
-position = Vector2(252, 136)
-
-[node name="Vase" parent="." instance=ExtResource("20_skit7")]
-position = Vector2(162, 134)
-
-[node name="Lever" parent="." instance=ExtResource("21_ouqec")]
-position = Vector2(214, 136)
-connection_id = 10
-
-[node name="Door" parent="." instance=ExtResource("22_a8mvr")]
-position = Vector2(316, 120)
-
-[node name="Responder" parent="Door" instance=ExtResource("23_e1wtl")]
-activation_function = "open"
-deactivation_function = "close"
-connection_id = 10
+[node name="ArrowPlate" parent="." instance=ExtResource("19_8csex")]
+position = Vector2(314, 136)

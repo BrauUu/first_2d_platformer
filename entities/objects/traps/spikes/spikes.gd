@@ -17,7 +17,6 @@ const DIRECTION_DEGRESS = {
 @export var direction : DIRECTION_ENUM = DIRECTION_ENUM.UP:
 	set(value):
 		direction = value
-		print(DIRECTION_DEGRESS[value])
 		rotation_degrees = DIRECTION_DEGRESS[value]
 
 @export var width: float:
