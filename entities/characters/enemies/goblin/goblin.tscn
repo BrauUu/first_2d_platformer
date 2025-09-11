@@ -25,10 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://bldnp4cshln61" path="res://entities/characters/enemies/states/chase/chase.tscn" id="24_ddk16"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="25_h6f4w"]
 [ext_resource type="AudioStream" uid="uid://kqr5oqdwir8o" path="res://assets/sounds/sfx/enemies/goblin/goblin_yell.mp3" id="26_fdgn2"]
-[ext_resource type="AudioStream" uid="uid://brbd85crsef7x" path="res://assets/sounds/sfx/enemies/goblin/knife-attack.wav" id="27_fdgn2"]
 [ext_resource type="AudioStream" uid="uid://d3c2kwtu86n35" path="res://assets/sounds/sfx/enemies/goblin/hurt.wav" id="27_y5bph"]
 [ext_resource type="AudioStream" uid="uid://3mge6v46kiyg" path="res://assets/sounds/sfx/enemies/goblin/die.wav" id="28_vert4"]
 [ext_resource type="AudioStream" uid="uid://dgk1vaauyyh4k" path="res://assets/sounds/sfx/enemies/goblin/give_up.wav" id="29_n710x"]
+[ext_resource type="AudioStream" uid="uid://c73l0e8tf0hyl" path="res://assets/sounds/sfx/player/slash.wav" id="29_vert4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h6f4w"]
 shader = ExtResource("2_ddk16")
@@ -232,8 +232,8 @@ size = Vector2(12, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxqy6"]
 size = Vector2(12, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cyclm"]
-radius = 80.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vert4"]
+radius = 100.0
 
 [sub_resource type="Resource" id="Resource_ffrj2"]
 script = ExtResource("16_yhjil")
@@ -269,7 +269,6 @@ sprite_frames = SubResource("SpriteFrames_im8x1")
 animation = &"die"
 
 [node name="Attack" type="Area2D" parent="FlippedNode" node_paths=PackedStringArray("parent")]
-visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("7_iym33")
@@ -287,7 +286,6 @@ collision_mask = 34
 collide_with_areas = true
 
 [node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
-visible = false
 collision_mask = 17
 vision_detector_shape = NodePath("VisionDetectorShape")
 vision_detector_line = NodePath("VisionDetectorLine")
@@ -334,11 +332,9 @@ collision_mask = 512
 shape = SubResource("RectangleShape2D_n710x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_mxqy6")
 
 [node name="PlayerDetector" parent="." node_paths=PackedStringArray("detector_shape", "vision_detector") instance=ExtResource("7_s4e4p")]
-visible = false
 collision_layer = 0
 detector_shape = NodePath("DetectorShape")
 vision_detector = NodePath("../FlippedNode/VisionDetector")
@@ -346,7 +342,8 @@ detect_groups = Array[String](["Player"])
 detector_distance = 100
 
 [node name="DetectorShape" type="CollisionShape2D" parent="PlayerDetector"]
-shape = SubResource("CircleShape2D_cyclm")
+shape = SubResource("CircleShape2D_vert4")
+debug_color = Color(0.674393, 0.495516, 0.302429, 0.42)
 
 [node name="FollowMovement" parent="." node_paths=PackedStringArray("ground_detector", "wall_detector", "player_detector", "give_up_countdown", "parent") instance=ExtResource("8_b8hbt")]
 attack_distance = Vector2(13, 30)
@@ -418,8 +415,8 @@ max_distance = 250.0
 bus = &"SFX"
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="AudioController"]
-stream = ExtResource("27_fdgn2")
-volume_db = -16.0
+stream = ExtResource("29_vert4")
+volume_db = 5.0
 max_distance = 250.0
 bus = &"SFX"
 

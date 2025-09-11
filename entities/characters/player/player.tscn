@@ -25,8 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://cuneet0wyysmc" path="res://assets/sounds/sfx/player/player_footstep.wav" id="22_nopo2"]
 [ext_resource type="AudioStream" uid="uid://dcoccw3kmrryt" path="res://assets/sounds/sfx/player/player_jump.wav" id="23_lymma"]
 [ext_resource type="AudioStream" uid="uid://8p3ia65w41bp" path="res://assets/sounds/sfx/player/damage.wav" id="23_t050w"]
-[ext_resource type="AudioStream" uid="uid://c73l0e8tf0hyl" path="res://assets/sounds/sfx/effects/slash.wav" id="24_lymma"]
-[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="25_43eyp"]
+[ext_resource type="AudioStream" uid="uid://c73l0e8tf0hyl" path="res://assets/sounds/sfx/player/slash.wav" id="24_lymma"]
+[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/others/stone_drop.wav" id="25_43eyp"]
 [ext_resource type="PackedScene" uid="uid://cwbp5pxb3ia0u" path="res://entities/utils/tile_map_detector/tile_map_detector.tscn" id="25_qquha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]

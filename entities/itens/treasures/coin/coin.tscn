@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dhmyuupto3271" path="res://entities/itens/treasures/coin/coin.gd" id="1_oh4us"]
 [ext_resource type="Texture2D" uid="uid://daujb6jdkr6ro" path="res://assets/sprites/itens/coin_pickup_anim_strip_6.png" id="1_p61pe"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_ehyl8"]
-[ext_resource type="AudioStream" uid="uid://pypcx058blvo" path="res://assets/sounds/sfx/effects/treasure_collected.wav" id="5_o4mgs"]
+[ext_resource type="AudioStream" uid="uid://pypcx058blvo" path="res://assets/sounds/sfx/others/treasure_collected.wav" id="5_o4mgs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmyae"]
 atlas = ExtResource("1_p61pe")

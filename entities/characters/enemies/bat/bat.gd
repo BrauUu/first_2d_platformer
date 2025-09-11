@@ -98,6 +98,9 @@ func show_dash_effect() -> void:
 func dash_finished() -> void:
 	attack.reset_attacked_entities()
 	
+func play_attack_sound() -> void:
+	audio_controller.play_sound("Scream")
+	
 func get_damage() -> Dictionary:
 	return {
 		"damage": damage,

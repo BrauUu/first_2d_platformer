@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfqt1o24gphyn"]
 
 [ext_resource type="Texture2D" uid="uid://djbmkv7kypv5g" path="res://resources/tile_maps/vegetation.png" id="1_g7rft"]
-[ext_resource type="AudioStream" uid="uid://b32nsius30hni" path="res://assets/sounds/sfx/effects/grass_hit.wav" id="3_ixi0y"]
+[ext_resource type="AudioStream" uid="uid://b32nsius30hni" path="res://assets/sounds/sfx/others/grass_hit.wav" id="3_ixi0y"]
 [ext_resource type="Script" uid="uid://d3heuw5t6tq2y" path="res://entities/scenario/tile_maps/vegetation/vegetation.gd" id="7_kecye"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixi0y"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbbeh7vnc7vqa" path="res://assets/sprites/itens/health_potion.png" id="1_h0wrh"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="2_4vit8"]
 [ext_resource type="Texture2D" uid="uid://v8ipfjgabc7g" path="res://assets/sprites/itens/health_potion_collected.png" id="2_180qe"]
-[ext_resource type="AudioStream" uid="uid://cfdcmi54ss04u" path="res://assets/sounds/sfx/effects/sip.wav" id="4_4vit8"]
+[ext_resource type="AudioStream" uid="uid://cfdcmi54ss04u" path="res://assets/sounds/sfx/player/sip.wav" id="4_4vit8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1k76"]
 atlas = ExtResource("2_180qe")

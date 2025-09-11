@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bu7aogtp17wj4"]
 
-[ext_resource type="Texture2D" uid="uid://84igl77flp2m" path="res://assets/sprites/others/exclamation.png" id="1_rbueb"]
+[ext_resource type="Texture2D" uid="uid://84igl77flp2m" path="res://assets/sprites/itens/exclamation.png" id="1_rbueb"]
 [ext_resource type="Script" uid="uid://dypg8cha7m1nu" path="res://entities/hud/exclamation/exclamation.gd" id="2_85p41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewhc0"]

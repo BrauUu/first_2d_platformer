@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://dj4pofibd61l" path="res://entities/objects/stone/stone.gd" id="2_mohl7"]
 [ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/floating_key.tscn" id="4_djgj8"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_qjtlu"]
-[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="5_tabol"]
-[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="6_qjtlu"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/others/stone_push.wav" id="5_tabol"]
+[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/others/stone_drop.wav" id="6_qjtlu"]
 [ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="7_tabol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tabol"]

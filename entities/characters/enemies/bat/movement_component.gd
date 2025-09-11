@@ -1,5 +1,7 @@
 extends Node
 
+@onready var timer: Timer = $Timer
+
 @export var awake_area : Area2D
 @export var attack_area: Area2D
 @export var parent: Bat
@@ -9,6 +11,7 @@ var enabled: bool = false
 var target: Player = null
 var attack_target_position: Vector2 = Vector2.ZERO
 var target_in_range_to_attack: bool = false
+var preparing_attack: bool = false
 
 func _ready() -> void:
 	
@@ -16,6 +19,7 @@ func _ready() -> void:
 	awake_area.connect("body_exited", _on_awake_area_player_exited)
 	attack_area.connect("body_entered", _on_attack_area_player_entered)
 	attack_area.connect("body_exited", _on_attack_area_player_exited)
+	timer.connect("timeout", _on_attack_preparation_finished)
 	
 func _physics_process(delta: float) -> void:
 	if not enabled: return
@@ -24,19 +28,18 @@ func _physics_process(delta: float) -> void:
 		velocity = flies_back_and_forth()
 		return
 		
-	var distance = 0
+	var distance = Vector2.ZERO
 	
 	if attack_target_position and parent.current_cooldown <= 0 and (target_in_range_to_attack or parent.attacking):
-		parent.attacking = true
-		distance = attack_target_position - parent.global_position
-		velocity = distance.normalized() * parent.attack_speed
-		attack_target_position += velocity
-		if parent.global_position.distance_to(target.global_position) > 100:
-			parent.attacking = false
-			parent.current_cooldown = parent.cooldown
-		for i in range(parent.get_slide_collision_count()):
-			parent.attacking = false
-			parent.current_cooldown = parent.cooldown
+		if not parent.attacking and not preparing_attack:
+			start_attack_preparation()
+		elif parent.attacking:
+			distance = attack_target_position - parent.global_position
+			velocity = distance.normalized() * parent.attack_speed
+			attack_target_position += velocity
+			
+		if parent.global_position.distance_to(target.global_position) > 100 or parent.get_slide_collision_count():
+			end_attack()
 	else:
 		parent.dash_finished()
 		distance = target.global_position - parent.global_position
@@ -49,6 +52,20 @@ func _physics_process(delta: float) -> void:
 		parent.direction = 1
 	else:
 		parent.direction = -1
+		
+func start_attack_preparation() -> void:
+	preparing_attack = true
+	parent.play_attack_sound()
+	timer.one_shot = true
+	timer.start(0.2)
+
+func _on_attack_preparation_finished() -> void:
+	preparing_attack = false
+	parent.attacking = true
+
+func end_attack() -> void:
+	parent.attacking = false
+	parent.current_cooldown = parent.cooldown
 		
 func flies_back_and_forth() -> Vector2:
 	var distance_to_initial_point := parent.global_position - parent.initial_point

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1k8uk83xk7xk" path="res://assets/sprites/others/2d_lights_and_shadows_neutral_point_light.webp" id="2_0uvos"]
 [ext_resource type="Script" uid="uid://b73u8k1gb11d2" path="res://entities/objects/tiki_torch/tiki_torch.gd" id="2_1hh1i"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="3_612nc"]
-[ext_resource type="AudioStream" uid="uid://b2uvti26y0dfx" path="res://assets/sounds/sfx/effects/fire.wav" id="4_1hh1i"]
+[ext_resource type="AudioStream" uid="uid://b2uvti26y0dfx" path="res://assets/sounds/sfx/others/fire.wav" id="4_1hh1i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_612nc"]
 atlas = ExtResource("1_h3se3")

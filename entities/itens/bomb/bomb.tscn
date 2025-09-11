@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://3fk3bequ7hcw" path="res://assets/sprites/itens/bomb_thrown_anim_strip_3.png" id="2_yw362"]
 [ext_resource type="Texture2D" uid="uid://bfc6mrvxydeqh" path="res://assets/sprites/itens/bomb_on_ground_anim_strip_8.png" id="3_v8onk"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_v8onk"]
-[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/effects/stone_drop.wav" id="5_685fc"]
-[ext_resource type="AudioStream" uid="uid://wsd7maqndaho" path="res://assets/sounds/sfx/effects/wick.wav" id="6_685fc"]
+[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/others/stone_drop.wav" id="5_685fc"]
+[ext_resource type="AudioStream" uid="uid://wsd7maqndaho" path="res://assets/sounds/sfx/others/wick.wav" id="6_685fc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a13dj"]
 atlas = ExtResource("3_v8onk")

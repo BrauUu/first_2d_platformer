@@ -21,8 +21,7 @@ func _ready() -> void:
 		vision_detector.connect("body_out_of_sight", _on_vision_detector_body_out_of_sight)
 	
 func _on_body_entered(body: Node2D) -> void:
-	if disabled:
-		return
+	if disabled: return
 	for group in detect_groups:
 		if body.is_in_group(group):
 			if not vision_detector:
@@ -32,8 +31,7 @@ func _on_body_entered(body: Node2D) -> void:
 			vision_detector.body_in_reach(detected_body)
 
 func _on_body_exited(body: Node2D) -> void:
-	if disabled:
-		return
+	if disabled: return
 	for group in detect_groups:
 		if body.is_in_group(group):
 			emit_signal("body_lost_detection", body)

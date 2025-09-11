@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://yy838l12c17a"]
+[gd_scene load_steps=22 format=4 uid="uid://yy838l12c17a"]
 
 [ext_resource type="PackedScene" uid="uid://qe737yjsx6yi" path="res://entities/scenario/tile_maps/foreground/foreground.tscn" id="1_is44v"]
 [ext_resource type="PackedScene" uid="uid://c4g64kg2lu1ab" path="res://entities/scenario/tile_maps/background/background.tscn" id="2_ouqec"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="17_wp1th"]
 [ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/spawn_point.tscn" id="18_477vv"]
 [ext_resource type="PackedScene" uid="uid://qwfq0e006q8w" path="res://entities/objects/arrow_plate/arrow_plate.tscn" id="19_8csex"]
+[ext_resource type="PackedScene" uid="uid://chqd42os0ggp2" path="res://entities/characters/enemies/goblin/goblin.tscn" id="20_is44v"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -118,3 +119,6 @@ position = Vector2(159, 139)
 
 [node name="ArrowPlate" parent="." instance=ExtResource("19_8csex")]
 position = Vector2(314, 136)
+
+[node name="Goblin" parent="." instance=ExtResource("20_is44v")]
+position = Vector2(302, 136)

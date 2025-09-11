@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://03ir3cxmvyb0" path="res://resources/treasure_data.gd" id="2_2upxw"]
 [ext_resource type="Texture2D" uid="uid://bmeb4o8nwoj1w" path="res://assets/sprites/objects/loot_box_open.png" id="3_2upxw"]
 [ext_resource type="Texture2D" uid="uid://dxtnsqxdn3a4r" path="res://assets/sprites/objects/loot_box_anim_opening_strip_6.png" id="4_6jox5"]
-[ext_resource type="AudioStream" uid="uid://buhn3u6udenlj" path="res://assets/sounds/sfx/effects/chest_open.wav" id="6_6jox5"]
+[ext_resource type="AudioStream" uid="uid://buhn3u6udenlj" path="res://assets/sounds/sfx/others/chest_open.wav" id="6_6jox5"]
 
 [sub_resource type="Resource" id="Resource_4p80o"]
 script = ExtResource("2_2upxw")

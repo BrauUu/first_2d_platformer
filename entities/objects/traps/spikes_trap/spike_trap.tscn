@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cl4cubkjmveaf" path="res://entities/objects/traps/spikes_trap/spike_trap.gd" id="1_4xtkw"]
 [ext_resource type="Texture2D" uid="uid://cdg4xe7o7s5ds" path="res://assets/sprites/objects/trap_spikes_anim_strip_7.png" id="2_tpo0v"]
 [ext_resource type="Script" uid="uid://dengrtk3dyk4r" path="res://entities/controllers/audio_controller/audio_controller.gd" id="3_jvqbm"]
-[ext_resource type="AudioStream" uid="uid://co20ocfx80gf1" path="res://assets/sounds/sfx/effects/spike_trap_activated.wav" id="4_8wjpf"]
+[ext_resource type="AudioStream" uid="uid://co20ocfx80gf1" path="res://assets/sounds/sfx/others/spike_trap_activated.wav" id="4_8wjpf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvqbm"]
 atlas = ExtResource("2_tpo0v")

@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d2wyb8mc36y0e" path="res://assets/sprites/objects/strange_door_closing_anim_strip_14.png" id="2_icyyl"]
 [ext_resource type="Texture2D" uid="uid://bea55mvb6kxuw" path="res://assets/sprites/objects/strange_door_opening_anim_strip_14.png" id="2_sdjg2"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="5_wy38q"]
-[ext_resource type="AudioStream" uid="uid://3ce0dd0f204f" path="res://assets/sounds/sfx/effects/door_shut.wav" id="6_biwhv"]
-[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/effects/stone_push.wav" id="7_biwhv"]
+[ext_resource type="AudioStream" uid="uid://3ce0dd0f204f" path="res://assets/sounds/sfx/others/door_shut.wav" id="6_biwhv"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/others/stone_push.wav" id="7_biwhv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cak7b"]
 atlas = ExtResource("2_icyyl")

@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bhu07oyamq12q" path="res://assets/sprites/objects/save_point_saving_anim_strip_3.png" id="2_a6a1m"]
 [ext_resource type="Script" uid="uid://ce3id0q2ow5j" path="res://entities/objects/checkpoint/checkpoint.gd" id="3_a6a1m"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="4_jc6a8"]
-[ext_resource type="AudioStream" uid="uid://b8w6x40c0rgm6" path="res://assets/sounds/sfx/effects/checkpoint_activation.wav" id="5_i8i86"]
-[ext_resource type="AudioStream" uid="uid://diddadk1pl2h6" path="res://assets/sounds/sfx/effects/checkpoint_active.wav" id="6_i8i86"]
+[ext_resource type="AudioStream" uid="uid://b8w6x40c0rgm6" path="res://assets/sounds/sfx/others/checkpoint_activation.wav" id="5_i8i86"]
+[ext_resource type="AudioStream" uid="uid://diddadk1pl2h6" path="res://assets/sounds/sfx/others/checkpoint_active.wav" id="6_i8i86"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8i86"]
 atlas = ExtResource("1_btvdl")

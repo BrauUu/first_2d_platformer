@@ -7,9 +7,6 @@ var previous_cells : Array[Vector2i]
 func _ready() -> void:
 	GameManager.connect("gm_node_entered_layer", _on_player_enter_layer)
 	GameManager.connect("gm_node_left_layer", _on_player_leave_layer)
-
-func _process(delta: float) -> void:
-	pass
 	
 func get_neighbors_cells(start_cell: Vector2i) -> Array[Vector2i]:
 	var id : int = get_cell_source_id(start_cell)

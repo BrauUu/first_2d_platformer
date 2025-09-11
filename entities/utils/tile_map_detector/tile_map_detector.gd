@@ -5,12 +5,6 @@ enum TilesTypes { FakeTerrain, VegetationLayer }
 
 @export var tile_type: TilesTypes
 
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
-
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if is_body_of_type(body):
 		var entered_cell = body.get_coords_for_body_rid(body_rid)
