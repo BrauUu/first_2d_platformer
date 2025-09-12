@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://68kbqn615svh"
-path="res://.godot/imported/lost_hearts_5.png-8fd11295e9491e3200de9398db9d547e.ctex"
+uid="uid://dgtmsy104bvg2"
+path="res://.godot/imported/plate_arrow.png-a17e23baea24f15384e881e2a6dacc09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/lost_hearts_5.png"
-dest_files=["res://.godot/imported/lost_hearts_5.png-8fd11295e9491e3200de9398db9d547e.ctex"]
+source_file="res://assets/sprites/objects/plate_arrow.png"
+dest_files=["res://.godot/imported/plate_arrow.png-a17e23baea24f15384e881e2a6dacc09.ctex"]
 
 [params]
 

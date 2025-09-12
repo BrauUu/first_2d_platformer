@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnu6j2arj3gy1"]
 
-[ext_resource type="Texture2D" uid="uid://bbjmueb4kwk70" path="res://assets/sprites/hud/health_hud_left.png" id="1_7gfwy"]
+[ext_resource type="Texture2D" uid="uid://bbjmueb4kwk70" path="res://assets/sprites/ui/health_hud_left.png" id="1_7gfwy"]
 [ext_resource type="Script" uid="uid://dx5xuvknhgg7p" path="res://entities/hud/health_ui/health_ui.gd" id="1_q1y0d"]
-[ext_resource type="Texture2D" uid="uid://bb2onxkdj57j0" path="res://assets/sprites/hud/health_hud_right.png" id="2_q1y0d"]
-[ext_resource type="Texture2D" uid="uid://c00daewvo8wqd" path="res://assets/sprites/hud/health_hud_middle.png" id="3_nwxbm"]
+[ext_resource type="Texture2D" uid="uid://bb2onxkdj57j0" path="res://assets/sprites/ui/health_hud_right.png" id="2_q1y0d"]
+[ext_resource type="Texture2D" uid="uid://c00daewvo8wqd" path="res://assets/sprites/ui/health_hud_middle.png" id="3_nwxbm"]
 
 [node name="HealthUi" type="Control"]
 layout_mode = 3

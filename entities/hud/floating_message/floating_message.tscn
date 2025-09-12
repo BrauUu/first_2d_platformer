@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://goakqgvqnmxk"]
+
+[ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="1_ayceg"]
+[ext_resource type="Script" uid="uid://d1pslf4dr5gqu" path="res://entities/hud/floating_message/floating_message.gd" id="2_0a847"]
+
+[node name="FloatingMessage" type="PanelContainer"]
+custom_minimum_size = Vector2(66, 33)
+offset_right = 133.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ayceg")
+script = ExtResource("2_0a847")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(20, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "The quick brown fox jumps over the lazy dog"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

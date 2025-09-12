@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c00daewvo8wqd"
-path="res://.godot/imported/health_hud_middle.png-aa79fb415a063c843a13ba63f4541056.ctex"
+uid="uid://c4ia10tef4rvx"
+path="res://.godot/imported/hearts_hud.png-f4f15142daaf00c01a8786b58ecbf2af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/health_hud_middle.png"
-dest_files=["res://.godot/imported/health_hud_middle.png-aa79fb415a063c843a13ba63f4541056.ctex"]
+source_file="res://assets/sprites/ui/hearts_hud.png"
+dest_files=["res://.godot/imported/hearts_hud.png-f4f15142daaf00c01a8786b58ecbf2af.ctex"]
 
 [params]
 

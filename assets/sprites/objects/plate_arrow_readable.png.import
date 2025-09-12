@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ia10tef4rvx"
-path="res://.godot/imported/hearts_hud.png-1ab54825503e833d9c1c143913b0abe0.ctex"
+uid="uid://bjcemmw8fgscq"
+path="res://.godot/imported/plate_arrow_readable.png-bcf043fd8fcf4e1c4190406cc1eb351f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/hearts_hud.png"
-dest_files=["res://.godot/imported/hearts_hud.png-1ab54825503e833d9c1c143913b0abe0.ctex"]
+source_file="res://assets/sprites/objects/plate_arrow_readable.png"
+dest_files=["res://.godot/imported/plate_arrow_readable.png-bcf043fd8fcf4e1c4190406cc1eb351f.ctex"]
 
 [params]
 

@@ -34,11 +34,6 @@ const DIRECTION_DEGRESS = {
 		update_collision_shape()
 		
 @export var is_affected_by_gravity: bool = false
-@export var spikes_texture: Texture2D:
-	set(value):
-		spikes_texture = value
-		var sprite := $RepeatingSprite
-		sprite.texture = value
 		
 var inflicts_damage := true
 		

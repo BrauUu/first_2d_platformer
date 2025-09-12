@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cx4ebwibnxeqt"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cx4ebwibnxeqt"]
 
+[ext_resource type="Texture2D" uid="uid://drk5yyslf716y" path="res://assets/sprites/ui/music_switch.png" id="1_7mpy8"]
 [ext_resource type="FontFile" uid="uid://dgek4pi0ok5om" path="res://assets/fonts/ThaleahFat.ttf" id="1_av2uu"]
-[ext_resource type="Texture2D" uid="uid://drk5yyslf716y" path="res://assets/sprites/hud/music_switch.png" id="1_pgokm"]
+[ext_resource type="StyleBox" uid="uid://bejr4gm1fbwen" path="res://resources/box_texture.tres" id="3_7mpy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkojh"]
 
@@ -14,11 +15,11 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cvkc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mpy8"]
-atlas = ExtResource("1_pgokm")
+atlas = ExtResource("1_7mpy8")
 region = Rect2(35, 6, 23, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fsoa"]
-atlas = ExtResource("1_pgokm")
+atlas = ExtResource("1_7mpy8")
 region = Rect2(3, 6, 21, 21)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aiue4"]
@@ -55,4 +56,6 @@ Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
 Label/fonts/font = ExtResource("1_av2uu")
 Label/styles/normal = SubResource("StyleBoxEmpty_aiue4")
+Panel/styles/panel = ExtResource("3_7mpy8")
+PanelContainer/styles/panel = ExtResource("3_7mpy8")
 VBoxContainer/constants/separation = 0

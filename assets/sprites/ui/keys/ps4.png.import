@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbjmueb4kwk70"
-path="res://.godot/imported/health_hud_left.png-cb131cadb9bbc53b9f4470c889de1ad0.ctex"
+uid="uid://cd3r7w6s2q16l"
+path="res://.godot/imported/ps4.png-3a7381218022f38c0b1827ef038a14f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/health_hud_left.png"
-dest_files=["res://.godot/imported/health_hud_left.png-cb131cadb9bbc53b9f4470c889de1ad0.ctex"]
+source_file="res://assets/sprites/ui/keys/ps4.png"
+dest_files=["res://.godot/imported/ps4.png-3a7381218022f38c0b1827ef038a14f8.ctex"]
 
 [params]
 

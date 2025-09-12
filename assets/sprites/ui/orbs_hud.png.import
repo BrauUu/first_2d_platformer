@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2hpyjiv5ghs"
-path="res://.godot/imported/health_menu_hud.png-8e15e6dbe7ff2e6acda5efd47019f959.ctex"
+uid="uid://d1xvexnvl0n7x"
+path="res://.godot/imported/orbs_hud.png-e762fc760e6c16b816f67bb6a3eac459.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/health_menu_hud.png"
-dest_files=["res://.godot/imported/health_menu_hud.png-8e15e6dbe7ff2e6acda5efd47019f959.ctex"]
+source_file="res://assets/sprites/ui/orbs_hud.png"
+dest_files=["res://.godot/imported/orbs_hud.png-e762fc760e6c16b816f67bb6a3eac459.ctex"]
 
 [params]
 

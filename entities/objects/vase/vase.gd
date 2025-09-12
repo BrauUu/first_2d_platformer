@@ -42,11 +42,9 @@ func update_vase_size() -> void:
 	if interactive_zone_left:
 		interactive_zone_left.scale = new_scale
 		interactive_zone_left.position.x = -5 * new_scale.x
-		#interactive_zone_left.position.x -= new_scale.x ** 2
 	if interactive_zone_right:
 		interactive_zone_right.scale = new_scale
 		interactive_zone_right.position.x = 5 * new_scale.x
-		#interactive_zone_right.position.x += new_scale.x ** 2
 	if collisor:
 		collisor.scale = new_scale
 	if animator:

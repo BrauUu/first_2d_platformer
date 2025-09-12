@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://dq482mnd4c4y3"]
 
 [ext_resource type="Script" uid="uid://c6tgwfhbmv20w" path="res://entities/hud/default_ui/default_ui.gd" id="1_fdptq"]
-[ext_resource type="Texture2D" uid="uid://c4ia10tef4rvx" path="res://assets/sprites/hud/hearts_hud.png" id="2_iv06q"]
-[ext_resource type="Texture2D" uid="uid://cqifxiup4kbal" path="res://assets/sprites/hud/no_hearts_hud.png" id="2_sonvl"]
-[ext_resource type="Texture2D" uid="uid://68kbqn615svh" path="res://assets/sprites/hud/lost_hearts_5.png" id="3_sonvl"]
-[ext_resource type="Texture2D" uid="uid://bjc4dngmhfd6k" path="res://assets/sprites/hud/hearts_hud_anim.png" id="4_or3m0"]
-[ext_resource type="Texture2D" uid="uid://cjih78cod5xck" path="res://assets/sprites/hud/coins_hud.png" id="6_nuocn"]
+[ext_resource type="Texture2D" uid="uid://c4ia10tef4rvx" path="res://assets/sprites/ui/hearts_hud.png" id="2_iv06q"]
+[ext_resource type="Texture2D" uid="uid://cqifxiup4kbal" path="res://assets/sprites/ui/no_hearts_hud.png" id="2_sonvl"]
+[ext_resource type="Texture2D" uid="uid://68kbqn615svh" path="res://assets/sprites/ui/lost_hearts_5.png" id="3_sonvl"]
+[ext_resource type="Texture2D" uid="uid://bjc4dngmhfd6k" path="res://assets/sprites/ui/hearts_hud_anim.png" id="4_or3m0"]
+[ext_resource type="Texture2D" uid="uid://cjih78cod5xck" path="res://assets/sprites/ui/coins_hud.png" id="6_nuocn"]
 [ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="7_dn234"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plgrs"]

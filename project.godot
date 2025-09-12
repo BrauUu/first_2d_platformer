@@ -120,6 +120,7 @@ interact={
 2d_physics/layer_9="Animals"
 2d_physics/layer_10="FakeTerrain"
 2d_physics/layer_11="Breakable"
+2d_physics/layer_12="Message Zone"
 2d_physics/size/initial_position=Vector2i(576, 324)
 2d_physics/size/initial_position_type=1
 

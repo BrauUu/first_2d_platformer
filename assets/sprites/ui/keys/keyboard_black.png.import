@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqifxiup4kbal"
-path="res://.godot/imported/no_hearts_hud.png-7b8ea3e30e307ad3a87c3f8fded1acf0.ctex"
+uid="uid://bligyr3lcgkal"
+path="res://.godot/imported/keyboard_black.png-826ae9aceaa6299510ddb6d46e5b7246.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/no_hearts_hud.png"
-dest_files=["res://.godot/imported/no_hearts_hud.png-7b8ea3e30e307ad3a87c3f8fded1acf0.ctex"]
+source_file="res://assets/sprites/ui/keys/keyboard_black.png"
+dest_files=["res://.godot/imported/keyboard_black.png-826ae9aceaa6299510ddb6d46e5b7246.ctex"]
 
 [params]
 
