@@ -12,7 +12,8 @@ func _ready() -> void:
 	health = parent.health
 	current_health = health
 	
-	GameManager.connect("gm_player_recovery_health", apply_heal)
+	if parent is Player:
+		GameManager.connect("gm_player_recovery_health", apply_heal)
 
 func apply_damage(damage_info: Dictionary) -> void:
 	var damage = damage_info.damage

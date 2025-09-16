@@ -39,7 +39,6 @@ size = Vector2(30, 30)
 [node name="ArrowPlate" type="Node2D"]
 z_index = -5
 script = ExtResource("3_0s0k8")
-message = "va nesta direcao"
 
 [node name="Plate" type="Sprite2D" parent="."]
 position = Vector2(0, 0.5)
@@ -53,6 +52,7 @@ sprite_frames = SubResource("SpriteFrames_r3f81")
 visible = false
 position = Vector2(0, -5)
 collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MessageZone"]
 shape = SubResource("RectangleShape2D_0s0k8")
@@ -64,7 +64,6 @@ offset_top = -37.0
 offset_right = 105.0
 offset_bottom = 29.0
 scale = Vector2(0.4, 0.4)
-message = "va nesta direcao"
 
 [connection signal="body_entered" from="MessageZone" to="." method="_on_message_zone_player_entered"]
 [connection signal="body_exited" from="MessageZone" to="." method="_on_message_zone_player_exited"]
