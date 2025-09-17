@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3ee6ydtojhh8"]
 
-[ext_resource type="Texture2D" uid="uid://b1cgqjucuwrel" path="res://assets/sprites/enemies/fly/dash.png" id="1_43j6o"]
+[ext_resource type="Texture2D" uid="uid://b1cgqjucuwrel" path="res://assets/sprites/characters/enemies/fly/dash.png" id="1_43j6o"]
 [ext_resource type="Script" uid="uid://cui2w16bocjts" path="res://entities/effects/bat_dash/bat_dash.gd" id="2_yn7ju"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpo6q"]

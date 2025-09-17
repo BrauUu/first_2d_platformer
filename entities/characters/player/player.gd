@@ -142,6 +142,9 @@ func spawn_attack_effect() -> void:
 	local_attack.attack_effect.flip_h = $AnimatedSprite2D.flip_h
 	local_attack.position = Vector2(-20.5 if $AnimatedSprite2D.flip_h else 5.5 , -1)
 	
+func apply_knockback(knockback_info: Dictionary) -> void:
+	knockback_component.apply_knockback(knockback_info)
+	
 func start_interaction() -> void:
 	is_interacting = true
 	state_machine.push_state("Interact")

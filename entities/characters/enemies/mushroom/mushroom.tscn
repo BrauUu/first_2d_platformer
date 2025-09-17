@@ -1,21 +1,53 @@
-[gd_scene load_steps=53 format=3 uid="uid://0l22ufcehv4h"]
+[gd_scene load_steps=66 format=3 uid="uid://0l22ufcehv4h"]
 
 [ext_resource type="Script" uid="uid://bvvelnls1ou6q" path="res://entities/characters/enemies/mushroom/mushroom.gd" id="1_fdeik"]
 [ext_resource type="Shader" uid="uid://dfm6nh8rjqufc" path="res://resources/shaders/hurt.gdshader" id="1_vqyvp"]
-[ext_resource type="Texture2D" uid="uid://ctfpmr5n3ibwe" path="res://assets/sprites/enemies/mushroom/mushroom_death_anim_strip_6.png" id="2_2mbbe"]
-[ext_resource type="Texture2D" uid="uid://dqjb6e4hmx186" path="res://assets/sprites/enemies/mushroom/mushroom_sleep_anim_strip_2.png" id="2_4gbvg"]
+[ext_resource type="Texture2D" uid="uid://ctfpmr5n3ibwe" path="res://assets/sprites/characters/others/mushroom/mushroom_death_anim_strip_6.png" id="2_2mbbe"]
+[ext_resource type="Texture2D" uid="uid://dqjb6e4hmx186" path="res://assets/sprites/characters/others/mushroom/mushroom_sleep_anim_strip_2.png" id="2_4gbvg"]
+[ext_resource type="Texture2D" uid="uid://dmx0rknmbmnr5" path="res://assets/sprites/characters/others/mushroom/mushroom_awake_anim_strip_7.png" id="3_2mbbe"]
 [ext_resource type="PackedScene" uid="uid://d3wdau0mkkvja" path="res://entities/utils/knockback_component/knockback_component.tscn" id="3_grokc"]
 [ext_resource type="PackedScene" uid="uid://dtw2oe6rya3fc" path="res://entities/utils/health_component/health_component.tscn" id="4_fdeik"]
-[ext_resource type="Texture2D" uid="uid://npv0wug6wqpl" path="res://assets/sprites/enemies/mushroom/mushroom_crushed_anim_strip_6.png" id="4_x0tlu"]
+[ext_resource type="Texture2D" uid="uid://npv0wug6wqpl" path="res://assets/sprites/characters/others/mushroom/mushroom_crushed_anim_strip_6.png" id="4_x0tlu"]
 [ext_resource type="PackedScene" uid="uid://dd4ds2iiul82s" path="res://entities/utils/hitbox_component/hitbox_component.tscn" id="5_2mbbe"]
-[ext_resource type="Texture2D" uid="uid://bfd5lkwr4061i" path="res://assets/sprites/enemies/mushroom/mushroom_walk_anim_strip_8.png" id="5_le5n7"]
+[ext_resource type="Texture2D" uid="uid://bfd5lkwr4061i" path="res://assets/sprites/characters/others/mushroom/mushroom_walk_anim_strip_8.png" id="5_le5n7"]
 [ext_resource type="Texture2D" uid="uid://c8jpp5kq2a6ut" path="res://assets/sprites/others/zzz.png" id="6_do6yk"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="6_x0tlu"]
+[ext_resource type="PackedScene" uid="uid://w7y42hwt41uu" path="res://entities/controllers/movement_controller/movement_controller.tscn" id="9_do6yk"]
+[ext_resource type="Script" uid="uid://dw3d2w1xljy02" path="res://resources/movement_module_data.gd" id="10_56oxn"]
 [ext_resource type="AudioStream" uid="uid://bntqibtif833d" path="res://assets/sounds/sfx/enemies/mushroom/boing.wav" id="12_2mbbe"]
+[ext_resource type="Script" uid="uid://bn1tmfoqk0mud" path="res://entities/characters/enemies/mushroom/movement_component.gd" id="14_56oxn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8p5us"]
 shader = ExtResource("1_vqyvp")
 shader_parameter/flash_amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0tlu"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le5n7"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do6yk"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsbuo"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02f4b"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eld6"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k7we"]
+atlas = ExtResource("3_2mbbe")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56oxn"]
 atlas = ExtResource("2_2mbbe")
@@ -109,6 +141,32 @@ region = Rect2(112, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x0tlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le5n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do6yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsbuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02f4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eld6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k7we")
+}],
+"loop": false,
+"name": &"awake",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_56oxn")
 }, {
 "duration": 1.0,
@@ -160,9 +218,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_muipb")
 }],
-"loop": true,
+"loop": false,
 "name": &"smash",
-"speed": 8.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -297,36 +355,58 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02f4b"]
 size = Vector2(14, 10)
 
+[sub_resource type="Resource" id="Resource_jl4kt"]
+script = ExtResource("10_56oxn")
+module = NodePath("../KnockbackComponent")
+priority = 1
+metadata/_custom_type_script = "uid://dw3d2w1xljy02"
+
+[sub_resource type="Resource" id="Resource_s4i3v"]
+script = ExtResource("10_56oxn")
+module = NodePath("../MovementComponent")
+priority = 0
+metadata/_custom_type_script = "uid://dw3d2w1xljy02"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0tlu"]
 size = Vector2(14, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le5n7"]
-size = Vector2(14, 3)
+size = Vector2(14, 7)
 
 [node name="Mushroom" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 48
 script = ExtResource("1_fdeik")
+
+[node name="PlayerDetectorRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(30, 0)
 
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8p5us")
 sprite_frames = SubResource("SpriteFrames_qliks")
-animation = &"sleep"
-frame_progress = 0.366993
+animation = &"awake"
 
-[node name="ZzZ" type="AnimatedSprite2D" parent="."]
+[node name="SleepingOnomatopoeia" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8p5us")
 position = Vector2(12, -17)
 sprite_frames = SubResource("SpriteFrames_vsbuo")
 animation = &"disabled"
+frame_progress = 0.586146
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_02f4b")
+
+[node name="MovementController" parent="." instance=ExtResource("9_do6yk")]
+movement_modules_data = Array[ExtResource("10_56oxn")]([SubResource("Resource_jl4kt"), SubResource("Resource_s4i3v")])
 
 [node name="KnockbackComponent" parent="." instance=ExtResource("3_grokc")]
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_fdeik")]
 parent = NodePath("..")
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("14_56oxn")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("5_2mbbe")]
 visible = false
@@ -348,8 +428,12 @@ max_distance = 250.0
 bus = &"SFX"
 
 [node name="BounceArea" type="Area2D" parent="."]
-visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceArea"]
 position = Vector2(0, -3.5)
+rotation = 3.14159
 shape = SubResource("RectangleShape2D_le5n7")
+
+[connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
+[connection signal="body_entered" from="BounceArea" to="." method="_on_bounce_area_player_entered"]
