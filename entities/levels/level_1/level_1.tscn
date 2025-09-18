@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dpor72rsgrqlg"]
+[gd_scene load_steps=39 format=4 uid="uid://dpor72rsgrqlg"]
 
 [ext_resource type="Script" uid="uid://c2cskhgbfcdo8" path="res://entities/levels/level_1/level_1.gd" id="1_nj48e"]
 [ext_resource type="PackedScene" uid="uid://dlp1c7ly7tu46" path="res://entities/others/parallax_background/parallax_background.tscn" id="2_2ghvg"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dnjsn6s5mkus2" path="res://entities/characters/player/player.tscn" id="25_t1r0o"]
 [ext_resource type="PackedScene" uid="uid://dllc0dgstiw0v" path="res://assets/sprites/objects/chest.tscn" id="26_ov8te"]
 [ext_resource type="Script" uid="uid://03ir3cxmvyb0" path="res://resources/treasure_data.gd" id="27_mshvt"]
+[ext_resource type="PackedScene" uid="uid://c4sb2jgackvsy" path="res://entities/itens/treasures/coin/coin.tscn" id="28_nj48e"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="29_p6cn6"]
 [ext_resource type="AudioStream" uid="uid://cam7emghepafm" path="res://assets/sounds/sfx/ambience.wav" id="30_of15b"]
 [ext_resource type="PackedScene" uid="uid://diapsm5olsx07" path="res://entities/controllers/music_controller/music_controller.tscn" id="31_vi1n1"]
@@ -34,9 +35,17 @@
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="33_myx0b"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="34_452gc"]
 [ext_resource type="PackedScene" uid="uid://dps8mxrk7xdq6" path="res://entities/objects/checkpoint/checkpoint.tscn" id="35_kof44"]
+[ext_resource type="PackedScene" uid="uid://0l22ufcehv4h" path="res://entities/characters/enemies/mushroom/mushroom.tscn" id="35_s7nsw"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
+
+[sub_resource type="Resource" id="Resource_2ghvg"]
+script = ExtResource("27_mshvt")
+name = "Coin"
+scene = ExtResource("28_nj48e")
+quantity = 3
+metadata/_custom_type_script = "uid://03ir3cxmvyb0"
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
@@ -221,9 +230,10 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("25_t1r0o")]
 position = Vector2(-75, 136)
 
-[node name="Chest" parent="." instance=ExtResource("26_ov8te")]
+[node name="Chest" parent="." node_paths=PackedStringArray("treasures_cluster") instance=ExtResource("26_ov8te")]
 position = Vector2(859, 156)
-treasures = Array[ExtResource("27_mshvt")]([])
+treasures = Array[ExtResource("27_mshvt")]([SubResource("Resource_2ghvg")])
+treasures_cluster = NodePath("../Treasures")
 
 [node name="Treasures" type="Node2D" parent="."]
 
@@ -254,3 +264,6 @@ bus = &"Music"
 position = Vector2(1360, 118)
 frame_progress = 0.0
 id = 1
+
+[node name="Mushroom" parent="." instance=ExtResource("35_s7nsw")]
+position = Vector2(960, 136)

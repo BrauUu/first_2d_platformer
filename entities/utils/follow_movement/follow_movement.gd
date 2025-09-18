@@ -6,7 +6,7 @@ class_name FollowMovement extends Node
 @export var player_detector: Area2D
 @export var give_up_countdown: Timer
 
-@export var parent : Enemy
+@export var parent : CharacterBody2D
 
 var speed : int
 var target : Node2D
@@ -83,7 +83,7 @@ func check_movement_possiblity() -> void:
 func _on_player_detector_body_detected(body: Node) -> void:
 	target = body
 	is_body_out_of_sight = false
-	parent.following()
+	parent.start_following()
 
 func _on_player_detector_body_lost_detection(body: Node) -> void:
 	if body == target:

@@ -8,8 +8,10 @@ extends CharacterBody2D
 @onready var movement_controller: MovementController = $MovementController
 @onready var movement_component: Node = $MovementComponent
 @onready var player_detector_raycast: RayCast2D = $PlayerDetectorRaycast
+@onready var ground_detector: RayCast2D = $GroundDetector
+@onready var hitbox_component: Area2D = $HitboxComponent
 
-enum MUSHROOM_STATES {WALK, SLEEP, DEAD, SMASH, AWAKE}
+enum MUSHROOM_STATES {WALK, SLEEP, DEAD, SMASH, AWAKE, AFRAID}
 
 @export var initial_state: MUSHROOM_STATES = MUSHROOM_STATES.SLEEP
 @export var health := 2
@@ -52,6 +54,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	animator.flip_h = velocity.x < 0
 	player_detector_raycast.rotation_degrees = 180 if velocity.x < 0 else 0
+	ground_detector.position.x = -6 if velocity.x < 0 else 6
 	
 func _physics_process(delta: float) -> void:
 	if is_current_state(MUSHROOM_STATES.WALK):
@@ -75,25 +78,66 @@ func bounce(player: Player) -> void:
 	}
 	player.apply_knockback(knockback_info)
 	audio_controller.play_sound("Bounce")
+	if is_current_state(MUSHROOM_STATES.AFRAID):
+		animator.animation = "smash"
+		animator.frame = 3
+		animator.play()
 	set_current_state(MUSHROOM_STATES.SMASH)
-	update_animation()
+	animator.animation = "smash"
 
 func is_above(pos: Vector2) -> bool:
 	return pos.y <= (global_position.y - $BounceArea/CollisionShape2D.shape.size.y / 2)
 
+func hurt(damage_info) -> void:
+	self.player = damage_info.source
+	if is_current_state(MUSHROOM_STATES.SLEEP):
+		awake()
+		set_current_state(MUSHROOM_STATES.AWAKE)
+		update_animation()
+	set_invulnerability(2, true)
+	await apply_hurt_effect()
+	set_invulnerability(2, false)
+
+func afraid() -> void:
+	set_current_state(MUSHROOM_STATES.AFRAID)
+	update_animation()
+	
+func is_active() -> bool:
+	return not is_current_state(MUSHROOM_STATES.DEAD) and not is_current_state(MUSHROOM_STATES.SLEEP)
+	
+func set_invulnerability(layer: int, invulnerable: bool) -> void:
+	hitbox_component.set_collision_mask_value(layer, !invulnerable)
+	
+func apply_hurt_effect() -> void:
+	var material: ShaderMaterial = animator.material
+	material.set_shader_parameter("flash_amount", 1)
+	await get_tree().create_timer(0.5).timeout
+	material.set_shader_parameter("flash_amount", 0.0)
+	
+func die(damage_info: Dictionary) -> void:
+	set_current_state(MUSHROOM_STATES.DEAD)
+	update_animation()
+	apply_hurt_effect()
+	
+func awake() -> void:
+	change_onomatopoeia_visibility(false)
+	was_sleeping = true
+
 func _on_bounce_area_player_entered(player: Player) -> void:
 	self.player = player
-	if is_above(player.global_position):
+	if is_above(player.global_position) and not is_current_state(MUSHROOM_STATES.DEAD):
 		if is_current_state(MUSHROOM_STATES.SLEEP):
-			change_onomatopoeia_visibility(false)
-			was_sleeping = true
+			awake()
 		bounce(player)
 
 func _on_animator_animation_finished() -> void:
 	match animator.animation:
 		"smash":
 			set_current_state(MUSHROOM_STATES.AWAKE if was_sleeping else MUSHROOM_STATES.WALK)
+			update_animation()
 		"awake":
-			movement_component.was_awakened(player)
+			movement_component.run_from(player)
 			set_current_state(MUSHROOM_STATES.WALK)
-	update_animation()
+			update_animation()
+		"dead":
+			queue_free()

@@ -1,7 +1,7 @@
 class_name EnemyAttackState
 extends State
 
-@export var enemy : Enemy
+@export var enemy : CharacterBody2D
 
 func enter(params: Dictionary = {}) -> void:
 	pass

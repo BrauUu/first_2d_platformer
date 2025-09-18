@@ -254,90 +254,91 @@ size = Vector2(10, 13)
 collision_layer = 4
 collision_mask = 48
 script = ExtResource("1_ot5hk")
-speed = 75
 damage = 1
-initial_direction = 1
-jump_power = 200
-cooldown = 1.5
 health = 3
+speed = 75
+jump_power = 200
+initial_direction = -1
 
-[node name="FlippedNode" type="Node2D" parent="."]
-
-[node name="Animator" type="AnimatedSprite2D" parent="FlippedNode"]
+[node name="Animator" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_h6f4w")
 sprite_frames = SubResource("SpriteFrames_im8x1")
-animation = &"die"
+animation = &"idle"
+flip_h = true
 
-[node name="Attack" type="Area2D" parent="FlippedNode" node_paths=PackedStringArray("parent")]
+[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
+position = Vector2(-8, 2.5)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("7_iym33")
-parent = NodePath("../..")
+parent = NodePath("..")
 should_use_attacked_entities = true
 
-[node name="AttackShape" type="CollisionShape2D" parent="FlippedNode/Attack"]
-position = Vector2(8, 2.5)
+[node name="AttackShape" type="CollisionShape2D" parent="Attack"]
 shape = SubResource("RectangleShape2D_yjp8u")
 disabled = true
 
-[node name="GroundDetector" type="RayCast2D" parent="FlippedNode"]
-position = Vector2(6, 0)
+[node name="GroundDetector" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
 collision_mask = 34
 collide_with_areas = true
 
-[node name="VisionDetector" parent="FlippedNode" node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
+[node name="VisionDetector" parent="." node_paths=PackedStringArray("vision_detector_shape", "vision_detector_line") instance=ExtResource("9_aac4u")]
+rotation = 3.14159
 collision_mask = 17
 vision_detector_shape = NodePath("VisionDetectorShape")
 vision_detector_line = NodePath("VisionDetectorLine")
 
-[node name="VisionDetectorShape" type="CollisionPolygon2D" parent="FlippedNode/VisionDetector"]
+[node name="VisionDetectorShape" type="CollisionPolygon2D" parent="VisionDetector"]
 polygon = PackedVector2Array(0, -10, 75, -40, 75, 40, 0, 10, -10, 10, -10, -10)
 
-[node name="VisionDetectorLine" type="RayCast2D" parent="FlippedNode/VisionDetector"]
+[node name="VisionDetectorLine" type="RayCast2D" parent="VisionDetector"]
 target_position = Vector2(0, 0)
 collision_mask = 49
 
-[node name="Exclamation" parent="FlippedNode" instance=ExtResource("9_acua4")]
-visible = false
+[node name="Exclamation" parent="." instance=ExtResource("9_acua4")]
 z_index = 2
-position = Vector2(6, -13)
+position = Vector2(-6, -13)
 scale = Vector2(0.75, 0.75)
 frame = 1
 frame_progress = 0.0
 
-[node name="WallDetector" parent="FlippedNode" node_paths=PackedStringArray("top_detector", "bottom_detector", "fake_terrain_detector", "actual_area_detector", "parent") instance=ExtResource("10_ybj5d")]
+[node name="WallDetector" parent="." node_paths=PackedStringArray("top_detector", "bottom_detector", "fake_terrain_detector", "actual_area_detector", "parent") instance=ExtResource("10_ybj5d")]
+rotation = 3.14159
 top_detector = NodePath("TopDetector")
 bottom_detector = NodePath("BottomDetector")
 fake_terrain_detector = NodePath("FakeTerrainDetector")
 actual_area_detector = NodePath("ActualAreaDetector")
-parent = NodePath("../..")
+parent = NodePath("..")
 
-[node name="TopDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+[node name="TopDetector" type="RayCast2D" parent="WallDetector"]
 target_position = Vector2(0, 0)
 collision_mask = 48
 
-[node name="FakeTerrainDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+[node name="FakeTerrainDetector" type="RayCast2D" parent="WallDetector"]
 target_position = Vector2(0, 0)
 collision_mask = 512
 
-[node name="BottomDetector" type="RayCast2D" parent="FlippedNode/WallDetector"]
+[node name="BottomDetector" type="RayCast2D" parent="WallDetector"]
 target_position = Vector2(0, 0)
 collision_mask = 48
 
-[node name="ActualAreaDetector" type="Area2D" parent="FlippedNode/WallDetector"]
+[node name="ActualAreaDetector" type="Area2D" parent="WallDetector"]
 collision_layer = 0
 collision_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlippedNode/WallDetector/ActualAreaDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector/ActualAreaDetector"]
 shape = SubResource("RectangleShape2D_n710x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_mxqy6")
 
 [node name="PlayerDetector" parent="." node_paths=PackedStringArray("detector_shape", "vision_detector") instance=ExtResource("7_s4e4p")]
+visible = false
 collision_layer = 0
 detector_shape = NodePath("DetectorShape")
-vision_detector = NodePath("../FlippedNode/VisionDetector")
+vision_detector = NodePath("../VisionDetector")
 detect_groups = Array[String](["Player"])
 detector_distance = 100
 
@@ -347,8 +348,8 @@ debug_color = Color(0.674393, 0.495516, 0.302429, 0.42)
 
 [node name="FollowMovement" parent="." node_paths=PackedStringArray("ground_detector", "wall_detector", "player_detector", "give_up_countdown", "parent") instance=ExtResource("8_b8hbt")]
 attack_distance = Vector2(13, 30)
-ground_detector = NodePath("../FlippedNode/GroundDetector")
-wall_detector = NodePath("../FlippedNode/WallDetector")
+ground_detector = NodePath("../GroundDetector")
+wall_detector = NodePath("../WallDetector")
 player_detector = NodePath("../PlayerDetector")
 give_up_countdown = NodePath("GiveUpCountdown")
 parent = NodePath("..")
@@ -366,6 +367,7 @@ parent = NodePath("..")
 movement_modules_data = Array[ExtResource("16_yhjil")]([SubResource("Resource_ffrj2"), SubResource("Resource_yhjil")])
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "knockback_component") instance=ExtResource("10_muknj")]
+visible = false
 collision_layer = 4
 collision_mask = 66
 health_component = NodePath("../HealthComponent")
@@ -420,6 +422,6 @@ volume_db = 5.0
 max_distance = 250.0
 bus = &"SFX"
 
-[connection signal="animation_finished" from="FlippedNode/Animator" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="FlippedNode/Attack" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_entered" from="FlippedNode/VisionDetector" to="FlippedNode/VisionDetector" method="_on_body_entered"]
+[connection signal="animation_finished" from="Animator" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="VisionDetector" to="VisionDetector" method="_on_body_entered"]

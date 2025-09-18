@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://0l22ufcehv4h"]
+[gd_scene load_steps=67 format=3 uid="uid://0l22ufcehv4h"]
 
 [ext_resource type="Script" uid="uid://bvvelnls1ou6q" path="res://entities/characters/enemies/mushroom/mushroom.gd" id="1_fdeik"]
 [ext_resource type="Shader" uid="uid://dfm6nh8rjqufc" path="res://resources/shaders/hurt.gdshader" id="1_vqyvp"]
@@ -17,16 +17,16 @@
 [ext_resource type="AudioStream" uid="uid://bntqibtif833d" path="res://assets/sounds/sfx/enemies/mushroom/boing.wav" id="12_2mbbe"]
 [ext_resource type="Script" uid="uid://bn1tmfoqk0mud" path="res://entities/characters/enemies/mushroom/movement_component.gd" id="14_56oxn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8p5us"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_do6yk"]
 shader = ExtResource("1_vqyvp")
 shader_parameter/flash_amount = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x0tlu"]
-atlas = ExtResource("3_2mbbe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxbgu"]
+atlas = ExtResource("4_x0tlu")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_le5n7"]
-atlas = ExtResource("3_2mbbe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlm7v"]
+atlas = ExtResource("4_x0tlu")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_do6yk"]
@@ -141,11 +141,16 @@ region = Rect2(112, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x0tlu")
+"texture": SubResource("AtlasTexture_bxbgu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_le5n7")
+"texture": SubResource("AtlasTexture_qlm7v")
+}],
+"loop": false,
+"name": &"afraid",
+"speed": 8.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_do6yk")
 }, {
@@ -251,6 +256,10 @@ animations = [{
 "name": &"walk",
 "speed": 8.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8p5us"]
+shader = ExtResource("1_vqyvp")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bp85m"]
 atlas = ExtResource("6_do6yk")
@@ -379,12 +388,18 @@ collision_mask = 48
 script = ExtResource("1_fdeik")
 
 [node name="PlayerDetectorRaycast" type="RayCast2D" parent="."]
+enabled = false
 target_position = Vector2(30, 0)
 
+[node name="GroundDetector" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+collision_mask = 34
+collide_with_areas = true
+
 [node name="Animator" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_8p5us")
+material = SubResource("ShaderMaterial_do6yk")
 sprite_frames = SubResource("SpriteFrames_qliks")
-animation = &"awake"
+animation = &"smash"
 
 [node name="SleepingOnomatopoeia" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8p5us")
@@ -435,5 +450,10 @@ position = Vector2(0, -3.5)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_le5n7")
 
+[node name="AfraidResetTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="animation_finished" from="Animator" to="." method="_on_animator_animation_finished"]
 [connection signal="body_entered" from="BounceArea" to="." method="_on_bounce_area_player_entered"]
+[connection signal="timeout" from="AfraidResetTimer" to="MovementComponent" method="_on_timer_timeout"]

@@ -2,7 +2,7 @@ extends Node
 
 var icons_paths = {
 	"keyboard": {
-		"path": "res://assets/sprites/hud/keys/keyboard_black.png",
+		"path": "res://assets/sprites/ui/keys/keyboard_black.png",
 		"move": Rect2(176,64,48,32),
 		"move_left": Rect2(48,48,16,16),
 		"move_right": Rect2(80,48,16,16),
@@ -13,7 +13,7 @@ var icons_paths = {
 		"interact-pressed": Rect2(80,128,16,16)
 	},
 	"xbox": {
-		"path": "res://assets/sprites/hud/keys/xone.png",
+		"path": "res://assets/sprites/ui/keys/xone.png",
 		"move": Rect2(48,64,16,16),
 		"move_left": Rect2(64,64,16,16),
 		"move_right": Rect2(96,64,16,16),
@@ -24,7 +24,7 @@ var icons_paths = {
 		"interact-pressed": Rect2(16,32,16,16)
 	},
 	"ps": {
-		"path": "res://assets/sprites/hud/keys/ps4.png",
+		"path": "res://assets/sprites/ui/keys/ps4.png",
 		"move": Rect2(48,64,16,16),
 		"move_left": Rect2(64,192,16,16),
 		"move_right": Rect2(96,192,16,16),

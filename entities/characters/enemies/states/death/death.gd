@@ -1,12 +1,12 @@
 class_name EnemyDeathState
 extends State
 
-@export var enemy : Enemy
+@export var enemy : CharacterBody2D
 
 func enter(params: Dictionary = {}) -> void:
 	if params.damage_info.get("not_play_animation"):
 		exit()
-	enemy.set_animation("die")
+	enemy.play_animation("die")
 	
 func exit() -> void:
 	enemy.queue_free()
