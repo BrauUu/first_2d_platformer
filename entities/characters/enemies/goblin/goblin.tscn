@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://chqd42os0ggp2"]
+[gd_scene load_steps=57 format=3 uid="uid://chqd42os0ggp2"]
 
 [ext_resource type="Script" uid="uid://cpa1fba00wl3u" path="res://entities/characters/enemies/goblin/goblin.gd" id="1_ot5hk"]
 [ext_resource type="Shader" uid="uid://dfm6nh8rjqufc" path="res://resources/shaders/hurt.gdshader" id="2_ddk16"]
@@ -18,11 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://d3wdau0mkkvja" path="res://entities/utils/knockback_component/knockback_component.tscn" id="13_tagwr"]
 [ext_resource type="PackedScene" uid="uid://w7y42hwt41uu" path="res://entities/controllers/movement_controller/movement_controller.tscn" id="15_ffrj2"]
 [ext_resource type="Script" uid="uid://dw3d2w1xljy02" path="res://resources/movement_module_data.gd" id="16_yhjil"]
-[ext_resource type="PackedScene" uid="uid://cr0mcltrohvl4" path="res://entities/states/state_machine/state_machine.tscn" id="19_agc1t"]
-[ext_resource type="PackedScene" uid="uid://bkmjc0nx0fdee" path="res://entities/characters/enemies/states/idle/idle.tscn" id="20_s28nd"]
-[ext_resource type="PackedScene" uid="uid://bjbjgx8xbqx3c" path="res://entities/characters/enemies/states/death/death.tscn" id="21_agc1t"]
-[ext_resource type="PackedScene" uid="uid://4vbbkuihpjhv" path="res://entities/characters/enemies/states/attack/attack.tscn" id="22_s28nd"]
-[ext_resource type="PackedScene" uid="uid://bldnp4cshln61" path="res://entities/characters/enemies/states/chase/chase.tscn" id="24_ddk16"]
 [ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/audio_controller.tscn" id="25_h6f4w"]
 [ext_resource type="AudioStream" uid="uid://kqr5oqdwir8o" path="res://assets/sounds/sfx/enemies/goblin/goblin_yell.mp3" id="26_fdgn2"]
 [ext_resource type="AudioStream" uid="uid://d3c2kwtu86n35" path="res://assets/sounds/sfx/enemies/goblin/hurt.wav" id="27_y5bph"]
@@ -375,21 +370,6 @@ knockback_component = NodePath("../KnockbackComponent")
 
 [node name="HitboxComponentShape" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_7a75t")
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("19_agc1t")]
-initial_state = NodePath("Idle")
-
-[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("20_s28nd")]
-enemy = NodePath("../..")
-
-[node name="Death" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("21_agc1t")]
-enemy = NodePath("../..")
-
-[node name="Attack" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("22_s28nd")]
-enemy = NodePath("../..")
-
-[node name="Chase" parent="StateMachine" node_paths=PackedStringArray("enemy") instance=ExtResource("24_ddk16")]
-enemy = NodePath("../..")
 
 [node name="AudioController" parent="." instance=ExtResource("25_h6f4w")]
 

@@ -118,3 +118,4 @@ position = Vector2(159, 139)
 
 [node name="Goblin" parent="." instance=ExtResource("19_8csex")]
 position = Vector2(316, 137)
+initial_direction = 1
