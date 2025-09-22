@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bldnp4cshln61"]
-
-[ext_resource type="Script" uid="uid://bpmv4eeqsdo2u" path="res://entities/characters/enemies/states/chase/chase.gd" id="1_djei6"]
-
-[node name="Chase" type="Node"]
-script = ExtResource("1_djei6")

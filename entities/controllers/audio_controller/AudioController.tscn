@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdhst7l51m64h"]
+
+[ext_resource type="Script" uid="uid://dg2op70l57wmw" path="res://entities/controllers/audio_controller/AudioController.gd" id="1_nsgpi"]
+
+[node name="AudioController" type="Node2D"]
+script = ExtResource("1_nsgpi")

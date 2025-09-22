@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3smspvrw2ris"]
+
+[ext_resource type="Script" uid="uid://clpytus67yc4l" path="res://entities/Tutorial.gd" id="1_el4dy"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_el4dy")

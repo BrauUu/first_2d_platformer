@@ -20,12 +20,12 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
-GameManager="*res://entities/managers/game_manager/game_manager.gd"
-GamepadTypeManager="*res://entities/managers/gamepad_type_manager/gamepad_type_manager.gd"
-InteractionManager="*res://entities/managers/interaction_manager/interaction_manager.gd"
-IconsManager="*res://entities/managers/icons_manager/icons_manager.gd"
-FadeIn="*res://entities/hud/transitions/fade_in/fade_in.tscn"
-GamepadsIcons="*res://resources/gamepads_icons.gd"
+GameManager="*res://entities/managers/game_manager/GameManager.gd"
+GamepadTypeManager="*res://entities/managers/gamepad_type_manager/GamepadTypeManager.gd"
+InteractionManager="*res://entities/managers/interaction_manager/InteractionManager.gd"
+IconsManager="*res://entities/managers/icons_manager/IconsManager.gd"
+FadeIn="*res://entities/hud/transitions/fade_in/FadeIn.tscn"
+GamepadsIcons="*res://resources/GamepadsIcons.gd"
 
 [display]
 
@@ -42,6 +42,7 @@ version_control/autoload_on_startup=true
 
 InteractableObject=""
 Player=""
+Enemy=""
 
 [importer_defaults]
 

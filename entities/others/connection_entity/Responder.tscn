@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1r4lvv5jxcic"]
+
+[ext_resource type="Script" uid="uid://c06vfbwtx2p8g" path="res://entities/others/connection_entity/Responder.gd" id="1_hs1s7"]
+
+[node name="Responder" type="Node"]
+script = ExtResource("1_hs1s7")

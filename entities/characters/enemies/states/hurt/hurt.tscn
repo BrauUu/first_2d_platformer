@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bor6nak7wnawv"]
-
-[ext_resource type="Script" uid="uid://c3n0w12pdlhdn" path="res://entities/characters/enemies/states/hurt/hurt.gd" id="1_7clwq"]
-
-[node name="Hurt" type="Node"]
-script = ExtResource("1_7clwq")

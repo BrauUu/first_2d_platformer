@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnu6j2arj3gy1"]
+
+[ext_resource type="Texture2D" uid="uid://bbjmueb4kwk70" path="res://assets/sprites/ui/health_hud_left.png" id="1_7gfwy"]
+[ext_resource type="Script" uid="uid://b5r7ehpb0ti0b" path="res://entities/hud/health_ui/HealthUi.gd" id="1_q1y0d"]
+[ext_resource type="Texture2D" uid="uid://bb2onxkdj57j0" path="res://assets/sprites/ui/health_hud_right.png" id="2_q1y0d"]
+[ext_resource type="Texture2D" uid="uid://c00daewvo8wqd" path="res://assets/sprites/ui/health_hud_middle.png" id="3_nwxbm"]
+
+[node name="HealthUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 16.0
+script = ExtResource("1_q1y0d")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 45.0
+offset_bottom = 13.0
+color = Color(0.730328, 0.847838, 0.669655, 1)
+
+[node name="CurrentHealth" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 13.0
+color = Color(0.999806, 0.285783, 0.241717, 1)
+
+[node name="HealthHUDLeft" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_7gfwy")
+stretch_mode = 2
+
+[node name="HealthHUDCenter" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 32.0
+offset_bottom = 16.0
+texture = ExtResource("3_nwxbm")
+stretch_mode = 2
+
+[node name="HealthHUDRight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 48.0
+offset_bottom = 16.0
+texture = ExtResource("2_q1y0d")
+stretch_mode = 2

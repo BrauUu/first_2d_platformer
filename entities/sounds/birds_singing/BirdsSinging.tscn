@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh7ybq3yevcvw"]
+
+[ext_resource type="AudioStream" uid="uid://cm0tvaxkjsx1n" path="res://assets/sounds/sfx/animals/sing-birds.wav" id="1_1ybdg"]
+[ext_resource type="Script" uid="uid://d2182fsp02otk" path="res://entities/sounds/birds_singing/BirdsSinging.gd" id="1_ne2qe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne2qe"]
+radius = 50.0
+
+[node name="BirdsSinging" type="Node2D"]
+script = ExtResource("1_ne2qe")
+
+[node name="BirdsSinging" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_1ybdg")
+volume_db = 5.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"
+
+[node name="Zone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
+visible = false
+shape = SubResource("CircleShape2D_ne2qe")
+debug_color = Color(0.640292, 0.524741, 0, 0.42)
+
+[connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
+[connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]

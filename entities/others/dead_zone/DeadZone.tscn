@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://kaakypnqypnu"]
+
+[ext_resource type="Script" uid="uid://bibi4vp4pyvfo" path="res://entities/others/dead_zone/DeadZone.gd" id="1_ribu1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cnuqr"]
+
+[node name="DeadZone" type="Area2D"]
+top_level = true
+disable_mode = 2
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_ribu1")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_cnuqr")
+debug_color = Color(0.90156, 0.0890885, 0.196813, 0.42)

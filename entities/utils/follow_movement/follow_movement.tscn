@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dha5r08rldxrj"]
-
-[ext_resource type="Script" uid="uid://lkatf3i50pt4" path="res://entities/utils/follow_movement/follow_movement.gd" id="1_wr5ri"]
-
-[node name="FollowMovement" type="Node"]
-script = ExtResource("1_wr5ri")

@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://5dau80qo71nx"]
+
+[ext_resource type="Script" uid="uid://c3h03olb67ryn" path="res://entities/itens/heal_itens/potion/Potion.gd" id="1_jmeyg"]
+[ext_resource type="Texture2D" uid="uid://ckmqs2iaqdcd3" path="res://assets/sprites/itens/apple_item_collectedt.png" id="2_rllby"]
+[ext_resource type="Texture2D" uid="uid://hw4enhnl72xd" path="res://assets/sprites/itens/apple_item.png" id="3_jdiuk"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/AudioController.tscn" id="4_rnt6g"]
+[ext_resource type="AudioStream" uid="uid://wpawoc8jmibs" path="res://assets/sounds/sfx/player/bite.wav" id="5_rllby"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqni4"]
+atlas = ExtResource("2_rllby")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shu4d"]
+atlas = ExtResource("2_rllby")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lutlp"]
+atlas = ExtResource("2_rllby")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kyw2"]
+atlas = ExtResource("2_rllby")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77j8p"]
+atlas = ExtResource("2_rllby")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8ogo"]
+atlas = ExtResource("3_jdiuk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_180qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqni4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shu4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lutlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kyw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77j8p")
+}],
+"loop": false,
+"name": &"collected",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8ogo")
+}],
+"loop": false,
+"name": &"dropped",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l78a3"]
+size = Vector2(8, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnc51"]
+size = Vector2(12, 14)
+
+[node name="Apple" type="CharacterBody2D" node_paths=PackedStringArray("interaction_area", "audio_controller", "animated_sprite_2d")]
+collision_layer = 0
+collision_mask = 48
+script = ExtResource("1_jmeyg")
+interaction_area = NodePath("InteractionArea")
+audio_controller = NodePath("AudioController")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+heal_amount = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_180qe")
+animation = &"dropped"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_l78a3")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_qnc51")
+
+[node name="AudioController" parent="." instance=ExtResource("4_rnt6g")]
+
+[node name="Collect" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_rllby")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

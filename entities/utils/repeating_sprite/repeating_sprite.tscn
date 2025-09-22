@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://67a5824a1pja"]
-
-[ext_resource type="Script" uid="uid://gehe6io5i4v" path="res://entities/utils/repeating_sprite/repeating_sprite.gd" id="1_ruil3"]
-
-[node name="RepeatingSprite" type="Sprite2D"]
-region_enabled = true
-script = ExtResource("1_ruil3")

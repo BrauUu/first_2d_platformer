@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cixxtajaia4x3"]
+
+[ext_resource type="Texture2D" uid="uid://ca1kq7vancn4v" path="res://assets/sprites/objects/stone.png" id="1_kxjt8"]
+[ext_resource type="Script" uid="uid://dqkllcm0urbqt" path="res://entities/objects/stone/Stone.gd" id="2_mohl7"]
+[ext_resource type="PackedScene" uid="uid://cohe1v5ox0bt0" path="res://entities/hud/floating_key/FloatingKey.tscn" id="4_djgj8"]
+[ext_resource type="PackedScene" uid="uid://bdhst7l51m64h" path="res://entities/controllers/audio_controller/AudioController.tscn" id="4_qjtlu"]
+[ext_resource type="AudioStream" uid="uid://b57ldkhk3plij" path="res://assets/sounds/sfx/others/stone_push.wav" id="5_tabol"]
+[ext_resource type="AudioStream" uid="uid://brqmk43shrvsa" path="res://assets/sounds/sfx/others/stone_drop.wav" id="6_qjtlu"]
+[ext_resource type="AudioStream" uid="uid://1l8xuvradqel" path="res://assets/sounds/sfx/ui/menu_focus.wav" id="7_tabol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tabol"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgox2"]
+size = Vector2(5, 12)
+
+[node name="Stone" type="CharacterBody2D" node_paths=PackedStringArray("interactive_zone_left", "interactive_zone_right", "audio_controller", "floating_key") groups=["InteractableObject"]]
+collision_layer = 16
+collision_mask = 49
+script = ExtResource("2_mohl7")
+interactive_zone_left = NodePath("InteractiveZoneLeft")
+interactive_zone_right = NodePath("InteractiveZoneRight")
+audio_controller = NodePath("AudioController")
+floating_key = NodePath("FloatingKey")
+weight = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxjt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tabol")
+one_way_collision_margin = 0.0
+
+[node name="InteractiveZoneLeft" type="Area2D" parent="."]
+position = Vector2(-9, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneLeft"]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_wgox2")
+
+[node name="InteractiveZoneRight" type="Area2D" parent="."]
+position = Vector2(9, 0)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveZoneRight"]
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_wgox2")
+
+[node name="FloatingKey" parent="." instance=ExtResource("4_djgj8")]
+offset_top = -15.0
+offset_bottom = -15.0
+action = "interact"
+
+[node name="AudioController" parent="." instance=ExtResource("4_qjtlu")]
+
+[node name="Push" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("5_tabol")
+volume_db = -10.0
+max_distance = 250.0
+bus = &"SFX"
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("6_qjtlu")
+volume_db = 10.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"
+
+[node name="Interact" type="AudioStreamPlayer2D" parent="AudioController"]
+stream = ExtResource("7_tabol")
+volume_db = -10.0
+max_distance = 500.0
+attenuation = 0.5
+bus = &"SFX"

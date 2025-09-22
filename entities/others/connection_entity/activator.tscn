@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c124cocjpi4gk"]
-
-[ext_resource type="Script" uid="uid://bnogrvn1qx8xd" path="res://entities/others/connection_entity/activator.gd" id="1_aqgd0"]
-
-[node name="Activator" type="Node"]
-script = ExtResource("1_aqgd0")

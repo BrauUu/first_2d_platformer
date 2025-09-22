@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3ee6ydtojhh8"]
+
+[ext_resource type="Texture2D" uid="uid://b1cgqjucuwrel" path="res://assets/sprites/characters/enemies/fly/dash.png" id="1_43j6o"]
+[ext_resource type="Script" uid="uid://tx7giuvahdr5" path="res://entities/effects/bat_dash/BatDash.gd" id="2_yn7ju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpo6q"]
+atlas = ExtResource("1_43j6o")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgxqx"]
+atlas = ExtResource("1_43j6o")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e85u7"]
+atlas = ExtResource("1_43j6o")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4odd"]
+atlas = ExtResource("1_43j6o")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkfkv"]
+atlas = ExtResource("1_43j6o")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlbf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpo6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgxqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e85u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4odd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkfkv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="BatDash" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_rlbf1")
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_yn7ju")

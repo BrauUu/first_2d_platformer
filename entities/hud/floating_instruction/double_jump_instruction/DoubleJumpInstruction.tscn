@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bws1fuh4nydgn"]
+
+[ext_resource type="Theme" uid="uid://cx4ebwibnxeqt" path="res://assets/themes/main.tres" id="1_xpbdy"]
+[ext_resource type="Script" uid="uid://co7ughepvcsns" path="res://entities/hud/floating_instruction/double_jump_instruction/DoubleJumpInstruction.gd" id="2_tn16r"]
+[ext_resource type="Texture2D" uid="uid://cd3r7w6s2q16l" path="res://assets/sprites/ui/keys/ps4.png" id="3_iky78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn6uu"]
+atlas = ExtResource("3_iky78")
+region = Rect2(0, 16, 16, 16)
+
+[node name="DoubleJumpInstruction" type="HBoxContainer"]
+offset_right = 61.0
+offset_bottom = 15.0
+theme = ExtResource("1_xpbdy")
+alignment = 1
+script = ExtResource("2_tn16r")
+instruction_name = "jump"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wn6uu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wn6uu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "DOUBLE JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
