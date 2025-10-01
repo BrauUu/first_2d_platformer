@@ -49,9 +49,9 @@ func _physics_process(delta: float) -> void:
 		attack_target_position = target.global_position
 		
 	if distance.x > 0:
-		parent.direction = 1
+		parent.current_direction = 1
 	else:
-		parent.direction = -1
+		parent.current_direction = -1
 		
 func start_attack_preparation() -> void:
 	preparing_attack = true
@@ -65,17 +65,17 @@ func _on_attack_preparation_finished() -> void:
 
 func end_attack() -> void:
 	parent.attacking = false
-	parent.current_cooldown = parent.cooldown
+	parent.current_cooldown = parent.attack_cooldown
 		
 func flies_back_and_forth() -> Vector2:
 	var distance_to_initial_point := parent.global_position - parent.initial_point
 	var should_change_direction := false
-	if parent.direction * distance_to_initial_point.x >= parent.fly_distance:
+	if parent.current_direction * distance_to_initial_point.x >= parent.fly_distance:
 		should_change_direction = true
 		
 	for i in range(parent.get_slide_collision_count()):
 		var collision_direction := parent.get_slide_collision(i).get_normal()
-		if collision_direction.x and int(collision_direction.x) != parent.direction:
+		if collision_direction.x and int(collision_direction.x) != parent.current_direction:
 			should_change_direction = true
 			
 	if should_change_direction:
@@ -85,7 +85,7 @@ func flies_back_and_forth() -> Vector2:
 		distance_to_initial_point.y = 0
 		
 	return Vector2(
-		parent.direction, 
+		parent.current_direction, 
 		-sign(distance_to_initial_point.y)
 	).normalized() * parent.speed
 

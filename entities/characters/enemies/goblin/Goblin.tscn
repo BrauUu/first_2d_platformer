@@ -341,6 +341,7 @@ shape = SubResource("CircleShape2D_vert4")
 debug_color = Color(0.674393, 0.495516, 0.302429, 0.42)
 
 [node name="FollowMovement" parent="." node_paths=PackedStringArray("ground_detector", "wall_detector", "player_detector", "give_up_countdown", "parent") instance=ExtResource("8_b8hbt")]
+attack_distance = Vector2(15, 15)
 ground_detector = NodePath("../GroundDetector")
 wall_detector = NodePath("../WallDetector")
 player_detector = NodePath("../PlayerDetector")

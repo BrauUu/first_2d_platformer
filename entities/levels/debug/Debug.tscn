@@ -17,8 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://dotouunfxbdnt" path="res://assets/sounds/musics/A Great Journey - Overworld.wav" id="15_goojx"]
 [ext_resource type="AudioStream" uid="uid://dp1aqn4t1bx2j" path="res://assets/sounds/musics/Gearing Up - Battle .wav" id="16_3ndfl"]
 [ext_resource type="AudioStream" uid="uid://dmg0y0tfbb0qr" path="res://assets/sounds/musics/Lose vol. 1.wav" id="17_wp1th"]
+[ext_resource type="PackedScene" uid="uid://bqcadimqyfugq" path="res://entities/characters/enemies/bat/Bat.tscn" id="18_1f2dw"]
 [ext_resource type="PackedScene" uid="uid://5xg231226kt" path="res://entities/others/spawn_point/SpawnPoint.tscn" id="18_477vv"]
-[ext_resource type="PackedScene" uid="uid://cyxwr72cuoltl" path="res://entities/characters/enemies/goblin/Goblin.tscn" id="19_8csex"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_is1k8"]
 a = Vector2(0, -1000)
@@ -113,8 +113,13 @@ bus = &"Music"
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(236, 141)
 
-[node name="Goblin" parent="Enemies" instance=ExtResource("19_8csex")]
-position = Vector2(78, -6)
+[node name="Bat" parent="Enemies" instance=ExtResource("18_1f2dw")]
+position = Vector2(44, -7)
+initial_state = null
+attack_speed = null
+attack_cooldown = null
+jump_power = null
+initial_direction = null
 
 [node name="SpawnPoint" parent="." instance=ExtResource("18_477vv")]
 position = Vector2(159, 139)

@@ -1,3 +1,4 @@
+class_name BomberGoblin
 extends Enemy
 
 @onready var exclamation: AnimatedSprite2D = $Exclamation
@@ -19,7 +20,7 @@ const EXCLAMATION_OFFSET: Dictionary = {
 enum BomberGoblinState {
 	IDLE,
 	ATTACK,
-	DEATH
+	DEAD
 }
 
 var current_state: BomberGoblinState = BomberGoblinState.IDLE
@@ -101,7 +102,7 @@ func attack() -> void:
 		
 func throw_bomb() -> void:
 	var bomb = BOMB_ENTITY.instantiate()
-	bomb.velocity = get_bomb_arch(position, target.position, 0.4)
+	bomb.velocity = get_bomb_arch(global_position, target.global_position, 0.4)
 	bomb.explosion_area = 30
 	bomb.damage = damage
 	bomb.position = position
@@ -163,7 +164,7 @@ func _apply_rotation_to_detector(detector: Node2D, left_rotation: float) -> void
 		detector.rotation = 0.0
 		
 func die(damage_info) -> void:
-	change_state(BomberGoblinState.DEATH)
+	change_state(BomberGoblinState.DEAD)
 
 func _update_state_behavior(delta: float) -> void:
 	match current_state:
@@ -190,8 +191,8 @@ func _enter_new_state() -> void:
 	match current_state:
 		BomberGoblinState.ATTACK:
 			_enter_attack_state()
-		BomberGoblinState.DEATH:
-			_enter_death_state()
+		BomberGoblinState.DEAD:
+			_enter_dead_state()
 
 func _enter_attack_state() -> void:
 	audio_controller.play_sound("Yell")
@@ -205,7 +206,7 @@ func _enter_attack_state() -> void:
 func _handle_attack_state(delta: float) -> void:
 	attack()
 
-func _enter_death_state() -> void:
+func _enter_dead_state() -> void:
 	set_animation("die")
 	apply_hurt_effect()
 	

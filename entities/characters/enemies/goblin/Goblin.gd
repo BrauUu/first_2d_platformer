@@ -36,7 +36,7 @@ const WALL_DETECTOR_OFFSET: Dictionary = {
 enum GoblinState {
 	IDLE,
 	CHASE,
-	DEATH
+	DEAD
 }
 
 var current_state: GoblinState = GoblinState.IDLE
@@ -169,8 +169,8 @@ func _enter_new_state() -> void:
 	match current_state:
 		GoblinState.CHASE:
 			_enter_chase_state()
-		GoblinState.DEATH:
-			_enter_death_state()
+		GoblinState.DEAD:
+			_enter_dead_state()
 	
 func _enter_chase_state() -> void:
 	if audio_controller:
@@ -184,7 +184,7 @@ func _enter_chase_state() -> void:
 	
 	current_cooldown = attack_cooldown
 
-func _enter_death_state() -> void:
+func _enter_dead_state() -> void:
 	play_animation("die")
 	apply_hurt_effect()
 	
@@ -340,13 +340,13 @@ func start_following() -> void:
 	change_state(GoblinState.CHASE)
 
 func stop_following() -> void:
-	if current_state == GoblinState.DEATH:
+	if current_state == GoblinState.DEAD:
 		return
 	
 	change_state(GoblinState.IDLE)
 
 func die(damage_info: Dictionary) -> void:
-	change_state(GoblinState.DEATH)
+	change_state(GoblinState.DEAD)
 
 func _on_animation_finished() -> void:
 	match animator.animation:

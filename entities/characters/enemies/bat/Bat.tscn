@@ -103,7 +103,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_t25be")
 }],
 "loop": false,
-"name": &"dead",
+"name": &"die",
 "speed": 8.0
 }, {
 "frames": [{
@@ -125,7 +125,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nj8fr")
 }],
 "loop": false,
-"name": &"sleeping",
+"name": &"sleep",
 "speed": 5.0
 }]
 
@@ -158,18 +158,14 @@ collision_layer = 4
 collision_mask = 48
 script = ExtResource("1_ksiqf")
 fly_distance = 70
-speed = 30
 damage = 1
-initial_direction = 1
-cooldown = 1.5
 health = 1
+speed = 30
 
 [node name="Animator" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_1tqix")
 sprite_frames = SubResource("SpriteFrames_p502a")
-animation = &"dead"
-frame = 4
-frame_progress = 1.0
+animation = &"sleep"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -241,7 +237,6 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("16_8rft6")
 should_use_attacked_entities = true
-metadata/_custom_type_script = "uid://clxebky3sk07a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 visible = false
